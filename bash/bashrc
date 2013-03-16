@@ -1,0 +1,16 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+alias rm='rm -I'
+alias ll='ls -l'
+alias la='ls -a'
+alias ..='cd ..'
+alias ...='cd ../..'
+
+PS1='[\u@\h \W]\$ '
+export PATH=$PATH:~/bin

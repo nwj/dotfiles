@@ -1,0 +1,112 @@
+" -----------------------------------------------------------------------------
+" .VIMRC
+" by nwj
+" -----------------------------------------------------------------------------
+
+
+" PATHOGEN
+" -----------------------------------------------------------------------------
+" must come first. comment out if not using plugins
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
+
+" BASIC SETTINGS
+" -----------------------------------------------------------------------------
+set nocompatible
+set hidden
+set number
+set ruler
+set history=500
+set backspace=indent,eol,start
+set encoding=utf-8
+
+
+" COLOR
+" -----------------------------------------------------------------------------
+set background=dark
+colorscheme solarized
+"colorscheme desert
+
+
+" TABS, INDENTS, WRAPPING
+" -----------------------------------------------------------------------------
+set smartindent
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set nowrap
+
+
+" WHITESPACE
+" -----------------------------------------------------------------------------
+set list
+set listchars=""
+set listchars=tab:\ \
+set listchars+=trail:.
+set listchars+=extends:>
+set listchars+=precedes:<
+
+
+" SEARCH
+" -----------------------------------------------------------------------------
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set showmatch
+
+
+" BACKUPS
+" -----------------------------------------------------------------------------
+set nobackup
+set nowb
+set noswapfile
+
+
+" FILETYPE DETECTION
+" -----------------------------------------------------------------------------
+filetype plugin on
+syntax enable
+
+
+" BASIC KEY BINDINGS
+" -----------------------------------------------------------------------------
+nnoremap ; :
+vnoremap ; :
+nnoremap Y y$
+let mapleader = ","
+nmap <leader>h :set hlsearch! hlsearch? <CR>
+
+" upper/lower first char of word
+nmap <leader>U mQgewvU`Q
+nmap <leader>L mQgewvu`Q
+
+" upper/lower word
+nmap <leader>u mQviwU`Q
+nmap <leader>l mQviwu`Q
+
+" expand file location of current buffer
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :e %%
+
+" get write permission when you forget sudo
+cmap w!! w !sudo tee %
+
+
+" plugins and plugin key bindings
+" -----------------------------------------------------------------------------
+" comment out if not using plugins
+"
+" solarized background color switch
+call togglebg#map("<f5>")
+
+" ctrl-p keybinding
+let g:ctrlp_map = "<c-p>"
+
+" nerd commenter keybinding
+map <leader>/ <plug>NERDCommenterToggle
+
+" nerd tree keybinding
+map <leader>n :NERDTreeToggle <CR>
