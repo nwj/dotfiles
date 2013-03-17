@@ -7,7 +7,7 @@
 " PATHOGEN
 " -----------------------------------------------------------------------------
 " must come first. comment out if not using plugins
-call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
 call pathogen#helptags()
 
 
@@ -17,16 +17,14 @@ set nocompatible
 set hidden
 set number
 set ruler
-set history=500
+set history=1000
 set backspace=indent,eol,start
 set encoding=utf-8
 
 
 " COLOR
 " -----------------------------------------------------------------------------
-set background=dark
-colorscheme solarized
-"colorscheme desert
+colorscheme evening
 
 
 " TABS, INDENTS, WRAPPING
@@ -36,8 +34,8 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
+set shiftround
 set nowrap
-
 
 " WHITESPACE
 " -----------------------------------------------------------------------------
@@ -67,25 +65,24 @@ set noswapfile
 
 " FILETYPE DETECTION
 " -----------------------------------------------------------------------------
-filetype plugin on
+filetype plugin indent on
 syntax enable
 
 
 " BASIC KEY BINDINGS
 " -----------------------------------------------------------------------------
+" no need to reach for shift to go into command mode 
 nnoremap ; :
 vnoremap ; :
+
+" Y now behaves similar to C and D
 nnoremap Y y$
+
+" sets the leader key
 let mapleader = ","
+
+" shortcut to toggle search hilighting
 nmap <leader>h :set hlsearch! hlsearch? <CR>
-
-" upper/lower first char of word
-nmap <leader>U mQgewvU`Q
-nmap <leader>L mQgewvu`Q
-
-" upper/lower word
-nmap <leader>u mQviwU`Q
-nmap <leader>l mQviwu`Q
 
 " expand file location of current buffer
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -95,16 +92,11 @@ map <leader>e :e %%
 cmap w!! w !sudo tee %
 
 
-" plugins and plugin key bindings
+" PLUGINS
 " -----------------------------------------------------------------------------
-" comment out if not using plugins
-"
-" solarized background color switch
-call togglebg#map("<f5>")
-
 " ctrl-p keybinding
 let g:ctrlp_map = "<c-p>"
-
+let g:ctrlp_show_hidden = 1
 " nerd commenter keybinding
 map <leader>/ <plug>NERDCommenterToggle
 

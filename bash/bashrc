@@ -2,15 +2,33 @@
 # ~/.bashrc
 #
 
-# If not running interactively, don't do anything
+# if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# colorize output
+# note that colorizing less requires the source-highlight package
 alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
+export LESS=' -R '
+
+# call common commands with safety features enabled
 alias rm='rm -I'
-alias ll='ls -l'
-alias la='ls -a'
-alias ..='cd ..'
-alias ...='cd ../..'
+alias cp='cp -i'
+alias mv='mv -i'
+alias ln='ln -i'
+
+# aliases for convenience
+alias mkdir='mkdir -p -v'
+alias ping='ping -c 5'
+
+# improved history
+export HISTFILESIZE=20000
+export HISTSIZE=10000
+shopt -s histappend
+export HISTCONTRO=ignoreboth
+
+# update window size after each command
+shopt -s checkwinsize
 
 PS1='[\u@\h \W]\$ '
-export PATH=$PATH:~/bin
