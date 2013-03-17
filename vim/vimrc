@@ -24,7 +24,7 @@ set encoding=utf-8
 
 " COLOR
 " -----------------------------------------------------------------------------
-colorscheme evening
+colorscheme zenburn
 
 
 " TABS, INDENTS, WRAPPING
