@@ -1,18 +1,18 @@
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------
 " .VIMRC
 " by nwj
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------
 
 
 " PATHOGEN
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------
 " must come first. comment out if not using plugins
 call pathogen#infect()
 call pathogen#helptags()
 
 
 " BASIC SETTINGS
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------
 set nocompatible
 set hidden
 set number
@@ -23,12 +23,12 @@ set encoding=utf-8
 
 
 " COLOR
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------
 colorscheme zenburn
 
 
 " TABS, INDENTS, WRAPPING
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------
 set smartindent
 set expandtab
 set shiftwidth=4
@@ -38,7 +38,7 @@ set shiftround
 set nowrap
 
 " WHITESPACE
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------
 set list
 set listchars=""
 set listchars=tab:\ \
@@ -48,7 +48,7 @@ set listchars+=precedes:<
 
 
 " SEARCH
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------
 set ignorecase
 set smartcase
 set incsearch
@@ -57,31 +57,31 @@ set showmatch
 
 
 " BACKUPS
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------
 set nobackup
 set nowb
 set noswapfile
 
 
 " FILETYPE DETECTION
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------
 filetype plugin indent on
 syntax enable
 
 
 " BASIC KEY BINDINGS
-" -----------------------------------------------------------------------------
-" no need to reach for shift to go into command mode 
+" ------------------------------------------------------------------------
+" command mode without pressing shift
 nnoremap ; :
 vnoremap ; :
 
-" Y now behaves similar to C and D
+" make Y behave similar to C and D
 nnoremap Y y$
 
 " sets the leader key
 let mapleader = ","
 
-" shortcut to toggle search hilighting
+" shortcut to toggle search highlighting
 nmap <leader>h :set hlsearch! hlsearch? <CR>
 
 " expand file location of current buffer
@@ -93,10 +93,11 @@ cmap w!! w !sudo tee %
 
 
 " PLUGINS
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------
 " ctrl-p keybinding
 let g:ctrlp_map = "<c-p>"
 let g:ctrlp_show_hidden = 1
+
 " nerd commenter keybinding
 map <leader>/ <plug>NERDCommenterToggle
 
