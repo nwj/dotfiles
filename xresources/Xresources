@@ -3,13 +3,12 @@ URxvt.font: xft:Inconsolata:size=10.5
 URxvt.scrollBar: false
 URxvt.visualBell:true
 URxvt*scrollTtyOutput:false
-Urxvt*scrollTtyKeypress:true
+URxvt*scrollTtyKeypress:true
 
 ! zenburn colorscheme
 urxvt*background:  #3f3f3f
 urxvt*foreground:  #dcdccc
 ! black + red
-!urxvt*color0:     #3f3f3f
 urxvt*color0:      #1E2320
 urxvt*color1:      #705050
 ! green + yellow
