@@ -19,10 +19,14 @@ alias mv='mv -i'
 alias ln='ln -i'
 
 # aliases for convenience
-alias ll = 'ls -l'
-alias la = 'ls -a'
+alias ll='ls -l'
+alias la='ls -a'
 alias mkdir='mkdir -p -v'
 alias ping='ping -c 5'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
 
 # improved history
 export HISTFILESIZE=20000
