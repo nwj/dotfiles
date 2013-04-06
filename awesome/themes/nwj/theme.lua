@@ -37,7 +37,7 @@ theme.fg_minimize   = theme.fg_normal
 theme.fg_systray    = theme.fg_normal
 
 theme.border_width  = 1
-theme.border_normal = lgrey
+theme.border_normal = dgrey
 theme.border_focus  = gold
 theme.border_marked = gold
 
