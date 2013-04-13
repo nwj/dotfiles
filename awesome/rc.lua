@@ -51,7 +51,7 @@ end
 -- VARIABLES
 -------------------
 modkey = "Mod4"
-terminal = os.getenv("TERM") or "urxvt"
+terminal = os.getenv("TERM") or "urxvt -e tmux"
 editor = os.getenv("EDITOR") or "vim"
 browser = "firefox"
 editor_cmd = terminal .. " -e " .. editor
