@@ -98,7 +98,11 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 -- CLOCK WIDGET
 -------------------
 mytextclock = awful.widget.textclock()
-
+mytextclock:buttons (awful.util.table.join (
+    awful.button ({}, 1, function()
+        awful.util.spawn ("gsimplecal")
+    end)
+))
 
 -- BATTERY WIDGET
 -------------------
