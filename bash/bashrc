@@ -27,6 +27,8 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+# fixing error with urxvt and ssh
+alias ssh='TERM=xterm ssh'
 
 # improved history
 export HISTFILESIZE=20000
