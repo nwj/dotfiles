@@ -26,6 +26,7 @@ alias ping='ping -c 5'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias sleepy='sudo shutdown -h +45'
 
 # fixing error with urxvt and ssh
 alias ssh='TERM=xterm ssh'
