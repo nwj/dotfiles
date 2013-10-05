@@ -105,3 +105,10 @@ map <leader>/ <plug>NERDCommenterToggle
 
 " nerd tree keybinding
 map <leader>n :NERDTreeToggle <CR>
+
+" LANGUAGE SPECIFIC SETTINGS
+" ------------------------------------------------------------------------
+autocmd BufNewFile,BufRead *.rb set shiftwidth=2
+autocmd BufNewFile,BufRead *.rb set tabstop=2
+autocmd BufNewFile,BufRead *.rb set softtabstop=2
+autocmd BufNewFile,BufRead *.rb set expandtab
