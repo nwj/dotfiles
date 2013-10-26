@@ -1,0 +1,9 @@
+[user]
+	name = Nick Willett-Jeffries
+	email = nwillettjeffries@gmail.com
+[core]
+	editor = vim
+[merge]
+	tool = vimdiff
+[color]
+	ui = true
