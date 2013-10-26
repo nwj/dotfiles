@@ -27,6 +27,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias sleepy='sudo shutdown -h +45'
+alias crake='clear && rake'
 
 # fixing error with urxvt and ssh
 alias ssh='TERM=xterm ssh'
