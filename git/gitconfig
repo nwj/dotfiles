@@ -3,6 +3,8 @@
 	email = nwillettjeffries@gmail.com
 [core]
 	editor = vim
+	autocrlf = input
+	safecrlf = true
 [merge]
 	tool = vimdiff
 [color]
