@@ -41,4 +41,10 @@ export HISTCONTRO=ignoreboth
 # update window size after each command
 shopt -s checkwinsize
 
+# initialize rbenv (ruby version management)
+eval "$(rbenv init -)"
+
+# set correct ruby gems folder for bundler
+export GEM_HOME=~/.gem/ruby/2.0.0
+
 PS1='[\u@\h \W]\$ '
