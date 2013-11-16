@@ -42,9 +42,10 @@ export HISTCONTRO=ignoreboth
 shopt -s checkwinsize
 
 # initialize rbenv (ruby version management)
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-# set correct ruby gems folder for bundler
-export GEM_HOME=~/.gem/ruby/2.0.0
+# aliases for ruby's bundle gem
+alias be='bundle exec'
 
 PS1='[\u@\h \W]\$ '
