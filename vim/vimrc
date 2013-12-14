@@ -108,7 +108,12 @@ map <leader>n :NERDTreeToggle <CR>
 
 " LANGUAGE SPECIFIC SETTINGS
 " ------------------------------------------------------------------------
+" Ruby
 autocmd BufNewFile,BufRead *.rb set shiftwidth=2
 autocmd BufNewFile,BufRead *.rb set tabstop=2
 autocmd BufNewFile,BufRead *.rb set softtabstop=2
-autocmd BufNewFile,BufRead *.rb set expandtab
+
+" Javascript
+"autocmd BufNewFile,BufRead *.js set shiftwidth=2
+"autocmd BufNewFile,BufRead *.js set tabstop=2
+"autocmd BufNewFile,BufRead *.js set softtabstop=2
