@@ -4,11 +4,11 @@
 Various configuration files (aka dotfiles) for my Arch Linux systems.
 
 ###Installation
-When I am setting up a new system, I usually follow a few steps:
+When setting up a new system, I usually follow a few steps:
 
 1.  Clone this repo to a folder in home: `git clone https://github.com/nwj/dotfiles.git`
 2.  Soft link each configuration file out to into the file system: `ln -s ~/dotfiles/vimrc ~/.vimrc`
-3.  In some cases, it is necessary to restart or resource after certain files are changed. For example, `source .bashrc`
+3.  In some cases, it is necessary to restart or re-source after certain files are changed. For example, `source .bashrc`
 
 This approach has a few advantages:
 
