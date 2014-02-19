@@ -258,9 +258,7 @@
 			<menu id="conkyconfig" label="Conky">
 				<item label="Edit .conkyrc">
 					<action name="Execute">
-						<command>
-							geany ~/.conkyrc
-						</command>
+						<command>gvim ~/.conkyrc</command>
 					</action>
 				</item>
 				<item label="Restart Conky">
@@ -289,9 +287,7 @@
 			<menu id="dmenuconfig" label="dmenu">
 				<item label="Edit start-up script">
 					<action name="Execute">
-						<command>
-							geany ~/.config/dmenu/dmenu-bind.sh
-						</command>
+						<command>gvim ~/.config/dmenu/dmenu-bind.sh</command>
 					</action>
 				</item>
 				<separator label="Help?"/>
@@ -306,9 +302,7 @@
 			<menu id="gmrunconfig" label="gmrun">
 				<item label="Edit config file">
 					<action name="Execute">
-						<command>
-							geany ~/.gmrunrc
-						</command>
+						<command>gvim ~/.gmrunrc</command>
 					</action>
 				</item>
 				<separator label="Help?"/>
@@ -323,23 +317,17 @@
 			<menu id="obConfig" label="Openbox">
 				<item label="Edit menu.xml">
 					<action name="Execute">
-						<command>
-							geany ~/.config/openbox/menu.xml
-						</command>
+						<command>gvim ~/.config/openbox/menu.xml</command>
 					</action>
 				</item>
 				<item label="Edit rc.xml">
 					<action name="Execute">
-						<command>
-							geany ~/.config/openbox/rc.xml
-						</command>
+						<command>gvim ~/.config/openbox/rc.xml</command>
 					</action>
 				</item>
 				<item label="Edit autostart">
 					<action name="Execute">
-						<command>
-							geany ~/.config/openbox/autostart
-						</command>
+						<command>gvim ~/.config/openbox/autostart</command>
 					</action>
 				</item>
 				<separator/>
@@ -375,9 +363,7 @@
 			<menu id="terminatorconfig" label="Terminator">
 				<item label="Edit config file">
 					<action name="Execute">
-						<command>
-							geany ~/.config/terminator/config
-						</command>
+						<command>gvim ~/.config/terminator/config</command>
 					</action>
 				</item>
 				<separator label="Help?"/>
@@ -392,9 +378,7 @@
 			<menu id="tint2config" label="tint2">
 				<item label="Edit config file">
 					<action name="Execute">
-						<command>
-							geany ~/.config/tint2/tint2rc
-						</command>
+						<command>gvim ~/.config/tint2/tint2rc</command>
 					</action>
 				</item>
 				<item label="Restart tint2">
