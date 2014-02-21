@@ -442,6 +442,11 @@
 					</command>
 				</action>
 			</item>
+			<item label="Mouse/Touchpad Settings">
+				<action name="Execute">
+					<command>gpointing-device-settings</command>
+				</action>
+			</item>
 			<item label="Power Management">
 				<action name="Execute">
 					<command>
