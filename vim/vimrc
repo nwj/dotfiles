@@ -30,13 +30,13 @@ colorscheme solarized
 
 " TABS, INDENTS, WRAPPING
 " ------------------------------------------------------------------------
-"set smartindent
-"set expandtab
-"set shiftwidth=4
-"set tabstop=4
-"set softtabstop=4
-"set shiftround
-"set nowrap
+set smartindent
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set shiftround
+set nowrap
 
 " WHITESPACE
 " ------------------------------------------------------------------------
@@ -113,9 +113,9 @@ call togglebg#map("<F5>")
 " LANGUAGE SPECIFIC SETTINGS
 " ------------------------------------------------------------------------
 " Ruby
-"autocmd BufNewFile,BufRead *.rb set shiftwidth=2
-"autocmd BufNewFile,BufRead *.rb set tabstop=2
-"autocmd BufNewFile,BufRead *.rb set softtabstop=2
+autocmd BufNewFile,BufRead *.rb set shiftwidth=2
+autocmd BufNewFile,BufRead *.rb set tabstop=2
+autocmd BufNewFile,BufRead *.rb set softtabstop=2
 
 " Javascript
 "autocmd BufNewFile,BufRead *.js set shiftwidth=2
