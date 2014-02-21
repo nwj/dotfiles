@@ -77,3 +77,7 @@ conky -q &
 
 ## Start music player daemon (MPD)
 mpd &
+
+# Autostart the Dropbox deamon
+(sleep 20s && ~/.dropbox-dist/dropboxd) &
+
