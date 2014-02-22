@@ -76,8 +76,10 @@ xset b off &
 conky -q &
 
 ## Start music player daemon (MPD)
-mpd &
+(sleep 10s && mpd) &
 
 # Autostart the Dropbox deamon
 (sleep 20s && ~/.dropbox-dist/dropboxd) &
 
+# Launch xchat (minimized to tray)
+(sleep 30s && xchat --minimize=2 ) &
