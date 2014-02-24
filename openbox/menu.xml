@@ -177,6 +177,11 @@
 					</command>
 				</action>
 			</item>
+			<item label="Asunder CD Ripper">
+				<action name="Execute">
+					<command>asunder</command>
+				</action>
+			</item>
 			<item label="Xfburn">
 				<action name="Execute">
 					<command>
