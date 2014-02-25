@@ -17,7 +17,8 @@ set nocompatible
 set hidden
 set number
 set ruler
-set history=1000
+set showcmd
+set history=100
 set backspace=indent,eol,start
 set encoding=utf-8
 
@@ -92,6 +93,14 @@ map <leader>e :e %%
 " get write permission when you forget sudo
 cmap w!! w !sudo tee %
 
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 " PLUGINS
 " ------------------------------------------------------------------------
