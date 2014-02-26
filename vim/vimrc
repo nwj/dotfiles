@@ -28,6 +28,8 @@ set encoding=utf-8
 " ------------------------------------------------------------------------
 set background=dark
 colorscheme solarized
+set guioptions-=T
+set guioptions-=r
 
 
 " TABS, INDENTS, WRAPPING
