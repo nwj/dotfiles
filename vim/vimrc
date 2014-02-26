@@ -17,13 +17,14 @@ set nocompatible
 set hidden
 set number
 set ruler
+set scrolloff=5
 set showcmd
 set history=100
 set backspace=indent,eol,start
 set encoding=utf-8
 
 
-" COLOR
+" COLOR & GUI
 " ------------------------------------------------------------------------
 set background=dark
 colorscheme solarized
@@ -80,7 +81,7 @@ vnoremap ; :
 " make Y behave similar to C and D
 nnoremap Y y$
 
-" sets the leader key
+" set the leader key
 let mapleader = ","
 
 " shortcut to toggle search highlighting
@@ -125,8 +126,3 @@ call togglebg#map("<F5>")
 autocmd BufNewFile,BufRead *.rb set shiftwidth=2
 autocmd BufNewFile,BufRead *.rb set tabstop=2
 autocmd BufNewFile,BufRead *.rb set softtabstop=2
-
-" Javascript
-"autocmd BufNewFile,BufRead *.js set shiftwidth=2
-"autocmd BufNewFile,BufRead *.js set tabstop=2
-"autocmd BufNewFile,BufRead *.js set softtabstop=2
