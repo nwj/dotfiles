@@ -337,7 +337,7 @@
         <command>gmrun</command>
       </action>
     </keybind>
-    <keybind key="A-F3">
+    <keybind key="W-space">
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
@@ -432,7 +432,7 @@
         <menu>client-list-combined-menu</menu>
       </action>
     </keybind>
-    <keybind key="W-space">
+    <keybind key="A-F3">
       <action name="ShowMenu">
         <menu>root-menu</menu>
       </action>

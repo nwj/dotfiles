@@ -79,7 +79,7 @@ conky -q &
 (sleep 10s && mpd) &
 
 # Autostart the Dropbox deamon
-(sleep 20s && ~/.dropbox-dist/dropboxd) &
+(sleep 10s && ~/.dropbox-dist/dropboxd) &
 
 # Launch xchat (minimized to tray)
-(sleep 30s && xchat --minimize=2 ) &
+(sleep 20s && xchat --minimize=2 ) &
