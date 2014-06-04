@@ -465,6 +465,9 @@
         <command>cb-aerosnap --right</command>
       </action>
     </keybind>
+    <keybind key="W-A-m">
+      <action name="Maximize"/>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>8</dragThreshold>
