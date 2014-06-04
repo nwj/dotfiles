@@ -125,6 +125,6 @@ call togglebg#map("<F5>")
 " LANGUAGE SPECIFIC SETTINGS
 " ------------------------------------------------------------------------
 " Ruby
-autocmd BufNewFile,BufRead *.rb set shiftwidth=2
-autocmd BufNewFile,BufRead *.rb set tabstop=2
-autocmd BufNewFile,BufRead *.rb set softtabstop=2
+autocmd BufNewFile,BufReadPost *.rb setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+" CoffeeScript
+autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
