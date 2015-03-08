@@ -4,7 +4,7 @@
 [core]
 	editor = vim
 	autocrlf = input
-	safecrlf = true
+	excludesfile = /Users/nwj/.gitignore
 [merge]
 	tool = vimdiff
 [color]
