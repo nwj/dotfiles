@@ -23,7 +23,7 @@ ZSH_THEME="lukerandall"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -57,6 +57,14 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 # Path Additions
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
+
+# Android Path Additions
+android_root="/Applications/Android Studio.app/sdk"
+export PATH=${android_root}/tools:$PATH
+export PATH=${android_root}/platform-tools:$PATH
+export ANDROID_HOME=${android_root}
+export ANDROID_SDK=${android_root}
+launchctl setenv ANDROID_HOME "/Applications/Android Studio.app/sdk"
 
 # Required by rbenv
 eval "$(rbenv init -)"
