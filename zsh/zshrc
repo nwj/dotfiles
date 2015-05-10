@@ -93,3 +93,9 @@ eval "$(rbenv init -)"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+
+# Uncomment the following line to enable vi keybindings (rather than Emacs-esque keybindings)
+bindkey -v
+bindkey '^R' 'history-incremental-search-backward'
+bindkey -M vicmd '^R' 'history-incremental-search-backward'
