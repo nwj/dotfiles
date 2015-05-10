@@ -40,3 +40,6 @@
 [submodule "vim/bundle/vim-eco"]
 	path = vim/bundle/vim-eco
 	url = git@github.com:AndrewRadev/vim-eco.git
+[submodule "vim/bundle/vim-gitgutter"]
+	path = vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
