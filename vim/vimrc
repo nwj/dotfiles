@@ -3,47 +3,43 @@
 " by nwj
 " ------------------------------------------------------------------------
 
-
-" PATHOGEN
-" ------------------------------------------------------------------------
-" must come first. comment out if not using plugins
+" Loads plugins. Must come first.
 call pathogen#infect()
 call pathogen#helptags()
 
-
-" BASIC SETTINGS
+" GENERAL SETTINGS
 " ------------------------------------------------------------------------
 set nocompatible
 set hidden
-set number
-set ruler
-set scrolloff=5
+set scrolloff=10
 set showcmd
-set history=100
+set history=1000
 set backspace=indent,eol,start
+set showmatch
 set encoding=utf-8
 
-
-" COLOR & GUI
+" UI / APPEARANCE
 " ------------------------------------------------------------------------
+set number
+set ruler
 set background=dark
 colorscheme solarized
 set guioptions-=T
-set guioptions-=r
-
+set guifont=Monaco:h12
 
 " TABS, INDENTS, WRAPPING
 " ------------------------------------------------------------------------
-set smartindent
+" We don't want smartindent here because we use filetype-based indentation.
+set autoindent
 set expandtab
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set shiftround
 set nowrap
 
 " WHITESPACE
 " ------------------------------------------------------------------------
+" Taken together, these settings highlight trailing whitespace on lines.
 set list
 set listchars=""
 set listchars=tab:\ \
@@ -51,39 +47,27 @@ set listchars+=trail:.
 set listchars+=extends:>
 set listchars+=precedes:<
 
-
 " SEARCH
 " ------------------------------------------------------------------------
+" When 'ignorecase' and 'smartcase' are both on, if a pattern contains an
+" uppercase letter, search is case sensitive, otherwise, it is not.
 set ignorecase
 set smartcase
-set incsearch
 set hlsearch
-set showmatch
-
 
 " BACKUPS
 " ------------------------------------------------------------------------
+" git has rendered vim's built in backup tools obsolete. This disables them.
 set nobackup
 set nowb
 set noswapfile
 
-
-" FILETYPE DETECTION
+" KEY BINDINGS
 " ------------------------------------------------------------------------
-filetype plugin indent on
-syntax enable
-
-
-" BASIC KEY BINDINGS
-" ------------------------------------------------------------------------
-" command mode without pressing shift
 nnoremap ; :
 vnoremap ; :
-
-" make Y behave similar to C and D
 nnoremap Y y$
 
-" set the leader key
 let mapleader = ","
 
 " shortcut to toggle search highlighting
@@ -105,13 +89,12 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" PLUGINS
-" ------------------------------------------------------------------------
+" Intuitive movement on lines that wrap
+map j gj
+map k gk
+
 " ctrl-p keybinding
 let g:ctrlp_map = "<c-p>"
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_use_caching = 1
-let g:ctrlp_clear_cache_on_exit = 0
 
 " nerd commenter keybinding
 map <leader>/ <plug>NERDCommenterToggle
@@ -122,9 +105,22 @@ map <leader>n :NERDTreeToggle <CR>
 " solarized background toggle keybinding
 call togglebg#map("<F5>")
 
+" PLUGIN-SPECIFIC
+" ------------------------------------------------------------------------
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
+
+" FILETYPE DETECTION
+" ------------------------------------------------------------------------
+filetype plugin indent on
+syntax enable
+
 " LANGUAGE SPECIFIC SETTINGS
 " ------------------------------------------------------------------------
 " Ruby
-autocmd BufNewFile,BufReadPost *.rb setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd BufNewFile,BufReadPost *.rb setl shiftwidth=2 softtabstop=2 expandtab
 " CoffeeScript
-autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 softtabstop=2 expandtab
+" HTML
+autocmd BufNewFile,BufReadPost *.html* setl shiftwidth=2 softtabstop=2 expandtab
