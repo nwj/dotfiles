@@ -107,9 +107,9 @@ call togglebg#map("<F5>")
 
 " PLUGIN-SPECIFIC
 " ------------------------------------------------------------------------
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_use_caching = 1
-let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_user_command = '/opt/local/bin/ag %s -l --nocolor --hidden -g ""'
 let g:agprg="/opt/local/bin/ag --column"
 
 " FILETYPE DETECTION
