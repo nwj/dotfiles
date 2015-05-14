@@ -96,6 +96,9 @@ map k gk
 " ctrl-p keybinding
 let g:ctrlp_map = "<c-p>"
 
+" bufexplorer keybinding
+map <leader>m :ToggleBufExplorer <CR>
+
 " nerd commenter keybinding
 map <leader>/ <plug>NERDCommenterToggle
 
