@@ -27,6 +27,9 @@ set background=dark
 colorscheme solarized
 set guioptions-=T
 set guifont=Monaco:h12
+" Show a grey line at 120 characters, which is where github's code viewer
+" starts to scroll
+set colorcolumn=120
 
 " TABS, INDENTS, WRAPPING
 " ------------------------------------------------------------------------
