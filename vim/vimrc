@@ -21,6 +21,7 @@ set encoding=utf-8
 " UI / APPEARANCE
 " ------------------------------------------------------------------------
 set number
+set relativenumber
 set ruler
 set background=dark
 colorscheme solarized
@@ -55,12 +56,15 @@ set ignorecase
 set smartcase
 set hlsearch
 
-" BACKUPS
+" SAVING & BACKUPS
 " ------------------------------------------------------------------------
 " git has rendered vim's built in backup tools obsolete. This disables them.
 set nobackup
 set nowb
 set noswapfile
+
+" This will autosave all buffers whenever vim loses focus.
+:au FocusLost * silent! wa
 
 " KEY BINDINGS
 " ------------------------------------------------------------------------
@@ -92,6 +96,9 @@ nnoremap <C-l> <C-w>l
 " Intuitive movement on lines that wrap
 map j gj
 map k gk
+
+" Disable ex-mode keybinding because it's annoying and no one uses it.
+:map Q <Nop>
 
 " ctrl-p keybinding
 let g:ctrlp_map = "<c-p>"
