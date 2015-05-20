@@ -106,6 +106,9 @@ map k gk
 " ctrl-p keybinding
 let g:ctrlp_map = "<c-p>"
 
+" keybinding to ag whatever word is currently under the cursor
+nnoremap <leader>. :Ag "\b<C-R><C-W>\b"<CR>:cw<Cr>
+
 " bufexplorer keybinding
 map <leader>m :ToggleBufExplorer <CR>
 
@@ -123,6 +126,7 @@ call togglebg#map("<F5>")
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_user_command = '/opt/local/bin/ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_match_window = 'bottom, order:btt, min:1, max:20, results:20'
 let g:agprg="/opt/local/bin/ag --column"
 
 " FILETYPE DETECTION
