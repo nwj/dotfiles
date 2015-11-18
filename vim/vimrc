@@ -125,9 +125,9 @@ call togglebg#map("<F5>")
 " ------------------------------------------------------------------------
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = 0
-let g:ctrlp_user_command = '/opt/local/bin/ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_user_command = '/usr/local/bin/ag %s -l --nocolor --hidden -g ""'
 let g:ctrlp_match_window = 'bottom, order:btt, min:1, max:20, results:20'
-let g:agprg="/opt/local/bin/ag --column"
+let g:agprg="/usr/local/bin/ag --column"
 let g:gitgutter_max_signs = 1000
 
 " FILETYPE DETECTION
