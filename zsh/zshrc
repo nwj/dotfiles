@@ -57,14 +57,6 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # Path Additions
 export PATH="$HOME/.rbenv/bin:$PATH"
 
-# Android Path Additions
-android_root="/Applications/Android Studio.app/sdk"
-export PATH=${android_root}/tools:$PATH
-export PATH=${android_root}/platform-tools:$PATH
-export ANDROID_HOME=${android_root}
-export ANDROID_SDK=${android_root}
-launchctl setenv ANDROID_HOME "/Applications/Android Studio.app/sdk"
-
 # Required by rbenv
 eval "$(rbenv init -)"
 
