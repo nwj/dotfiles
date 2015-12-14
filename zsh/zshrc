@@ -48,6 +48,7 @@ ZSH_THEME="lukerandall"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/Code/appboy-localdev/.profile
 
 # User configuration
 
