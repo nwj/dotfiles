@@ -3,10 +3,6 @@
 " by nwj
 " ------------------------------------------------------------------------
 
-" Loads plugins. Must come first.
-call pathogen#infect()
-call pathogen#helptags()
-
 " GENERAL SETTINGS
 " ------------------------------------------------------------------------
 set nocompatible
@@ -26,7 +22,6 @@ set number
 set relativenumber
 set ruler
 set background=dark
-colorscheme solarized
 set guioptions-=T
 set guifont=Monaco:h12
 " Show a grey line at 110 characters, which is where github's code viewer
@@ -105,6 +100,33 @@ map k gk
 " Disable ex-mode keybinding because it's annoying and no one uses it.
 :map Q <Nop>
 
+" PLUGIN SETUP
+" ------------------------------------------------------------------------
+call plug#begin()
+
+Plug 'airblade/vim-gitgutter'
+Plug 'altercation/vim-colors-solarized'
+Plug 'ervandew/supertab'
+Plug 'scrooloose/nerdcommenter', { 'on': 'NERDCommenterToggle' }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+
+" Note for the future - Unite.vim might be able to replace these three
+Plug 'rking/ag.vim', { 'on': 'Ag' }
+Plug 'jlanzarotta/bufexplorer', { 'on': 'ToggleBufExplorer' }
+Plug 'ctrlpvim/ctrlp.vim'
+
+" Language-specific Plugins
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' } | Plug 'AndrewRadev/vim-eco', { 'for': 'coffeescript' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+
+call plug#end()
+
+" PLUGIN KEY BINDINGS
+" ------------------------------------------------------------------------
 " ctrl-p keybinding
 let g:ctrlp_map = "<c-p>"
 
@@ -125,12 +147,13 @@ call togglebg#map("<F5>")
 
 " PLUGIN-SPECIFIC
 " ------------------------------------------------------------------------
-let g:ctrlp_working_path_mode = 0
+let g:ctrlp_working_path_mode = 2
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_user_command = '/usr/local/bin/ag %s -l --nocolor --hidden -g ""'
 let g:ctrlp_match_window = 'bottom, order:btt, min:1, max:20, results:20'
 let g:agprg="/usr/local/bin/ag --column"
 let g:gitgutter_max_signs = 1000
+colorscheme solarized
 
 " FILETYPE DETECTION
 " ------------------------------------------------------------------------
