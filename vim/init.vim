@@ -118,9 +118,10 @@ Plug 'jlanzarotta/bufexplorer', { 'on': 'ToggleBufExplorer' }
 Plug 'ctrlpvim/ctrlp.vim'
 
 " Language-specific Plugins
+Plug 'benekastah/neomake'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' } | Plug 'AndrewRadev/vim-eco', { 'for': 'coffeescript' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' } | Plug 'AndrewRadev/vim-eco', { 'for': 'coffee' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 call plug#end()
@@ -147,13 +148,17 @@ call togglebg#map("<F5>")
 
 " PLUGIN-SPECIFIC
 " ------------------------------------------------------------------------
+colorscheme solarized
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_user_command = '/usr/local/bin/ag %s -l --nocolor --hidden -g ""'
 let g:ctrlp_match_window = 'bottom, order:btt, min:1, max:20, results:20'
 let g:agprg="/usr/local/bin/ag --column"
 let g:gitgutter_max_signs = 1000
-colorscheme solarized
+let g:neomake_javascript_enabled_makers = ['jshint']
+let g:neomake_coffeescript_enabled_makers = ['coffeelint']
+let g:neomake_ruby_enabled_makers = ['mri']
+autocmd! BufWritePost * Neomake
 
 " FILETYPE DETECTION
 " ------------------------------------------------------------------------
