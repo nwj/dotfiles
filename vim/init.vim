@@ -109,13 +109,12 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdcommenter', { 'on': 'NERDCommenterToggle' }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 
-" Note for the future - Unite.vim might be able to replace these three
+" TODO - replace this with Unite.vim
 Plug 'rking/ag.vim', { 'on': 'Ag' }
-Plug 'jlanzarotta/bufexplorer', { 'on': 'ToggleBufExplorer' }
-Plug 'ctrlpvim/ctrlp.vim'
 
 " Language-specific Plugins
 Plug 'benekastah/neomake'
@@ -128,14 +127,12 @@ call plug#end()
 
 " PLUGIN KEY BINDINGS
 " ------------------------------------------------------------------------
-" ctrl-p keybinding
-let g:ctrlp_map = "<c-p>"
+" Unite.vim keybindings
+nnoremap <silent> <c-p> :Unite -buffer-name=files -no-split -start-insert file_rec/neovim<CR>
+map <leader>m :Unite -buffer-name=buffer -no-split buffer<CR>
 
 " keybinding to ag whatever word is currently under the cursor
 nnoremap <leader>. :Ag "\b<C-R><C-W>\b"<CR>:cw<Cr>
-
-" bufexplorer keybinding
-map <leader>m :ToggleBufExplorer <CR>
 
 " nerd commenter keybinding
 map <leader>/ <plug>NERDCommenterToggle
@@ -149,10 +146,10 @@ call togglebg#map("<F5>")
 " PLUGIN-SPECIFIC
 " ------------------------------------------------------------------------
 colorscheme solarized
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_user_command = '/usr/local/bin/ag %s -l --nocolor --hidden -g ""'
-let g:ctrlp_match_window = 'bottom, order:btt, min:1, max:20, results:20'
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+let g:unite_prompt = '>> '
+let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
+let g:unite_source_history_yank_enable = 1
 let g:ag_prg="/usr/local/bin/ag --column"
 let g:gitgutter_max_signs = 1000
 let g:neomake_javascript_enabled_makers = ['jshint']
