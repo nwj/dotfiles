@@ -22,8 +22,6 @@ set number
 set relativenumber
 set ruler
 set background=dark
-set guioptions-=T
-set guifont=Monaco:h12
 " Show a grey line at 110 characters, which is where github's code viewer
 " starts to scroll
 set colorcolumn=110
