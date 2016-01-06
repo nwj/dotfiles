@@ -110,9 +110,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-
-" TODO - replace this with Unite.vim
-Plug 'rking/ag.vim', { 'on': 'Ag' }
+Plug 'gabesoft/vim-ags', { 'on': 'Ags' }
 
 " Language-specific Plugins
 Plug 'benekastah/neomake'
@@ -130,7 +128,7 @@ nnoremap <silent> <c-p> :Unite -buffer-name=files -no-split -start-insert file_r
 map <leader>m :Unite -buffer-name=buffer -no-split buffer<CR>
 
 " keybinding to ag whatever word is currently under the cursor
-nnoremap <leader>. :Ag "\b<C-R><C-W>\b"<CR>:cw<Cr>
+nnoremap <leader>. :Ags "\b<C-R><C-W>\b"<CR>:cw<Cr>
 
 " nerd commenter keybinding
 map <leader>/ <plug>NERDCommenterToggle
@@ -145,10 +143,9 @@ call togglebg#map("<F5>")
 " ------------------------------------------------------------------------
 colorscheme solarized
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
 let g:unite_prompt = '>> '
 let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
-let g:unite_source_history_yank_enable = 1
-let g:ag_prg="/usr/local/bin/ag --column"
 let g:gitgutter_max_signs = 1000
 let g:neomake_javascript_enabled_makers = ['jshint']
 let g:neomake_coffeescript_enabled_makers = ['coffeelint']
