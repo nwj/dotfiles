@@ -105,7 +105,7 @@ call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ervandew/supertab'
-Plug 'scrooloose/nerdcommenter', { 'on': 'NERDCommenterToggle' }
+Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-fugitive'
@@ -125,13 +125,13 @@ call plug#end()
 " ------------------------------------------------------------------------
 " Unite.vim keybindings
 nnoremap <silent> <c-p> :Unite -buffer-name=files -no-split -start-insert file_rec/neovim<CR>
-map <leader>m :Unite -buffer-name=buffer -no-split buffer<CR>
+nnoremap <leader>m :Unite -buffer-name=buffer -no-split buffer<CR>
+
+" keybinding to comment stuff
+map <leader>/ :Commentary<CR>
 
 " keybinding to ag whatever word is currently under the cursor
 nnoremap <leader>. :Ags "\b<C-R><C-W>\b"<CR>:cw<Cr>
-
-" nerd commenter keybinding
-map <leader>/ <plug>NERDCommenterToggle
 
 " nerd tree keybinding
 map <leader>n :NERDTreeToggle <CR>
@@ -162,6 +162,6 @@ syntax enable
 " Ruby
 autocmd BufNewFile,BufReadPost *.rb setl shiftwidth=2 softtabstop=2 expandtab
 " CoffeeScript
-autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 softtabstop=2 expandtab
+autocmd BufNewFile,BufReadPost *.coffee* setl shiftwidth=2 softtabstop=2 expandtab
 " HTML
 autocmd BufNewFile,BufReadPost *.html* setl shiftwidth=2 softtabstop=2 expandtab
