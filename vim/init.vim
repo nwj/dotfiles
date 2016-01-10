@@ -118,6 +118,8 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' } | Plug 'AndrewRadev/vim-eco', { 'for': 'coffee' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
 
 call plug#end()
 
@@ -150,6 +152,7 @@ let g:gitgutter_max_signs = 1000
 let g:neomake_javascript_enabled_makers = ['jshint']
 let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 let g:neomake_ruby_enabled_makers = ['mri']
+let g:neomake_haskell_enabled_makers = ['hdevtools']
 autocmd! BufWritePost * Neomake
 
 " FILETYPE DETECTION
