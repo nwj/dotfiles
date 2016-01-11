@@ -61,9 +61,6 @@ set nobackup
 set nowb
 set noswapfile
 
-" This will autosave all buffers whenever vim loses focus.
-:au FocusLost * silent! wa
-
 " KEY BINDINGS
 " ------------------------------------------------------------------------
 nnoremap ; :
@@ -110,6 +107,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug '907th/vim-auto-save'
 Plug 'gabesoft/vim-ags', { 'on': 'Ags' }
 
 " Language-specific Plugins
@@ -149,6 +147,10 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 let g:unite_prompt = '>> '
 let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
 let g:gitgutter_max_signs = 1000
+let g:auto_save = 1
+let g:auto_save_no_updatetime = 1
+let g:auto_save_silent = 1
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
 let g:neomake_javascript_enabled_makers = ['jshint']
 let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 let g:neomake_ruby_enabled_makers = ['mri']
