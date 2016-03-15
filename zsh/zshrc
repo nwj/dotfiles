@@ -63,6 +63,9 @@ export PATH="$HOME/.local/bin:$PATH"
 # Required by rbenv
 eval "$(rbenv init -)"
 
+# Required for Appboy's Docker setup
+export DOCKER=true
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
