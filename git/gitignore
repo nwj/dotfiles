@@ -36,3 +36,7 @@ Thumbs.db
 # Editor generated files #
 ##########################
 **/.idea
+
+# Rbenv files
+##########################
+.ruby-version
