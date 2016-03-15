@@ -114,7 +114,7 @@ Plug 'gabesoft/vim-ags', { 'on': 'Ags' }
 Plug 'benekastah/neomake'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' } | Plug 'AndrewRadev/vim-eco', { 'for': 'coffee' }
+Plug 'kchmck/vim-coffee-script', | Plug 'AndrewRadev/vim-eco'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
