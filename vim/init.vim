@@ -109,6 +109,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug '907th/vim-auto-save'
 Plug 'gabesoft/vim-ags', { 'on': 'Ags' }
+Plug 'justinmk/vim-sneak'
 
 " Language-specific Plugins
 Plug 'benekastah/neomake'
@@ -155,6 +156,7 @@ let g:neomake_javascript_enabled_makers = ['jshint']
 let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 let g:neomake_ruby_enabled_makers = ['mri']
 let g:neomake_haskell_enabled_makers = ['hdevtools']
+let g:sneak#s_next = 1
 autocmd! BufWritePost * Neomake
 
 " FILETYPE DETECTION
