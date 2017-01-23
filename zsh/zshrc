@@ -60,11 +60,12 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.stack/programs/x86_64-osx/ghc-7.10.3/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
+# Required for Appboy's Docker setup
+export RBENV_VERSION=${PLATFORM_RUBY_VERION}
+export DOCKER=true
+
 # Required by rbenv
 eval "$(rbenv init -)"
-
-# Required for Appboy's Docker setup
-export DOCKER=true
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
