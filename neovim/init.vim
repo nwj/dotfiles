@@ -148,6 +148,10 @@ let g:neomake_error_sign = {
 let g:neomake_ruby_enabled_makers = ['mri']
 " Requires installation of go
 let g:neomake_go_enabled_makers = ['govet', 'go']
+" Requires installation of jshint (npm install -g jshint)
+let g:neomake_javascript_enabled_makers = ['jshint']
+" Requires installation of coffeelint (npm install -g coffeelint)
+let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 
 " CTRLSF SETTINGS
 " -----------------------------------------------------------------------------------------------------------
