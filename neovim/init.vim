@@ -16,6 +16,8 @@ Plug 'itchyny/lightline.vim'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 " Asynchronous linting and make framework
 Plug 'benekastah/neomake'
+" Asynchronous completion framework. Requires python3 and the neovim python module.
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Ag wrapper for project-wide search and editing
 Plug 'dyng/ctrlsf.vim', { 'on': ['CtrlSF', 'CtrlSFToggle'] }
 " Better commenting / uncommenting support
@@ -153,9 +155,19 @@ let g:neomake_javascript_enabled_makers = ['jshint']
 " Requires installation of coffeelint (npm install -g coffeelint)
 let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 
+" DEOPLETE SETTINGS
+" -----------------------------------------------------------------------------------------------------------
+" Enable deoplete
+let g:deoplete#enable_at_startup = 1
+" Only show completion options upon request
+let g:deoplete#disable_auto_complete = 1
+" Autocomplete off buffer contents by default
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = ['buffer']
+
 " CTRLSF SETTINGS
 " -----------------------------------------------------------------------------------------------------------
-"  Leave the ag results window open after interacting with it
+" Leave the ag results window open after interacting with it
 let g:ctrlsf_auto_close = 0
 " Reduce window size from 50% default
 let g:ctrlsf_winsize = '40%'
@@ -296,6 +308,24 @@ nnoremap <leader>o :call NerdWrapper()<CR>
 nnoremap <leader>u :Files<CR>
 " Run fuzzy buffer search
 nnoremap <leader>i :Buffers<CR>
+
+" DEOPLETE KEY MAPPINGS
+" -----------------------------------------------------------------------------------------------------------
+" Tab intelligently autocompletes
+function! g:TabComplete() abort
+  let l:col = col('.') - 1
+
+  if pumvisible()
+    return "\<C-n>"
+  else
+    if !l:col || getline('.')[l:col - 1] !~# '\k'
+      return "\<TAB>"
+    else
+      return "\<C-n>"
+    endif
+  endif
+endfunction
+inoremap <silent> <expr> <Tab> TabComplete()
 
 " CTRLSF KEY MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
