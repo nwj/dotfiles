@@ -30,6 +30,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Distraction-free writing mode
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+" Heuristic indentation detection
+Plug 'tpope/vim-sleuth'
 
 " Language-specific Syntax Plugins
 Plug 'vim-ruby/vim-ruby'
