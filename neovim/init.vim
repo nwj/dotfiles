@@ -167,7 +167,7 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#disable_auto_complete = 1
 " Autocomplete off buffer contents by default
 let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['buffer']
+let g:deoplete#sources._ = ['buffer', 'file']
 
 " CTRLSF SETTINGS
 " -----------------------------------------------------------------------------------------------------------
