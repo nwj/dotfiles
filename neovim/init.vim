@@ -5,18 +5,20 @@
 " PLUGIN SETUP
 " -----------------------------------------------------------------------------------------------------------
 "  Requires manual installation of junegunn/vim-plug
-" https://github.com/junegunn/vim-plug#installation call plug#begin() call plug#begin()
+" https://github.com/junegunn/vim-plug#installation
 call plug#begin() 
 
 " Tree-based file explorer
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 " Lightweight and configurable status line
 Plug 'itchyny/lightline.vim'
-" Asynchronous fuzzy finder written in Go. Requires manual installation of fzf
+" Asynchronous fuzzy finder written in Go.
+" Requires manual installation of fzf (brew install fzf)
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 " Asynchronous linting and make framework
 Plug 'benekastah/neomake'
-" Asynchronous completion framework. Requires python3 and the neovim python module.
+" Asynchronous completion framework.
+" Requires python3 and the neovim module (pip3 install neovim)
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Ag wrapper for project-wide search and editing
 Plug 'dyng/ctrlsf.vim', { 'on': ['CtrlSF', 'CtrlSFToggle'] }
@@ -33,7 +35,7 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 " Heuristic indentation detection
 Plug 'tpope/vim-sleuth'
 
-" Language-specific Syntax Plugins
+" Language-specific syntax plugins
 Plug 'vim-ruby/vim-ruby'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/html5.vim'
@@ -55,7 +57,7 @@ call plug#end()
 " -----------------------------------------------------------------------------------------------------------
 " Neovim's default settings: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults
 
-set shell=/bin/zsh              " Requires manual installation of zsh
+set shell=/bin/zsh              " Requires manual installation of zsh (brew install zsh)
 set hidden                      " Allows switching between unsaved buffers
 set number                      " Enable line numbering
 set clipboard=unnamed           " Allow use of the system clipboard
@@ -284,10 +286,10 @@ nnoremap <leader><leader> <c-^>
 cnoremap w!! w !sudo tee %
 
 " Expand file location of current buffer
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
 " Toggle search highlighting
-nnoremap <leader>l :set nohlsearch!<CR> :set nohlsearch?<CR>
+nnoremap <leader>l :set nohlsearch! :set nohlsearch?<CR>
 
 " Toggle whitespace visibility
 nnoremap <leader>; :set list!<CR> :set list?<CR>
