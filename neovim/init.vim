@@ -289,10 +289,10 @@ cnoremap w!! w !sudo tee %
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
 " Toggle search highlighting
-nnoremap <leader>l :set nohlsearch! :set nohlsearch?<CR>
+nnoremap <leader>l :set hlsearch!<CR>
 
 " Toggle spell checking
-nnoremap <leader>; :set nospell! :set spell?<CR>
+nnoremap <leader>; :set spell!<CR>
 
 " NERDTREE KEY MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
