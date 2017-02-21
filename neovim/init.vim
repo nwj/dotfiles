@@ -291,8 +291,8 @@ cnoremap %% <C-R>=expand('%:h').'/'<CR>
 " Toggle search highlighting
 nnoremap <leader>l :set nohlsearch! :set nohlsearch?<CR>
 
-" Toggle whitespace visibility
-nnoremap <leader>; :set list!<CR> :set list?<CR>
+" Toggle spell checking
+nnoremap <leader>; :set nospell! :set spell?<CR>
 
 " NERDTREE KEY MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
