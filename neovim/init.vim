@@ -272,10 +272,6 @@ xnoremap C "xC
 nnoremap <silent> + :bn<CR>
 nnoremap <silent> _ :bp<CR>
 
-" Don't cancel visual select when shifting
-xnoremap <  <gv
-xnoremap >  >gv
-
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
