@@ -88,7 +88,7 @@ set noswapfile
 
 " Represent various 'invisible' whitespace characters with symbols
 set list
-set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:·,nbsp:·
+set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:·,nbsp:·,eol:¬
 
 " Setup spell check
 set spellfile=~/.config/nvim/dictionary.utf-8.add
