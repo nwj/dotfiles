@@ -174,8 +174,6 @@ let g:deoplete#sources._ = ['buffer', 'file']
 " -----------------------------------------------------------------------------------------------------------
 " Leave the ag results window open after interacting with it
 let g:ctrlsf_auto_close = 0
-" Reduce window size from 50% default
-let g:ctrlsf_winsize = '40%'
 
 " AUTO SAVE SETTINGS
 " -----------------------------------------------------------------------------------------------------------
