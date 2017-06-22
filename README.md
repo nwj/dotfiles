@@ -1,9 +1,9 @@
-#Dotfiles
-###by nwj
+# Dotfiles
+### by nwj
 
 Various configuration files (aka dotfiles) for my Unix-based systems.
 
-###Installation
+### Installation
 When setting up a new system, I usually follow a few steps:
 
 1.  Clone this repo to a folder in home: `git clone https://github.com/nwj/dotfiles.git`
