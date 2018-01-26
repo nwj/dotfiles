@@ -2,7 +2,7 @@
 	name = Nick Willett-Jeffries
 	email = nwillettjeffries@gmail.com
 [core]
-	editor = vim
+	editor = nvim
 	autocrlf = input
 	excludesfile = /Users/nwj/.gitignore
 [merge]
