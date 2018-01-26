@@ -45,6 +45,7 @@ Plug 'fatih/vim-go'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-git'
 Plug 'keith/tmux.vim'
+Plug 'pearofducks/ansible-vim'
 
 " Color schemes
 Plug 'w0ng/vim-hybrid'
