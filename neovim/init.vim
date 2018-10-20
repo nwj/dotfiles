@@ -47,6 +47,7 @@ Plug 'tpope/vim-git'
 Plug 'keith/tmux.vim'
 Plug 'pearofducks/ansible-vim'
 Plug 'cespare/vim-toml'
+Plug 'ElmCast/elm-vim'
 
 " Color schemes
 Plug 'w0ng/vim-hybrid'
