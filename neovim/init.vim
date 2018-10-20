@@ -104,7 +104,7 @@ if has('termguicolors')
 endif
 
 set background=dark
-colorscheme hybrid
+colorscheme base16-oceanicnext
 
 " NERDTREE SETTINGS
 " -----------------------------------------------------------------------------------------------------------
