@@ -112,6 +112,11 @@ let g:fzf_layout = { 'left': '~40%' }
 " -----------------------------------------------------------------------------------------------------------
 " Leave the ag results window open after interacting with it
 let g:ctrlsf_auto_close = 0
+let g:ctrlsf_regex_pattern = 1
+let g:ctrlsf_auto_focus = {
+    \ "at": "done",
+    \ "duration_less_than": 1000
+    \ }
 
 " AUTO SAVE SETTINGS
 " -----------------------------------------------------------------------------------------------------------
@@ -250,3 +255,7 @@ vnoremap <leader>j :Commentary<CR>
 " -----------------------------------------------------------------------------------------------------------
 " Turn spell check on for markdown files
 autocmd BufNewFile,BufRead *.md setlocal spell
+" Hide status line in FZF buffers
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
