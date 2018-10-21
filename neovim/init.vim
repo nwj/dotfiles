@@ -133,6 +133,8 @@ let g:auto_save_events = ["InsertLeave", "TextChanged"]
 let g:gitgutter_map_keys = 0
 " Increase the max signs from 500
 let g:gitgutter_max_signs = 9999
+" How often gitgutter polls. Changed from 4000
+set updatetime=100
 
 " GENERAL KEY MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
