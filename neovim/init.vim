@@ -13,8 +13,6 @@ Plug 'itchyny/lightline.vim'
 " Asynchronous fuzzy finder written in Go.
 " Requires manual installation of fzf (brew install fzf)
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-" Asynchronous linting and make framework
-Plug 'benekastah/neomake'
 " Ag wrapper for project-wide search and editing
 Plug 'dyng/ctrlsf.vim', { 'on': ['CtrlSF', 'CtrlSFToggle'] }
 " Better commenting / uncommenting support
@@ -104,29 +102,6 @@ let g:lightline = {
 " FZF SETTINGS
 " -----------------------------------------------------------------------------------------------------------
 let g:fzf_layout = { 'left': '~40%' }
-
-" NEOMAKE SETTINGS
-" -----------------------------------------------------------------------------------------------------------
-" Log errors only
-let g:neomake_verbose = 0
-" Adjust lint gutter signs
-let g:neomake_warning_sign = {
-      \ 'text': '❯',
-      \ 'texthl': 'WarningMsg',
-      \ }
-let g:neomake_error_sign = {
-      \ 'text': '❯',
-      \ 'texthl': 'ErrorMsg',
-      \ }
-" Configure various linters
-" Requires installation of ruby
-let g:neomake_ruby_enabled_makers = ['mri']
-" Requires installation of go
-let g:neomake_go_enabled_makers = ['govet', 'go']
-" Requires installation of jshint (npm install -g jshint)
-let g:neomake_javascript_enabled_makers = ['jshint']
-" Requires installation of coffeelint (npm install -g coffeelint)
-let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 
 " CTRLSF SETTINGS
 " -----------------------------------------------------------------------------------------------------------
@@ -268,7 +243,5 @@ vnoremap <leader>j :Commentary<CR>
 
 " AUTOCOMMANDS
 " -----------------------------------------------------------------------------------------------------------
-" Enable neomake
-autocmd BufWritePost * Neomake
 " Turn spell check on for markdown files
 autocmd BufNewFile,BufRead *.md setlocal spell
