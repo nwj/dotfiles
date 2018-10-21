@@ -49,7 +49,8 @@ set showmatch                   " Highlight matching parentheses and brackets
 set synmaxcol=300               " Don't attempt to syntax highlight really long lines
 set colorcolumn=110             " Display a grey bar at 110 columns to help show long lines
 set wrapscan                    " Search again from the top when a search reaches the bottom
-set nowrap                      " Don't wrap long lines.
+set nowrap                      " Don't wrap long lines
+set mouse=a                     " Turn on mouse support
 
 " Open splits below / to the right of the current pane. I just find this more intuitive
 set splitbelow
