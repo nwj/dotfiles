@@ -130,7 +130,7 @@ let g:auto_save_events = ["InsertLeave", "TextChanged"]
 " GITGUTTER SETTINGS
 " -----------------------------------------------------------------------------------------------------------
 " Always show the gutter
-let g:gitgutter_sign_column_always = 1
+set signcolumn=yes
 " Disable gitgutter's key mappings
 let g:gitgutter_map_keys = 0
 " Increase the max signs from 500
