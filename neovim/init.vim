@@ -8,8 +8,6 @@
 " https://github.com/junegunn/vim-plug#installation
 call plug#begin() 
 
-" Tree-based file explorer
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 " Lightweight and configurable status line
 Plug 'itchyny/lightline.vim'
 " Asynchronous fuzzy finder written in Go.
@@ -17,9 +15,6 @@ Plug 'itchyny/lightline.vim'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 " Asynchronous linting and make framework
 Plug 'benekastah/neomake'
-" Asynchronous completion framework.
-" Requires python3 and the neovim module (pip3 install neovim)
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Ag wrapper for project-wide search and editing
 Plug 'dyng/ctrlsf.vim', { 'on': ['CtrlSF', 'CtrlSFToggle'] }
 " Better commenting / uncommenting support
@@ -30,28 +25,13 @@ Plug '907th/vim-auto-save'
 Plug 'tpope/vim-fugitive'
 " Show a git diff in the line number gutter
 Plug 'airblade/vim-gitgutter'
-" Distraction-free writing mode
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 " Heuristic indentation detection
 Plug 'tpope/vim-sleuth'
 
 " Language-specific syntax plugins
-Plug 'vim-ruby/vim-ruby'
-Plug 'pangloss/vim-javascript'
-Plug 'othree/html5.vim'
-Plug 'kchmck/vim-coffee-script'
-Plug 'neovimhaskell/haskell-vim'
-Plug 'fatih/vim-go'
-Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-git'
-Plug 'keith/tmux.vim'
-Plug 'pearofducks/ansible-vim'
-Plug 'cespare/vim-toml'
-Plug 'ElmCast/elm-vim'
+Plug 'sheerun/vim-polyglot'
 
 " Color schemes
-Plug 'w0ng/vim-hybrid'
-Plug 'cocopon/iceberg.vim'
 Plug 'chriskempson/base16-vim'
 
 call plug#end()
@@ -106,20 +86,6 @@ endif
 set background=dark
 colorscheme base16-oceanicnext
 
-" NERDTREE SETTINGS
-" -----------------------------------------------------------------------------------------------------------
-" A more minimal UI
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeHighlightCursorline = 0
-" Start with a wider NERDTree buffer
-let g:NERDTreeWinSize = 57
-" When a file is deleted, delete any matching buffers as well
-let g:NERDTreeAutoDeleteBuffer = 1
-" Show hidden files by default
-let g:NERDTreeShowHidden = 1
-" Ignore files set through wildignore
-let g:NERDTreeRespectWildIgnore = 1
-
 " LIGHTLINE SETTINGS
 " -----------------------------------------------------------------------------------------------------------
 " Minor changes here to trim down what's shown in the status line.
@@ -163,16 +129,6 @@ let g:neomake_javascript_enabled_makers = ['jshint']
 " Requires installation of coffeelint (npm install -g coffeelint)
 let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 
-" DEOPLETE SETTINGS
-" -----------------------------------------------------------------------------------------------------------
-" Enable deoplete
-let g:deoplete#enable_at_startup = 1
-" Only show completion options upon request
-let g:deoplete#disable_auto_complete = 1
-" Autocomplete off buffer contents by default
-let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['buffer', 'file']
-
 " CTRLSF SETTINGS
 " -----------------------------------------------------------------------------------------------------------
 " Leave the ag results window open after interacting with it
@@ -193,25 +149,6 @@ let g:auto_save_events = ["InsertLeave", "TextChanged"]
 let g:gitgutter_map_keys = 0
 " Increase the max signs from 500
 let g:gitgutter_max_signs = 9999
-
-" GO SETTINGS
-" -----------------------------------------------------------------------------------------------------------
-" Syntax highlighting for more things
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-" Disable the autoformatter on save since it destroys undo history
-let g:go_fmt_autosave = 0
-" Turn off default key mappings
-let g:go_def_mapping_enabled = 0
-" Turn off various whitespace highlighting. We'll handle that with listchars
-let g:go_highlight_array_whitespace_error = 0
-let g:go_highlight_chan_whitespace_error = 0
-let g:go_highlight_space_tab_error = 0
-let g:go_highlight_trailing_whitespace_error = 0
 
 " GENERAL KEY MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
@@ -292,18 +229,6 @@ nnoremap <leader>l :set hlsearch!<CR>
 " Toggle spell checking
 nnoremap <leader>; :set spell!<CR>
 
-" NERDTREE KEY MAPPINGS
-" -----------------------------------------------------------------------------------------------------------
-" Run NERDTreeFind or NerdTreeToggle based on current buffer
-function! g:NerdWrapper() abort
-  if &filetype ==# '' || expand('%:t') =~? 'NERD_tree'
-    :NERDTreeToggle
-  else
-    :NERDTreeFind
-  endif
-endfunction
-nnoremap <leader>o :call NerdWrapper()<CR>
-
 " FZF KEY MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
 " Run fuzzy file search
@@ -311,7 +236,7 @@ nnoremap <leader>u :Files<CR>
 " Run fuzzy buffer search
 nnoremap <leader>i :Buffers<CR>
 
-" DEOPLETE KEY MAPPINGS
+" AUTOCOMPLETE KEY MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
 " Tab intelligently autocompletes
 function! g:TabComplete() abort
@@ -341,11 +266,6 @@ nnoremap <leader>/ :CtrlSF<space>
 " Comment / uncomment a line 
 nnoremap <leader>j :Commentary<CR>
 vnoremap <leader>j :Commentary<CR>
-
-" GOYO KEY MAPPINGS
-" -----------------------------------------------------------------------------------------------------------
-" Toggle distraction-free mode
-nnoremap <leader>p :Goyo<CR>
 
 " AUTOCOMMANDS
 " -----------------------------------------------------------------------------------------------------------
