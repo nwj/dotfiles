@@ -27,10 +27,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Heuristic indentation detection
 Plug 'tpope/vim-sleuth'
-
 " Language-specific syntax plugins
 Plug 'sheerun/vim-polyglot'
-
 " Color schemes
 Plug 'chriskempson/base16-vim'
 
