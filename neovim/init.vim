@@ -69,12 +69,12 @@ set noswapfile
 
 " Represent various 'invisible' whitespace characters with symbols
 set list
-set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:·,nbsp:·,eol:¬
+set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:·,nbsp:·
 
 " Setup spell check
 set spellfile=~/.config/nvim/dictionary.utf-8.add
 set spelllang=en_us
-set nospell 
+set nospell
 
 " Conditionally enable true color support
 if has('termguicolors')
