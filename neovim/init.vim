@@ -29,6 +29,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'sheerun/vim-polyglot'
 " Color schemes
 Plug 'chriskempson/base16-vim'
+Plug 'felixjung/vim-base16-lightline'
 
 call plug#end()
 
@@ -88,14 +89,18 @@ colorscheme base16-oceanicnext
 " Minor changes here to trim down what's shown in the status line.
 let g:lightline = {
       \ 'active': {
-      \   'left': [['mode', 'paste'], ['readonly', 'filename']],
+      \   'left': [['mode', 'paste'], ['gitbranch', 'readonly', 'filename']],
       \   'right': [['lineinfo'], ['percent'], ['filetype', 'fileencoding']]
       \ },
+      \ 'colorscheme': 'base16_oceanicnext',
       \ 'component': {
       \   'readonly': '%{&filetype=="help"?"HELP":&readonly?"RO":""}'
       \ },
       \ 'component_visible_condition': {
       \   'readonly': '(&readonly)'
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
       \ },
       \ }
 
