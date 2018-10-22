@@ -17,6 +17,8 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'dyng/ctrlsf.vim', { 'on': ['CtrlSF', 'CtrlSFToggle'] }
 " Better commenting / uncommenting support
 Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
+" Better paren and tag text objects
+Plug 'tpope/vim-surround'
 " Automatically save changes to disk
 Plug '907th/vim-auto-save'
 " Git wrapper
