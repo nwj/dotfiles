@@ -29,6 +29,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-sleuth'
 " Language-specific syntax plugins
 Plug 'sheerun/vim-polyglot'
+" Linting and  LSP support
+Plug 'w0rp/ale'
 " Color schemes
 Plug 'chriskempson/base16-vim'
 Plug 'felixjung/vim-base16-lightline'
@@ -139,6 +141,11 @@ let g:gitgutter_map_keys = 0
 let g:gitgutter_max_signs = 9999
 " How often gitgutter polls. Changed from 4000
 set updatetime=100
+
+" ALE SETTINGS
+" -----------------------------------------------------------------------------------------------------------
+let g:ale_linters = {
+\}
 
 " GENERAL KEY MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
