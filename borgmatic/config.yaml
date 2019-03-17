@@ -1,7 +1,3 @@
-# To automate backups every three hours based on this configuration:
-# crontab -e
-# 0 */3 * * * PATH=$PATH:/usr/local/bin /path/to/borgmatic -c /path/to/this/config.yaml
-
 # Where to look for files to backup, and where to store those backups. See
 # https://borgbackup.readthedocs.io/en/stable/quickstart.html and
 # https://borgbackup.readthedocs.io/en/stable/usage.html#borg-create for details.
@@ -44,7 +40,7 @@ storage:
 # At least one of the "keep" options is required for pruning to work.
 retention:
     # Number of hourly archives to keep.
-    keep_hourly: 8
+    keep_hourly: 24
 
     # Number of daily archives to keep.
     keep_daily: 7
@@ -68,8 +64,4 @@ consistency:
     # "archive" checks all of the archives, and "extract" does an extraction dry-run
     # of the most recent archive.
     checks:
-        - repository
-        - archives
-
-    # Restrict the number of checked archives to the last n. Applies only to the "archives" check. Defaults to checking all archives.
-    check_last: 2
+        - disabled
