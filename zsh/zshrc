@@ -37,3 +37,6 @@ bindkey -M vicmd '^R' 'history-incremental-search-backward'
 
 # Enable fzf keybindings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Enable zmv
+autoload zmv
