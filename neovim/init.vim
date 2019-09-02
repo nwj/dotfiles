@@ -88,6 +88,10 @@ endif
 set background=dark
 colorscheme base16-oceanicnext
 
+" Disable modeline support, since it's been security vector in the past
+set modelines=0
+set nomodeline
+
 " LIGHTLINE SETTINGS
 " -----------------------------------------------------------------------------------------------------------
 " Minor changes here to trim down what's shown in the status line.
