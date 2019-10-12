@@ -29,11 +29,16 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-sleuth'
 " Language-specific syntax plugins
 Plug 'sheerun/vim-polyglot'
-" Linting and  LSP support
-Plug 'w0rp/ale'
 " Color schemes
 Plug 'chriskempson/base16-vim'
 Plug 'felixjung/vim-base16-lightline'
+" Intellisense engine and specific language extensions
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
+Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile'}
 
 call plug#end()
 
@@ -148,12 +153,12 @@ let g:gitgutter_map_keys = 0
 " Increase the max signs from 500
 let g:gitgutter_max_signs = 9999
 " How often gitgutter polls. Changed from 4000
-set updatetime=100
+set updatetime=300
 
-" ALE SETTINGS
+" LANGUAGE SPECIFIC SETTINGS
 " -----------------------------------------------------------------------------------------------------------
-let g:ale_linters = {
-\}
+" Disable automatic formatting in elm
+let g:elm_format_autosave = 0
 
 " GENERAL KEY MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
@@ -229,10 +234,10 @@ cnoremap w!! w !sudo tee %
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
 " Toggle search highlighting
-nnoremap <leader>l :set hlsearch!<CR>
+nnoremap <leader>. :set hlsearch!<CR>
 
 " Toggle spell checking
-nnoremap <leader>; :set spell!<CR>
+nnoremap <leader>, :set spell!<CR>
 
 " FZF KEY MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
@@ -240,24 +245,6 @@ nnoremap <leader>; :set spell!<CR>
 nnoremap <leader>u :Files<CR>
 " Run fuzzy buffer search
 nnoremap <leader>i :Buffers<CR>
-
-" AUTOCOMPLETE KEY MAPPINGS
-" -----------------------------------------------------------------------------------------------------------
-" Tab intelligently autocompletes
-function! g:TabComplete() abort
-  let l:col = col('.') - 1
-
-  if pumvisible()
-    return "\<C-n>"
-  else
-    if !l:col || getline('.')[l:col - 1] !~# '\k'
-      return "\<TAB>"
-    else
-      return "\<C-n>"
-    endif
-  endif
-endfunction
-inoremap <silent> <expr> <Tab> TabComplete()
 
 " CTRLSF KEY MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
@@ -272,10 +259,52 @@ nnoremap <leader>/ :CtrlSF<space>
 nnoremap <leader>j :Commentary<CR>
 vnoremap <leader>j :Commentary<CR>
 
+" COC SETTINGS AND MAPPINGS
+" -----------------------------------------------------------------------------------------------------------
+" Trigger completion and navigate options using tab and shift-tab
+call coc#config('suggest', {
+\ 'autoTrigger': 'none',
+\ })
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+              \ pumvisible() ? "\<C-n>" :
+              \ <SID>check_back_space() ? "\<TAB>" :
+              \ coc#refresh()
+inoremap <silent><expr> <S-TAB>
+              \ pumvisible() ? "\<C-p>" :
+              \ <SID>check_back_space() ? "\<TAB>" :
+              \ coc#refresh()
+
+" Bindings for jump to definition and autoformatting
+nmap <leader>l <Plug>(coc-definition)
+nmap <leader>m <Plug>(coc-format)
+
+" Setup the elm language server
+call coc#config("languageserver", {
+  \ "elmLS": {
+    \ "command": "elm-language-server",
+    \ "filetypes": ["elm"],
+    \ "rootPatterns": ["elm.json"],
+    \ "initializationOptions": {
+      \ "elmPath": "elm",
+      \ "elmFormatPath": "elm-format",
+      \ "elmTestPath": "elm-test",
+      \ "elmAnalyseTrigger": "change"
+    \ }
+  \ }
+\ })
+
+
 " AUTOCOMMANDS
 " -----------------------------------------------------------------------------------------------------------
 " Turn spell check on for markdown files
 autocmd BufNewFile,BufRead *.md setlocal spell
+
 " Hide status line in FZF buffers
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
