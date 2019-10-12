@@ -88,7 +88,7 @@ endif
 set background=dark
 colorscheme base16-oceanicnext
 
-" Disable modeline support, since it's been security vector in the past
+" Disable modeline support, since it's been a security vector in the past
 set modelines=0
 set nomodeline
 
@@ -101,7 +101,7 @@ set nofoldenable
 " Minor changes here to trim down what's shown in the status line.
 let g:lightline = {
       \ 'active': {
-      \   'left': [['mode', 'paste'], ['gitbranch', 'readonly', 'filename']],
+      \   'left': [['mode', 'paste'], ['gitbranch', 'readonly', 'relativepath']],
       \   'right': [['lineinfo'], ['percent'], ['filetype', 'fileencoding']]
       \ },
       \ 'colorscheme': 'base16_oceanicnext',
