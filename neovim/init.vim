@@ -92,6 +92,10 @@ colorscheme base16-oceanicnext
 set modelines=0
 set nomodeline
 
+" Fold based on language, fully expand all folds at start
+set foldmethod=syntax
+set nofoldenable
+
 " LIGHTLINE SETTINGS
 " -----------------------------------------------------------------------------------------------------------
 " Minor changes here to trim down what's shown in the status line.
