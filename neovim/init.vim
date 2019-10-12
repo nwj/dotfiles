@@ -4,9 +4,9 @@
 
 " PLUGIN SETUP
 " -----------------------------------------------------------------------------------------------------------
-"  Requires manual installation of junegunn/vim-plug
+" Requires manual installation of junegunn/vim-plug
 " https://github.com/junegunn/vim-plug#installation
-call plug#begin() 
+call plug#begin()
 
 " Lightweight and configurable status line
 Plug 'itchyny/lightline.vim'
