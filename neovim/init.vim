@@ -37,6 +37,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
 Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile'}
 
@@ -280,9 +281,16 @@ inoremap <silent><expr> <S-TAB>
               \ <SID>check_back_space() ? "\<TAB>" :
               \ coc#refresh()
 
-" Bindings for jump to definition and autoformatting
+" Binding for jump to definition
 nmap <leader>l <Plug>(coc-definition)
-nmap <leader>m <Plug>(coc-format)
+
+" Binding for autoformatting. Prefers prettier for supported filetypes.
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+augroup formatbinding
+  autocmd! formatbinding
+  autocmd Filetype go,elm nmap <buffer> <leader>m <Plug>(coc-format)
+  autocmd Filetype html,css,scss,less,javascript,typescript,javascriptreact,json,yaml,markdown nmap <buffer> <leader>m :Prettier<CR>
+augroup end
 
 " Setup the elm language server
 call coc#config("languageserver", {
