@@ -38,5 +38,9 @@ bindkey -M vicmd '^R' 'history-incremental-search-backward'
 # Enable fzf keybindings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Make FZF use fd. This is good because fd respects .gitignore in its results.
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 # Enable zmv
 autoload zmv
