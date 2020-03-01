@@ -289,6 +289,7 @@ nmap <leader>l <Plug>(coc-definition)
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 augroup formatbinding
   autocmd! formatbinding
+  autocmd Filetype rust nmap <buffer> <leader>m :RustFmt<CR>
   autocmd Filetype go,elm nmap <buffer> <leader>m <Plug>(coc-format)
   autocmd Filetype html,css,scss,less,javascript,typescript,javascriptreact,json,yaml,markdown nmap <buffer> <leader>m :Prettier<CR>
 augroup end
