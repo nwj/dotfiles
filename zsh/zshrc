@@ -16,7 +16,7 @@ source $ZSH/oh-my-zsh.sh
 
 # GENERAL PATH MODIFICATIONS
 # ----------------------------------------------------------------------------------------------------------
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # LANGUAGE-SPECIFIC SETTINGS
 # ----------------------------------------------------------------------------------------------------------
@@ -28,6 +28,17 @@ if [[ $+commands[rbenv] != 0 ]]; then
   eval "$(rbenv init -)"
 fi
 
+# Export golang path
+if [[ $+commands[go] != 0 ]]; then
+  export GOPATH=$(go env GOPATH)
+  export PATH=$(go env GOPATH)/bin:$PATH
+fi
+
+# Export rust path
+if [ -d $HOME/.cargo/bin ]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 # OTHER SETTINGS
 # ----------------------------------------------------------------------------------------------------------
 # Enable vi key bindings (rather than Emacs-esque key bindings)
@@ -36,11 +47,28 @@ bindkey '^R' 'history-incremental-search-backward'
 bindkey -M vicmd '^R' 'history-incremental-search-backward'
 
 # Enable fzf keybindings
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [[ $+commands[fzf] != 0 ]]; then
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fi
 
 # Make FZF use fd. This is good because fd respects .gitignore in its results.
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+if [[ $+commands[fd] != 0 ]]; then
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
 
 # Enable zmv
 autoload zmv
+
+# Remove dups from history
+setopt hist_ignore_all_dups
+
+# ALIASES
+# ----------------------------------------------------------------------------------------------------------
+if [[ $+commands[bat] != 0 ]]; then
+  alias cat='bat'
+fi
+
+if [[ $+commands[exa] != 0 ]]; then
+  alias ll='exa -la --git'
+fi
