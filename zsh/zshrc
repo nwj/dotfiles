@@ -75,5 +75,5 @@ if [[ $+commands[bat] != 0 ]]; then
 fi
 
 if [[ $+commands[exa] != 0 ]]; then
-  alias ll='exa -la --git'
+  alias ll='exa -l --git --color-scale --group-directories-first'
 fi
