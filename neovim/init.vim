@@ -31,7 +31,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'sheerun/vim-polyglot'
 " Color schemes
 Plug 'chriskempson/base16-vim'
-Plug 'felixjung/vim-base16-lightline'
+Plug 'mike-hearn/base16-vim-lightline'
 " Intellisense engine and specific language extensions
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
@@ -93,7 +93,7 @@ if has('termguicolors')
 endif
 
 set background=dark
-colorscheme base16-oceanicnext
+colorscheme base16-snazzy
 
 " Disable modeline support, since it's been a security vector in the past
 set modelines=0
@@ -111,7 +111,7 @@ let g:lightline = {
       \   'left': [['mode', 'paste'], ['gitbranch', 'readonly', 'relativepath']],
       \   'right': [['lineinfo'], ['percent'], ['filetype', 'fileencoding']]
       \ },
-      \ 'colorscheme': 'base16_oceanicnext',
+      \ 'colorscheme': 'base16_snazzy',
       \ 'component': {
       \   'readonly': '%{&filetype=="help"?"HELP":&readonly?"RO":""}'
       \ },

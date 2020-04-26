@@ -17,17 +17,17 @@ function directory() {
 }
 
 function delimiter() {
-	echo "%{$magenta%}❯%{$reset_color%}"
+	echo "%(?.%{$magenta%}❯%{$reset_color%}.%{$red%}❯%{$reset_color%})"
 }
 
 function continuation() {
-	echo "%{$magenta%}\ %{$reset_color%}"
+	echo "%(?.%{$magenta%}\%{$reset_color%}.%{$red%}\%{$reset_color%})"
 }
 
 NEWLINE=$'\n'
 
 PROMPT='$(directory) $(git_prompt_info) ${NEWLINE}$(delimiter) '
-PROMPT2='$(continuation)'
+PROMPT2='$(continuation) '
 
 # Newlines between (but not before) prompts
 function theme_precmd() {
