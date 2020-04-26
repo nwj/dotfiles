@@ -7,7 +7,12 @@
 export ZSH=$HOME/.oh-my-zsh
 
 # Set oh-my-zsh theme
+# Custom themes go in ~/.oh-my-zsh/custom/themes
 ZSH_THEME="nwj"
+
+# Declare plugins
+# Custom plugins go in ~/.oh-my-zsh/custom/plugins
+plugins=(zsh-syntax-highlighting zsh-autosuggestions)
 
 # Disable auto-setting terminal title
 DISABLE_AUTO_TITLE="true"
