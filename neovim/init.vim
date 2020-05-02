@@ -316,6 +316,9 @@ call coc#config("languageserver", {
 " Turn spell check on for markdown files
 autocmd BufNewFile,BufRead *.md setlocal spell
 
+" Enable line wrapping for markdown files
+autocmd BufNewFile,BufRead *.md setlocal wrap
+
 " Hide status line in FZF buffers
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
