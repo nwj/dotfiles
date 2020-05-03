@@ -318,6 +318,7 @@ autocmd BufNewFile,BufRead *.md setlocal spell
 
 " Enable line wrapping for markdown files
 autocmd BufNewFile,BufRead *.md setlocal wrap
+autocmd BufNewFile,BufRead *.md setlocal linebreak
 
 " Hide status line in FZF buffers
 autocmd! FileType fzf
