@@ -21,7 +21,7 @@ source $ZSH/oh-my-zsh.sh
 
 # GENERAL PATH MODIFICATIONS
 # ----------------------------------------------------------------------------------------------------------
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/bin"
 
 # LANGUAGE-SPECIFIC SETTINGS
 # ----------------------------------------------------------------------------------------------------------
@@ -67,6 +67,11 @@ autoload zmv
 
 # Remove dups from history
 setopt hist_ignore_all_dups
+
+# Set default editor for zeke
+if [[ $+commands[zeke] != 0 ]]; then
+  export ZEKE_EDITOR="nvim"
+fi
 
 # ALIASES
 # ----------------------------------------------------------------------------------------------------------
