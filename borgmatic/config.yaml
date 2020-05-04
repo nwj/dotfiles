@@ -40,7 +40,7 @@ storage:
 # At least one of the "keep" options is required for pruning to work.
 retention:
     # Number of hourly archives to keep.
-    keep_hourly: 24
+    keep_hourly: 6
 
     # Number of daily archives to keep.
     keep_daily: 7
