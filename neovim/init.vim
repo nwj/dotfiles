@@ -54,7 +54,7 @@ set number                      " Enable line numbering
 set clipboard=unnamed           " Allow use of the system clipboard
 set scrolloff=10                " Start scrolling before reaching screen edge
 set showmatch                   " Highlight matching parentheses and brackets
-set synmaxcol=300               " Don't attempt to syntax highlight really long lines
+set synmaxcol=1000              " Don't attempt to syntax highlight really long lines
 set colorcolumn=110             " Display a grey bar at 110 columns to help show long lines
 set wrapscan                    " Search again from the top when a search reaches the bottom
 set nowrap                      " Don't wrap long lines
