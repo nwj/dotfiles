@@ -163,6 +163,12 @@ set updatetime=300
 " Disable automatic formatting in elm
 let g:elm_format_autosave = 0
 
+" Highlight markdown yaml frontmatter properly
+let g:vim_markdown_frontmatter = 1
+
+" Slightly better new line indentation when working on markdown lists
+let g:vim_markdown_new_list_item_indent = 0
+
 " GENERAL KEY MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
 " Set leader key
