@@ -126,8 +126,7 @@ let g:lightline = {
 
 " FZF SETTINGS
 " -----------------------------------------------------------------------------------------------------------
-let g:fzf_layout = { 'left': '~40%' }
-let g:fzf_preview_window = ''
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 
 " CTRLSF SETTINGS
 " -----------------------------------------------------------------------------------------------------------
@@ -251,8 +250,18 @@ nnoremap <leader>, :set spell!<CR>
 
 " FZF KEY MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
-" Run fuzzy file search
-nnoremap <leader>u :Files<CR>
+" Run fuzzy file search against the files tracked in git, falling back to all files if outside a git repo
+function! GFilesFallback()
+  let output = system('git rev-parse --show-toplevel')
+  let prefix = get(g:, 'fzf_command_prefix', '')
+  if v:shell_error == 0
+    exec "normal :" . prefix . "GFiles\<CR>"
+  else
+    exec "normal :" . prefix . "Files\<CR>"
+  endif
+  return 0
+endfunction
+nnoremap <leader>u :call GFilesFallback()<CR>
 " Run fuzzy buffer search
 nnoremap <leader>i :Buffers<CR>
 
