@@ -64,7 +64,8 @@ set mouse=a                     " Turn on mouse support
 set splitbelow
 set splitright
 
-" Case insensitive search, unless the search pattern contains an uppercase character
+" Incremental search, case insensitive unless the search pattern contains an uppercase character
+set incsearch
 set ignorecase
 set smartcase
 
