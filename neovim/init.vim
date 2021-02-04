@@ -32,6 +32,8 @@ Plug 'sheerun/vim-polyglot'
 " Color schemes
 Plug 'chriskempson/base16-vim'
 Plug 'mike-hearn/base16-vim-lightline'
+" Autoformatting
+Plug 'sbdchd/neoformat'
 " Intellisense engine and specific language extensions
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
@@ -158,6 +160,20 @@ let g:gitgutter_max_signs = 9999
 " How often gitgutter polls. Changed from 4000
 set updatetime=300
 
+" NEOFORMAT SETTINGS
+" -----------------------------------------------------------------------------------------------------------
+let g:neoformat_enabled_css = ['prettier']
+let g:neoformat_enabled_elm = ['elm-format']
+let g:neoformat_enabled_go = ['gofmt']
+let g:neoformat_enabled_html = ['prettier']
+let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_json = ['prettier']
+let g:neoformat_enabled_less = ['prettier']
+let g:neoformat_enabled_markdown = ['prettier']
+let g:neoformat_enabled_rust = ['rustfmt']
+let g:neoformat_enabled_typescript = ['prettier']
+let g:neoformat_enabled_yaml = ['prettier']
+
 " LANGUAGE SPECIFIC SETTINGS
 " -----------------------------------------------------------------------------------------------------------
 " Disable automatic formatting in elm
@@ -278,6 +294,10 @@ nnoremap <leader>/ :CtrlSF<space>
 nnoremap <leader>j :Commentary<CR>
 vnoremap <leader>j :Commentary<CR>
 
+" NEOFORMAT KEY MAPPINGS
+" -----------------------------------------------------------------------------------------------------------
+nnoremap <leader>m :Neoformat<CR>
+
 " COC SETTINGS AND MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
 " Trigger completion and navigate options using tab and shift-tab
@@ -302,15 +322,6 @@ inoremap <silent><expr> <S-TAB>
 " Binding for jump to definition
 nmap <leader>l <Plug>(coc-definition)
 
-" Binding for autoformatting. Prefers prettier for supported filetypes.
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-augroup formatbinding
-  autocmd! formatbinding
-  autocmd Filetype rust nmap <buffer> <leader>m :RustFmt<CR>
-  autocmd Filetype go,elm nmap <buffer> <leader>m <Plug>(coc-format)
-  autocmd Filetype html,css,scss,less,javascript,typescript,javascriptreact,typescriptreact,json,yaml,markdown nmap <buffer> <leader>m :Prettier<CR>
-augroup end
-
 " Setup the elm language server
 call coc#config("languageserver", {
   \ "elmLS": {
@@ -325,7 +336,6 @@ call coc#config("languageserver", {
     \ }
   \ }
 \ })
-
 
 " AUTOCOMMANDS
 " -----------------------------------------------------------------------------------------------------------
