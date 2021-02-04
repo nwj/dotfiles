@@ -78,7 +78,7 @@ set ttimeoutlen=10
 
 " Disable vim's built-in backup tools.
 set nobackup
-set nowb
+set nowritebackup
 set noswapfile
 
 " Represent various 'invisible' whitespace characters with symbols
@@ -345,8 +345,3 @@ autocmd BufNewFile,BufRead *.md setlocal spell
 " Enable line wrapping for markdown files
 autocmd BufNewFile,BufRead *.md setlocal wrap
 autocmd BufNewFile,BufRead *.md setlocal linebreak
-
-" Hide status line in FZF buffers
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
