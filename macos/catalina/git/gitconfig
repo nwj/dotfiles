@@ -1,0 +1,15 @@
+[user]
+	name = Nick Willett-Jeffries
+	email = nick@braze.com
+[core]
+	autocrlf = input
+[alias]
+	co = checkout
+	st = status
+	br = branch
+[push]
+	default = current
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+[pager]
+	branch = cat

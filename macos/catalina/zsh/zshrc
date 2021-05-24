@@ -1,0 +1,127 @@
+#!/bin/zsh
+
+# ---------------------------
+# Path Modifications
+# ---------------------------
+
+export PATH="$HOME/bin:$PATH"
+
+# Homebrew
+eval "$(/usr/local/bin/brew shellenv)"
+
+# Rust
+export RUSTUP_HOME="$XDG_CONFIG_HOME/rustup"
+export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
+if [ -d $CARGO_HOME/bin ]; then
+  export PATH="$CARGO_HOME/bin:$PATH"
+fi
+
+# Ruby
+# By adding shims to the path directly, we can avoid running `rbenv init` entirely which greatly improves
+# shell init times. However, this comes at the cost of having to run `rbenv rehash` manually on changes.
+if [ -d $HOME/.rbenv/shims ]; then
+  export PATH="$HOME/.rbenv/shims:$PATH"
+fi
+if [ -d $HOME/.rbenv/bin ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+fi
+
+# ---------------------------
+# Editor
+# ---------------------------
+
+if [[ $+commands[nvim] != 0 ]]; then
+  export EDITOR="nvim"
+  export VISUAL="nvim"
+fi
+
+# ---------------------------
+# History
+# ---------------------------
+
+export HISTFILE="$ZDOTDIR/.zsh_history"
+export HISTSIZE=100000
+export SAVEHIST=100000
+setopt extended_history
+setopt hist_ignore_space
+setopt share_history
+setopt hist_find_no_dups
+setopt hist_verify
+
+# ---------------------------
+# Completions
+# ---------------------------
+
+unsetopt flow_control
+unsetopt menu_complete
+setopt auto_menu
+setopt complete_in_word
+setopt always_to_end
+
+# Menu style completions
+zstyle ':completion:*:*:*:*:*' menu select
+# Case insensitive completions
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+
+autoload -Uz compinit && compinit
+
+# ---------------------------
+# Vim-like Keybindings
+# ---------------------------
+
+export KEYTIMEOUT=1
+bindkey -v
+
+# ---------------------------
+# FZF
+# ---------------------------
+
+if [[ $+commands[fzf] != 0 ]]; then
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fi
+
+if [[ $+commands[fd] != 0 ]]; then
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+
+# ---------------------------
+# Prompt Style
+# ---------------------------
+
+setopt prompt_subst
+autoload -Uz add-zsh-hook vcs_info
+
+add-zsh-hook precmd vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr '*'
+zstyle ':vcs_info:*' stagedstr '+'
+zstyle ':vcs_info:git:*' formats       '%b%F{red}%u%c'
+zstyle ':vcs_info:git:*' actionformats '%b%F{red}|%a%u%c'
+
+function newline_after_command() {
+  $funcstack[1]() {
+    echo
+  }
+}
+add-zsh-hook precmd newline_after_command
+
+PROMPT='%F{blue}%~ %F{grey}${vcs_info_msg_0_}
+%F{magenta}❯%F{white} '
+PROMPT2='%F{magenta}\ '
+
+# ---------------------------
+# Aliases
+# ---------------------------
+
+if [[ $+commands[bat] != 0 ]]; then
+  alias cat='bat'
+fi
+
+if [[ $+commands[exa] != 0 ]]; then
+  alias ll='exa --long --git --color-scale --group-directories-first'
+  alias la='exa --all --group-directories-first'
+  alias tree='exa --tree --group-directories-first'
+  alias ltree='exa --tree --long --git --color-scale --group-directories-first'
+fi
