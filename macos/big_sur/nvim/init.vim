@@ -45,65 +45,71 @@ Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile'}
 
 call plug#end()
 
-" GENERAL SETTINGS
-" -----------------------------------------------------------------------------------------------------------
-" Neovim's default settings: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults
+lua <<EOF
+-- GENERAL SETTINGS
+-------------------------------------------------------------------------------------------------------------
+-- Neovim's default settings: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults
+local opt = vim.opt
+local fn = vim.fn
+local cmd = vim.cmd
 
-set shell=/bin/zsh              " Requires manual installation of zsh (brew install zsh)
-set hidden                      " Allows switching between unsaved buffers
-set number                      " Enable line numbering
-set clipboard=unnamed           " Allow use of the system clipboard
-set scrolloff=10                " Start scrolling before reaching screen edge
-set showmatch                   " Highlight matching parentheses and brackets
-set synmaxcol=1000              " Don't attempt to syntax highlight really long lines
-set colorcolumn=110             " Display a grey bar at 110 columns to help show long lines
-set wrapscan                    " Search again from the top when a search reaches the bottom
-set nowrap                      " Don't wrap long lines
-set mouse=a                     " Turn on mouse support
+opt.shell = '/bin/zsh'              -- Requires manual installation of zsh (brew install zsh)
+opt.hidden = true                   -- Allows switching between unsaved buffers
+opt.number = true                   -- Enable line numbering
+opt.clipboard = 'unnamed'           -- Allow use of the system clipboard
+opt.scrolloff = 10                  -- Start scrolling before reaching screen edge
+opt.showmatch = true                -- Highlight matching parentheses and brackets
+opt.synmaxcol = 1000                -- Don't attempt to syntax highlight really long lines
+opt.colorcolumn = {'110'}           -- Display a grey bar at 110 columns to help show long lines
+opt.wrapscan = true                 -- Search again from the top when a search reaches the bottom
+opt.wrap = false                    -- Don't wrap long lines
+opt.mouse = 'a'                     -- Turn on mouse support
 
-" Open splits below / to the right of the current pane. I just find this more intuitive
-set splitbelow
-set splitright
+-- Open splits below / to the right of the current pane. I just find this more intuitive
+opt.splitbelow = true
+opt.splitright = true
 
-" Incremental search, case insensitive unless the search pattern contains an uppercase character
-set incsearch
-set ignorecase
-set smartcase
+-- Incremental search, case insensitive unless the search pattern contains an uppercase character
+opt.incsearch = true
+opt.ignorecase = true
+opt.smartcase = true
 
-" Timeout on key codes but not mappings
-set notimeout
-set ttimeout
-set ttimeoutlen=10
+-- Timeout on key codes but not mappings
+opt.timeout = false
+opt.ttimeout = true
+opt.ttimeoutlen = 10
 
-" Disable vim's built-in backup tools.
-set nobackup
-set nowritebackup
-set noswapfile
+-- Disable vim's built-in backup tools.
+opt.backup = false
+opt.writebackup = false
+opt.swapfile = false
 
-" Represent various 'invisible' whitespace characters with symbols
-set list
-set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:·,nbsp:·
+-- Represent various 'invisible' whitespace characters with symbols
+opt.list = true
+opt.listchars = 'tab:▸\t,extends:❯,precedes:❮,trail:·,nbsp:·'
 
-" Setup spell check
-set spellfile=~/.config/nvim/dictionary.utf-8.add
-set spelllang=en_us
-set nospell
+-- Setup spell check
+opt.spellfile = '~/.config/nvim/dictionary.utf-8.add'
+opt.spelllang = 'en_us'
+opt.spell = false
 
-" Conditionally enable true color support
-if has('termguicolors')
-  set termguicolors
-endif
+-- Conditionally enable true color support
+if fn.has('termguicolors') == 1 then
+  opt.termguicolors = true
+end
 
-set background=dark
-colorscheme base16-snazzy
+opt.background = 'dark'
+cmd 'colorscheme base16-snazzy'
 
-" Disable modeline support, since it's been a security vector in the past
-set modelines=0
-set nomodeline
+-- Disable modeline support, since it's been a security vector in the past
+opt.modelines = 0
+opt.modeline = false
 
-" Fold based on language, fully expand all folds at start
-set foldmethod=syntax
-set nofoldenable
+-- Fold based on language, fully expand all folds at start
+opt.foldmethod = 'syntax'
+opt.foldenable = false
+
+EOF
 
 " LIGHTLINE SETTINGS
 " -----------------------------------------------------------------------------------------------------------
