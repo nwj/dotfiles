@@ -86,7 +86,7 @@ opt.swapfile = false
 
 -- Represent various 'invisible' whitespace characters with symbols
 opt.list = true
-opt.listchars = 'tab:▸\t,extends:❯,precedes:❮,trail:·,nbsp:·'
+opt.listchars = {tab = '▸ ', extends = '❯', precedes = '❮', trail = '·', nbsp = '·'}
 
 -- Setup spell check
 opt.spellfile = '~/.config/nvim/dictionary.utf-8.add'
@@ -108,7 +108,6 @@ opt.modeline = false
 -- Fold based on language, fully expand all folds at start
 opt.foldmethod = 'syntax'
 opt.foldenable = false
-
 EOF
 
 " LIGHTLINE SETTINGS
@@ -342,11 +341,16 @@ call coc#config("languageserver", {
   \ }
 \ })
 
-" AUTOCOMMANDS
-" -----------------------------------------------------------------------------------------------------------
-" Turn spell check on for markdown files
-autocmd BufNewFile,BufRead *.md setlocal spell
 
-" Enable line wrapping for markdown files
-autocmd BufNewFile,BufRead *.md setlocal wrap
-autocmd BufNewFile,BufRead *.md setlocal linebreak
+lua <<EOF
+local cmd = vim.cmd
+
+-- AUTOCOMMANDS
+-------------------------------------------------------------------------------------------------------------
+-- Turn spell check on for markdown files
+cmd 'autocmd BufNewFile,BufRead *.md setlocal spell'
+
+-- Enable line wrapping for markdown files
+cmd 'autocmd BufNewFile,BufRead *.md setlocal wrap'
+cmd 'autocmd BufNewFile,BufRead *.md setlocal linebreak'
+EOF
