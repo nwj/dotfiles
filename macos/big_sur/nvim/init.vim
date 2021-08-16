@@ -189,84 +189,100 @@ let g:vim_markdown_frontmatter = 1
 " Slightly better new line indentation when working on markdown lists
 let g:vim_markdown_new_list_item_indent = 0
 
-" GENERAL KEY MAPPINGS
-" -----------------------------------------------------------------------------------------------------------
-" Set leader key
-let g:mapleader = "\<space>"
+lua <<EOF
+local opt = vim.opt
+-- GENERAL KEY MAPPINGS
+-------------------------------------------------------------------------------------------------------------
 
-" Unbind directional movement through a number of keys
-nnoremap <up> <NOP>
-nnoremap <down> <NOP>
-nnoremap <left> <NOP>
-nnoremap <right> <NOP>
-nnoremap <bs> <NOP>
-nnoremap <delete> <NOP>
-inoremap <up> <NOP>
-inoremap <down> <NOP>
-inoremap <left> <NOP>
-inoremap <right> <NOP>
-nnoremap <Space> <NOP>
-vnoremap <up> <NOP>
-vnoremap <down> <NOP>
-vnoremap <left> <NOP>
-vnoremap <right> <NOP>
-vnoremap <bs> <NOP>
-vnoremap <delete> <NOP>
-vnoremap <Space> <NOP>
+local map = function(key)
+  local opts = {noremap = true}
+  for i, v in pairs(key) do
+    if type(i) == 'string' then opts[i] = v end
+  end
+  vim.api.nvim_set_keymap(key[1], key[2], key[3], opts)
+end
 
-" Unbind F1 (default behavior opens :help)
-inoremap <F1> <NOP>
-nnoremap <F1> <NOP>
+-- Set leader key
+vim.g.mapleader = ' '
 
-" Unbind Q since exmode is just annoying
-nnoremap Q <NOP>
+-- Unbind directional movement through a number of keys
+map {'n', '<up>', '<NOP>'}
+map {'n', '<down>', '<NOP>'}
+map {'n', '<left>', '<NOP>'}
+map {'n', '<right>', '<NOP>'}
+map {'n', '<bs>', '<NOP>'}
+map {'n', '<delete>', '<NOP>'}
+map {'i', '<up>', '<NOP>'}
+map {'i', '<down>', '<NOP>'}
+map {'i', '<left>', '<NOP>'}
+map {'i', '<right>', '<NOP>'}
+map {'n', '<Space>', '<NOP>'}
+map {'v', '<up>', '<NOP>'}
+map {'v', '<down>', '<NOP>'}
+map {'v', '<left>', '<NOP>'}
+map {'v', '<right>', '<NOP>'}
+map {'v', '<bs>', '<NOP>'}
+map {'v', '<delete>', '<NOP>'}
+map {'v', '<Space>', '<NOP>'}
 
-" An easier way into command mode
-nnoremap ; :
-vnoremap ; :
+-- Unbind F1 (default behavior opens :help)
+map {'i', '<F1>', '<NOP>'}
+map {'n', '<F1>', '<NOP>'}
 
-" Easier window movement
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+-- Unbind F1 (default behavior opens :help)
+map {'i', '<F1>', '<NOP>'}
+map {'n', '<F1>', '<NOP>'}
 
-" Make Y behave more like D, C, etc. (default behavior is effectively yy)
-nnoremap Y y$
+-- Unbind Q since exmode is just annoying
+map {'n', 'Q', '<NOP>'}
 
-" More intuitive movement on lines that wrap
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
+-- An easier way into command mode
+map {'n', ';', ':'}
+map {'v', ';', ':'}
 
-" Don't yank to default register when using change
-nnoremap c "xc
-xnoremap c "xc
-nnoremap C "xC
-xnoremap C "xC
+-- Easier window movement
+map {'n', '<C-h>', '<C-w>h'}
+map {'n', '<C-j>', '<C-w>j'}
+map {'n', '<C-k>', '<C-w>k'}
+map {'n', '<C-l>', '<C-w>l'}
 
-" Easier buffer cycling
-nnoremap <silent> + :bn<CR>
-nnoremap <silent> _ :bp<CR>
+-- Make Y behave more like D, C, etc. (default behavior is effectively yy)
+map {'n', 'Y', 'y$'}
 
-" Keep the cursor in place while joining lines
-nnoremap J mzJ`z
+-- More intuitive movement on lines that wrap
+map {'n', 'j', 'gj'}
+map {'n', 'k', 'gk'}
+map {'v', 'j', 'gj'}
+map {'v', 'k', 'gk'}
 
-" Switch between the last two buffers
-nnoremap <leader><leader> <c-^>
+-- Don't yank to default register when using change
+map {'n', 'c', '"xc'}
+map {'x', 'c', '"xc'}
+map {'n', 'C', '"xC'}
+map {'x', 'C', '"xC'}
 
-" Get write permission when you forget sudo
-cnoremap w!! w !sudo tee %
+-- Easier buffer cycling
+map {'n', '<silent> +', ':bn<CR>'}
+map {'n', '<silent> _', ':bp<CR>'}
 
-" Expand file location of current buffer
-cnoremap %% <C-R>=expand('%:h').'/'<CR>
+-- Keep the cursor in place while joining lines
+map {'n', 'J', 'mzJ`z'}
 
-" Toggle search highlighting
-nnoremap <leader>. :set hlsearch!<CR>
+-- Switch between the last two buffers
+map {'n', '<leader><leader>', '<c-^>'}
 
-" Toggle spell checking
-nnoremap <leader>, :set spell!<CR>
+-- Get write permission when you forget sudo
+map {'c', 'w!!', 'w !sudo tee %'}
+
+-- Expand file location of current buffer
+map {'c', '%%', "<C-R>=expand('%:h').'/'<CR>"}
+
+-- Toggle search highlighting
+map {'n', '<leader>.', ':set hlsearch!<CR>'}
+
+-- Toggle spell checking
+map {'n', '<leader>,', ':set spell!<CR>'}
+EOF
 
 " FZF KEY MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
