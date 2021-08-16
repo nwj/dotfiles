@@ -50,6 +50,7 @@ lua <<EOF
 -------------------------------------------------------------------------------------------------------------
 -- Neovim's default settings: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults
 local opt = vim.opt
+local g = vim.g
 local fn = vim.fn
 local cmd = vim.cmd
 
@@ -108,86 +109,90 @@ opt.modeline = false
 -- Fold based on language, fully expand all folds at start
 opt.foldmethod = 'syntax'
 opt.foldenable = false
-EOF
 
-" LIGHTLINE SETTINGS
-" -----------------------------------------------------------------------------------------------------------
-" Minor changes here to trim down what's shown in the status line.
-let g:lightline = {
-      \ 'active': {
-      \   'left': [['mode', 'paste'], ['gitbranch', 'readonly', 'relativepath']],
-      \   'right': [['lineinfo'], ['percent'], ['filetype', 'fileencoding']]
-      \ },
-      \ 'colorscheme': 'base16_snazzy',
-      \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"HELP":&readonly?"RO":""}'
-      \ },
-      \ 'component_visible_condition': {
-      \   'readonly': '(&readonly)'
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ }
+-- LIGHTLINE SETTINGS
+-------------------------------------------------------------------------------------------------------------
+-- Minor changes here to trim down what's shown in the status line.
+g.lightline = {
+  active = {
+    left = {
+      {'mode', 'paste'},
+      {'gitbranch', 'readonly', 'relativepath'}
+    },
+    right = {
+      {'lineinfo'},
+      {'percent'},
+      {'filetype', 'fileencoding'}
+    }
+  },
+  colorscheme = 'base16_snazzy',
+  component = {
+    readonly = '%{&filetype=="help"?"HELP":&readonly?"RO":""}'
+  },
+  component_visible_condition = {
+    readonly = '(&readonly)'
+  },
+  component_function = {
+    gitbranch = 'fugitive#head'
+  }
+}
+
+-- CTRLSF SETTINGS
+-------------------------------------------------------------------------------------------------------------
+-- Leave the ag results window open after interacting with it
+g.ctrlsf_auto_close = 0
+g.ctrlsf_regex_pattern = 1
+g.ctrlsf_auto_focus = {
+  at = 'done',
+  duration_less_than = 1000
+}
+
+-- AUTO SAVE SETTINGS
+-------------------------------------------------------------------------------------------------------------
+-- Enable auto save
+g.auto_save = 1
+-- Suppress auto save messages
+g.auto_save_silent = 1
+-- Auto save whenever we leave insert mode and when text changes
+g.auto_save_events = {'InsertLeave', 'TextChanged'}
+
+-- GITGUTTER SETTINGS
+-------------------------------------------------------------------------------------------------------------
+-- Always show the gutter
+opt.signcolumn = 'yes'
+-- Disable gitgutter's key mappings
+g.gitgutter_map_keys = 0
+-- Increase the max signs from 500
+g.gitgutter_max_signs = 9999
+-- How often gitgutter polls. Changed from 4000
+opt.updatetime = 300
+
+-- NEOFORMAT SETTINGS
+-------------------------------------------------------------------------------------------------------------
+g.neoformat_enabled_css = {'prettier'}
+g.neoformat_enabled_elm = {'elm-format'}
+g.neoformat_enabled_go = {'gofmt'}
+g.neoformat_enabled_html = {'prettier'}
+g.neoformat_enabled_javascript = {'prettier'}
+g.neoformat_enabled_json = {'prettier'}
+g.neoformat_enabled_less = {'prettier'}
+g.neoformat_enabled_markdown = {'prettier'}
+g.neoformat_enabled_rust = {'rustfmt'}
+g.neoformat_enabled_typescript = {'prettier'}
+g.neoformat_enabled_yaml = {'prettier'}
+
+-- LANGUAGE SPECIFIC SETTINGS
+-------------------------------------------------------------------------------------------------------------
+-- Highlight markdown yaml frontmatter properly
+g.vim_markdown_frontmatter = 1
+
+-- Slightly better new line indentation when working on markdown lists
+g.vim_markdown_new_list_item_indent = 0
+EOF
 
 " FZF SETTINGS
 " -----------------------------------------------------------------------------------------------------------
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
-
-" CTRLSF SETTINGS
-" -----------------------------------------------------------------------------------------------------------
-" Leave the ag results window open after interacting with it
-let g:ctrlsf_auto_close = 0
-let g:ctrlsf_regex_pattern = 1
-let g:ctrlsf_auto_focus = {
-    \ "at": "done",
-    \ "duration_less_than": 1000
-    \ }
-
-" AUTO SAVE SETTINGS
-" -----------------------------------------------------------------------------------------------------------
-" Enable auto save
-let g:auto_save = 1
-" Suppress auto save messages
-let g:auto_save_silent = 1
-" Auto save whenever we leave insert mode and when text changes
-let g:auto_save_events = ["InsertLeave", "TextChanged"]
-
-" GITGUTTER SETTINGS
-" -----------------------------------------------------------------------------------------------------------
-" Always show the gutter
-set signcolumn=yes
-" Disable gitgutter's key mappings
-let g:gitgutter_map_keys = 0
-" Increase the max signs from 500
-let g:gitgutter_max_signs = 9999
-" How often gitgutter polls. Changed from 4000
-set updatetime=300
-
-" NEOFORMAT SETTINGS
-" -----------------------------------------------------------------------------------------------------------
-let g:neoformat_enabled_css = ['prettier']
-let g:neoformat_enabled_elm = ['elm-format']
-let g:neoformat_enabled_go = ['gofmt']
-let g:neoformat_enabled_html = ['prettier']
-let g:neoformat_enabled_javascript = ['prettier']
-let g:neoformat_enabled_json = ['prettier']
-let g:neoformat_enabled_less = ['prettier']
-let g:neoformat_enabled_markdown = ['prettier']
-let g:neoformat_enabled_rust = ['rustfmt']
-let g:neoformat_enabled_typescript = ['prettier']
-let g:neoformat_enabled_yaml = ['prettier']
-
-" LANGUAGE SPECIFIC SETTINGS
-" -----------------------------------------------------------------------------------------------------------
-" Disable automatic formatting in elm
-let g:elm_format_autosave = 0
-
-" Highlight markdown yaml frontmatter properly
-let g:vim_markdown_frontmatter = 1
-
-" Slightly better new line indentation when working on markdown lists
-let g:vim_markdown_new_list_item_indent = 0
 
 lua <<EOF
 local opt = vim.opt
