@@ -8,10 +8,12 @@
 " https://github.com/junegunn/vim-plug#installation
 call plug#begin()
 
+" Lua utility library
+Plug 'nvim-lua/plenary.nvim'
 " Lightweight and configurable status line
 Plug 'itchyny/lightline.vim'
-" Asynchronous fuzzy finder written in Go.
-Plug '/opt/homebrew/opt/fzf' | Plug 'junegunn/fzf.vim'
+" Async fuzzy finder written in Lua
+Plug 'nvim-telescope/telescope.nvim'
 " Ag wrapper for project-wide search and editing
 Plug 'dyng/ctrlsf.vim', { 'on': ['CtrlSF', 'CtrlSFToggle'] }
 " Better commenting / uncommenting support
@@ -46,14 +48,24 @@ Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 lua <<EOF
--- GENERAL SETTINGS
+-- LUA HELPERS
 -------------------------------------------------------------------------------------------------------------
--- Neovim's default settings: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults
 local opt = vim.opt
 local g = vim.g
 local fn = vim.fn
 local cmd = vim.cmd
 
+local map = function(keymap)
+  local opts = {noremap = true}
+  for key, val in pairs(keymap) do
+    if type(key) == 'string' then opts[key] = val end
+  end
+  vim.api.nvim_set_keymap(keymap[1], keymap[2], keymap[3], opts)
+end
+
+-- GENERAL SETTINGS
+-------------------------------------------------------------------------------------------------------------
+-- Neovim's default settings: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults
 opt.shell = '/bin/zsh'              -- Requires manual installation of zsh (brew install zsh)
 opt.hidden = true                   -- Allows switching between unsaved buffers
 opt.number = true                   -- Enable line numbering
@@ -188,25 +200,9 @@ g.vim_markdown_frontmatter = 1
 
 -- Slightly better new line indentation when working on markdown lists
 g.vim_markdown_new_list_item_indent = 0
-EOF
 
-" FZF SETTINGS
-" -----------------------------------------------------------------------------------------------------------
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
-
-lua <<EOF
-local opt = vim.opt
 -- GENERAL KEY MAPPINGS
 -------------------------------------------------------------------------------------------------------------
-
-local map = function(key)
-  local opts = {noremap = true}
-  for i, v in pairs(key) do
-    if type(i) == 'string' then opts[i] = v end
-  end
-  vim.api.nvim_set_keymap(key[1], key[2], key[3], opts)
-end
-
 -- Set leader key
 vim.g.mapleader = ' '
 
@@ -229,10 +225,6 @@ map {'v', '<right>', '<NOP>'}
 map {'v', '<bs>', '<NOP>'}
 map {'v', '<delete>', '<NOP>'}
 map {'v', '<Space>', '<NOP>'}
-
--- Unbind F1 (default behavior opens :help)
-map {'i', '<F1>', '<NOP>'}
-map {'n', '<F1>', '<NOP>'}
 
 -- Unbind F1 (default behavior opens :help)
 map {'i', '<F1>', '<NOP>'}
@@ -304,24 +296,12 @@ map {'v', '<leader>j', ':Commentary<CR>'}
 -- NEOFORMAT KEY MAPPINGS
 -------------------------------------------------------------------------------------------------------------
 map {'n', '<leader>m', ':Neoformat<CR>'}
-EOF
 
-" FZF KEY MAPPINGS
-" -----------------------------------------------------------------------------------------------------------
-" Run fuzzy file search against the files tracked in git, falling back to all files if outside a git repo
-function! GFilesFallback()
-  let output = system('git rev-parse --show-toplevel')
-  let prefix = get(g:, 'fzf_command_prefix', '')
-  if v:shell_error == 0
-    exec "normal :" . prefix . "GFiles\<CR>"
-  else
-    exec "normal :" . prefix . "Files\<CR>"
-  endif
-  return 0
-endfunction
-nnoremap <leader>u :call GFilesFallback()<CR>
-" Run fuzzy buffer search
-nnoremap <leader>i :Buffers<CR>
+-- TELESCOPE KEY MAPPINGS
+-------------------------------------------------------------------------------------------------------------
+map {'n', '<leader>u', ':Telescope find_files<CR>'}
+map {'n', '<leader>i', ':Telescope buffers<CR>'}
+EOF
 
 " COC SETTINGS AND MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
