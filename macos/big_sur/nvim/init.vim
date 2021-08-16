@@ -282,6 +282,23 @@ map {'n', '<leader>.', ':set hlsearch!<CR>'}
 
 -- Toggle spell checking
 map {'n', '<leader>,', ':set spell!<CR>'}
+
+-- CTRLSF KEY MAPPINGS
+-------------------------------------------------------------------------------------------------------------
+-- Search the word under the cursor
+map {'n', '<leader>k', ':CtrlSF<CR>'}
+-- Start a project-wide search in command mode
+map {'n', '<leader>/', ':CtrlSF<space>'}
+
+-- COMMENTARY KEY MAPPINGS
+-------------------------------------------------------------------------------------------------------------
+-- Comment / uncomment a line
+map {'n', '<leader>j', ':Commentary<CR>'}
+map {'v', '<leader>j', ':Commentary<CR>'}
+
+-- NEOFORMAT KEY MAPPINGS
+-------------------------------------------------------------------------------------------------------------
+map {'n', '<leader>m', ':Neoformat<CR>'}
 EOF
 
 " FZF KEY MAPPINGS
@@ -300,23 +317,6 @@ endfunction
 nnoremap <leader>u :call GFilesFallback()<CR>
 " Run fuzzy buffer search
 nnoremap <leader>i :Buffers<CR>
-
-" CTRLSF KEY MAPPINGS
-" -----------------------------------------------------------------------------------------------------------
-" Search the word under the cursor
-nnoremap <leader>k :CtrlSF<CR>
-" Start a project-wide search in command mode
-nnoremap <leader>/ :CtrlSF<space>
-
-" COMMENTARY KEY MAPPINGS
-" -----------------------------------------------------------------------------------------------------------
-" Comment / uncomment a line 
-nnoremap <leader>j :Commentary<CR>
-vnoremap <leader>j :Commentary<CR>
-
-" NEOFORMAT KEY MAPPINGS
-" -----------------------------------------------------------------------------------------------------------
-nnoremap <leader>m :Neoformat<CR>
 
 " COC SETTINGS AND MAPPINGS
 " -----------------------------------------------------------------------------------------------------------
