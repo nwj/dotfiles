@@ -35,15 +35,10 @@ Plug 'chriskempson/base16-vim'
 Plug 'mike-hearn/base16-vim-lightline'
 " Autoformatting
 Plug 'sbdchd/neoformat'
-" Intellisense engine and specific language extensions
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
-Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
-Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile'}
+" Language server configuration
+Plug 'neovim/nvim-lspconfig'
+" Completion menu
+Plug 'hrsh7th/nvim-compe'
 
 call plug#end()
 
@@ -182,8 +177,6 @@ opt.updatetime = 300
 -- NEOFORMAT SETTINGS
 -------------------------------------------------------------------------------------------------------------
 g.neoformat_enabled_css = {'prettier'}
-g.neoformat_enabled_elm = {'elm-format'}
-g.neoformat_enabled_go = {'gofmt'}
 g.neoformat_enabled_html = {'prettier'}
 g.neoformat_enabled_javascript = {'prettier'}
 g.neoformat_enabled_json = {'prettier'}
@@ -301,50 +294,62 @@ map {'n', '<leader>m', ':Neoformat<CR>'}
 -------------------------------------------------------------------------------------------------------------
 map {'n', '<leader>u', ':Telescope find_files<CR>'}
 map {'n', '<leader>i', ':Telescope buffers<CR>'}
-EOF
 
-" COC SETTINGS AND MAPPINGS
-" -----------------------------------------------------------------------------------------------------------
-" Trigger completion and navigate options using tab and shift-tab
-call coc#config('suggest', {
-\ 'autoTrigger': 'none',
-\ })
+-- LSP SETUP
+-------------------------------------------------------------------------------------------------------------
+local lsp = require 'lspconfig'
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+lsp.rust_analyzer.setup {flags = {debounce_text_changes = 150}}
+lsp.tsserver.setup {flags = {debounce_text_changes = 150}}
+lsp.solargraph.setup {flags = {debounce_text_changes = 150}}
 
-inoremap <silent><expr> <TAB>
-              \ pumvisible() ? "\<C-n>" :
-              \ <SID>check_back_space() ? "\<TAB>" :
-              \ coc#refresh()
-inoremap <silent><expr> <S-TAB>
-              \ pumvisible() ? "\<C-p>" :
-              \ <SID>check_back_space() ? "\<TAB>" :
-              \ coc#refresh()
+-- Binding for jump to definition
+map {'n', '<leader>l', '<cmd>lua vim.lsp.buf.definition()<CR>'}
 
-" Binding for jump to definition
-nmap <leader>l <Plug>(coc-definition)
+-- COMPE SETUP
+-------------------------------------------------------------------------------------------------------------
+require'compe'.setup {
+  autocomplete = false,
+  source = {
+    path = true,
+    buffer = true,
+    spell = true,
+    nvim_lsp = true
+  }
+}
 
-" Setup the elm language server
-call coc#config("languageserver", {
-  \ "elmLS": {
-    \ "command": "elm-language-server",
-    \ "filetypes": ["elm"],
-    \ "rootPatterns": ["elm.json"],
-    \ "initializationOptions": {
-      \ "elmPath": "elm",
-      \ "elmFormatPath": "elm-format",
-      \ "elmTestPath": "elm-test",
-      \ "elmAnalyseTrigger": "change"
-    \ }
-  \ }
-\ })
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
 
+local check_back_space = function()
+  local col = fn.col('.') - 1
+  return col == 0 or fn.getline('.'):sub(col, col):match('%s') ~= nil
+end
 
-lua <<EOF
-local cmd = vim.cmd
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif check_back_space() then
+    return t "<Tab>"
+  else
+    return vim.fn['compe#complete']()
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  else
+    return t "<S-Tab>"
+  end
+end
+
+map {"i", "<Tab>", "v:lua.tab_complete()", expr = true}
+map {"s", "<Tab>", "v:lua.tab_complete()", expr = true}
+map {"i", "<S-Tab>", "v:lua.s_tab_complete()", expr = true}
+map {"s", "<S-Tab>", "v:lua.s_tab_complete()", expr = true}
 
 -- AUTOCOMMANDS
 -------------------------------------------------------------------------------------------------------------
