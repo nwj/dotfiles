@@ -1,48 +1,49 @@
-" -----------------------------------------------------------------------------------------------------------
-" NEOVIM CONFIGURATION | Author: nwj
-" -----------------------------------------------------------------------------------------------------------
+lua <<EOF
+-------------------------------------------------------------------------------------------------------------
+-- NEOVIM CONFIGURATION | Author: nwj
+-------------------------------------------------------------------------------------------------------------
 
-" PLUGIN SETUP
-" -----------------------------------------------------------------------------------------------------------
-" Requires manual installation of junegunn/vim-plug
-" https://github.com/junegunn/vim-plug#installation
-call plug#begin()
+-- PLUGIN SETUP
+-------------------------------------------------------------------------------------------------------------
+-- Requires manual installation of junegunn/vim-plug
+-- https://github.com/junegunn/vim-plug#installation
+local Plug = vim.fn['plug#']
+vim.call('plug#begin', '~/.config/nvim/plugged')
 
-" Lua utility library
+-- Lua utility library
 Plug 'nvim-lua/plenary.nvim'
-" Lightweight and configurable status line
+-- Lightweight and configurable status line
 Plug 'itchyny/lightline.vim'
-" Async fuzzy finder written in Lua
+-- Async fuzzy finder written in Lua
 Plug 'nvim-telescope/telescope.nvim'
-" Ag wrapper for project-wide search and editing
-Plug 'dyng/ctrlsf.vim', { 'on': ['CtrlSF', 'CtrlSFToggle'] }
-" Better commenting / uncommenting support
-Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
-" Better paren and tag text objects
+-- Ag wrapper for project-wide search and editing
+Plug('dyng/ctrlsf.vim', {on = {'CtrlSF', 'CtrlSFToggle'}})
+-- Better commenting / uncommenting support
+Plug('tpope/vim-commentary', {on = 'Commentary'})
+-- Better paren and tag text objects
 Plug 'tpope/vim-surround'
-" Automatically save changes to disk
+-- Automatically save changes to disk
 Plug '907th/vim-auto-save'
-" Git wrapper
+-- Git wrapper
 Plug 'tpope/vim-fugitive'
-" Show a git diff in the line number gutter
+-- Show a git diff in the line number gutter
 Plug 'airblade/vim-gitgutter'
-" Heuristic indentation detection
+-- Heuristic indentation detection
 Plug 'tpope/vim-sleuth'
-" Language-specific syntax plugins
+-- Language-specific syntax plugins
 Plug 'sheerun/vim-polyglot'
-" Color schemes
+-- Color schemes
 Plug 'chriskempson/base16-vim'
 Plug 'mike-hearn/base16-vim-lightline'
-" Autoformatting
+-- Autoformatting
 Plug 'sbdchd/neoformat'
-" Language server configuration
+-- Language server configuration
 Plug 'neovim/nvim-lspconfig'
-" Completion menu
+-- Completion menu
 Plug 'hrsh7th/nvim-compe'
 
-call plug#end()
+vim.call('plug#end')
 
-lua <<EOF
 -- LUA HELPERS
 -------------------------------------------------------------------------------------------------------------
 local opt = vim.opt
@@ -330,7 +331,7 @@ end
 -- Use (s-)tab to:
 --- move to prev/next item in completion menuone
 _G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
+  if fn.pumvisible() == 1 then
     return t "<C-n>"
   elseif check_back_space() then
     return t "<Tab>"
@@ -339,7 +340,7 @@ _G.tab_complete = function()
   end
 end
 _G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
+  if fn.pumvisible() == 1 then
     return t "<C-p>"
   else
     return t "<S-Tab>"
