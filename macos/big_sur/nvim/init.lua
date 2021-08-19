@@ -1,4 +1,3 @@
-lua <<EOF
 -------------------------------------------------------------------------------------------------------------
 -- NEOVIM CONFIGURATION | Author: nwj
 -------------------------------------------------------------------------------------------------------------
@@ -360,4 +359,3 @@ cmd 'autocmd BufNewFile,BufRead *.md setlocal spell'
 -- Enable line wrapping for markdown files
 cmd 'autocmd BufNewFile,BufRead *.md setlocal wrap'
 cmd 'autocmd BufNewFile,BufRead *.md setlocal linebreak'
-EOF
