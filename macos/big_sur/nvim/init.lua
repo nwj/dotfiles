@@ -147,25 +147,35 @@ require('gitsigns').setup {
 -- Always show the signs gutter
 opt.signcolumn = 'yes'
 
--- NEOFORMAT SETTINGS
+-- LANGUAGE-SPECIFIC SETTINGS
 -------------------------------------------------------------------------------------------------------------
-g.neoformat_enabled_css = {'prettier'}
-g.neoformat_enabled_html = {'prettier'}
-g.neoformat_enabled_javascript = {'prettier'}
-g.neoformat_enabled_json = {'prettier'}
-g.neoformat_enabled_less = {'prettier'}
+local lsp = require 'lspconfig'
+
+-- MARKDOWN
 g.neoformat_enabled_markdown = {'prettier'}
-g.neoformat_enabled_rust = {'rustfmt'}
+g.vim_markdown_frontmatter = 1 -- Highlight markdown yaml frontmatter properly
+g.vim_markdown_new_list_item_indent = 0 -- Slightly better new line indentation on lists
+cmd 'autocmd BufNewFile,BufRead *.md setlocal spell' -- Turn spell check on for markdown files
+cmd 'autocmd BufNewFile,BufRead *.md setlocal wrap' -- Enable line wrapping for markdown files
+cmd 'autocmd BufNewFile,BufRead *.md setlocal linebreak'
+
+-- HTML / CSS / JS
+lsp.tsserver.setup {flags = {debounce_text_changes = 150}}
+g.neoformat_enabled_html = {'prettier'}
+g.neoformat_enabled_css = {'prettier'}
+g.neoformat_enabled_javascript = {'prettier'}
 g.neoformat_enabled_typescript = {'prettier'}
+g.neoformat_enabled_json = {'prettier'}
+
+-- RUST
+lsp.rust_analyzer.setup {flags = {debounce_text_changes = 150}}
+g.neoformat_enabled_rust = {'rustfmt'}
+
+-- RUBY
+lsp.solargraph.setup {flags = {debounce_text_changes = 150}}
+
+-- YAML
 g.neoformat_enabled_yaml = {'prettier'}
-
--- LANGUAGE SPECIFIC SETTINGS
--------------------------------------------------------------------------------------------------------------
--- Highlight markdown yaml frontmatter properly
-g.vim_markdown_frontmatter = 1
-
--- Slightly better new line indentation when working on markdown lists
-g.vim_markdown_new_list_item_indent = 0
 
 -- GENERAL KEY MAPPINGS
 -------------------------------------------------------------------------------------------------------------
@@ -268,14 +278,8 @@ map {'n', '<leader>m', ':Neoformat<CR>'}
 map {'n', '<leader>u', ':Telescope find_files<CR>'}
 map {'n', '<leader>i', ':Telescope buffers<CR>'}
 
--- LSP SETUP
+-- LSP KEY MAPPINGS
 -------------------------------------------------------------------------------------------------------------
-local lsp = require 'lspconfig'
-
-lsp.rust_analyzer.setup {flags = {debounce_text_changes = 150}}
-lsp.tsserver.setup {flags = {debounce_text_changes = 150}}
-lsp.solargraph.setup {flags = {debounce_text_changes = 150}}
-
 -- Binding for jump to definition
 map {'n', '<leader>l', '<cmd>lua vim.lsp.buf.definition()<CR>'}
 
@@ -323,12 +327,3 @@ map {"i", "<Tab>", "v:lua.tab_complete()", expr = true}
 map {"s", "<Tab>", "v:lua.tab_complete()", expr = true}
 map {"i", "<S-Tab>", "v:lua.s_tab_complete()", expr = true}
 map {"s", "<S-Tab>", "v:lua.s_tab_complete()", expr = true}
-
--- AUTOCOMMANDS
--------------------------------------------------------------------------------------------------------------
--- Turn spell check on for markdown files
-cmd 'autocmd BufNewFile,BufRead *.md setlocal spell'
-
--- Enable line wrapping for markdown files
-cmd 'autocmd BufNewFile,BufRead *.md setlocal wrap'
-cmd 'autocmd BufNewFile,BufRead *.md setlocal linebreak'
