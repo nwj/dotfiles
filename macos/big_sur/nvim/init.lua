@@ -22,7 +22,7 @@ Plug('tpope/vim-commentary', {on = 'Commentary'})
 -- Better paren and tag text objects
 Plug 'tpope/vim-surround'
 -- Automatically save changes to disk
-Plug '907th/vim-auto-save'
+Plug 'Pocco81/AutoSave.nvim'
 -- Show a git diff in the line number gutter
 Plug 'lewis6991/gitsigns.nvim'
 -- Heuristic indentation detection
@@ -134,12 +134,9 @@ g.ctrlsf_auto_focus = {
 
 -- AUTO SAVE SETTINGS
 -------------------------------------------------------------------------------------------------------------
--- Enable auto save
-g.auto_save = 1
--- Suppress auto save messages
-g.auto_save_silent = 1
--- Auto save whenever we leave insert mode and when text changes
-g.auto_save_events = {'InsertLeave', 'TextChanged'}
+require('autosave').setup {
+  execution_message = '',
+}
 
 -- GITSIGNS SETTINGS
 -------------------------------------------------------------------------------------------------------------
