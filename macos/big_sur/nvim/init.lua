@@ -23,10 +23,8 @@ Plug('tpope/vim-commentary', {on = 'Commentary'})
 Plug 'tpope/vim-surround'
 -- Automatically save changes to disk
 Plug '907th/vim-auto-save'
--- Git wrapper
-Plug 'tpope/vim-fugitive'
 -- Show a git diff in the line number gutter
-Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
 -- Heuristic indentation detection
 Plug 'tpope/vim-sleuth'
 -- Language-specific syntax plugins
@@ -121,27 +119,7 @@ opt.foldenable = false
 -------------------------------------------------------------------------------------------------------------
 -- Minor changes here to trim down what's shown in the status line.
 g.lightline = {
-  active = {
-    left = {
-      {'mode', 'paste'},
-      {'gitbranch', 'readonly', 'relativepath'}
-    },
-    right = {
-      {'lineinfo'},
-      {'percent'},
-      {'filetype', 'fileencoding'}
-    }
-  },
   colorscheme = 'base16_snazzy',
-  component = {
-    readonly = '%{&filetype=="help"?"HELP":&readonly?"RO":""}'
-  },
-  component_visible_condition = {
-    readonly = '(&readonly)'
-  },
-  component_function = {
-    gitbranch = 'fugitive#head'
-  }
 }
 
 -- CTRLSF SETTINGS
@@ -163,16 +141,14 @@ g.auto_save_silent = 1
 -- Auto save whenever we leave insert mode and when text changes
 g.auto_save_events = {'InsertLeave', 'TextChanged'}
 
--- GITGUTTER SETTINGS
+-- GITSIGNS SETTINGS
 -------------------------------------------------------------------------------------------------------------
--- Always show the gutter
+require('gitsigns').setup {
+  numhl = true,
+  keymaps = {},
+}
+-- Always show the signs gutter
 opt.signcolumn = 'yes'
--- Disable gitgutter's key mappings
-g.gitgutter_map_keys = 0
--- Increase the max signs from 500
-g.gitgutter_max_signs = 9999
--- How often gitgutter polls. Changed from 4000
-opt.updatetime = 300
 
 -- NEOFORMAT SETTINGS
 -------------------------------------------------------------------------------------------------------------
