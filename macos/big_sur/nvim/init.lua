@@ -37,7 +37,11 @@ Plug 'sbdchd/neoformat'
 -- Language server configuration
 Plug 'neovim/nvim-lspconfig'
 -- Completion menu
-Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 
 vim.call('plug#end')
 
@@ -285,45 +289,43 @@ map {'n', '<leader>l', '<cmd>lua vim.lsp.buf.definition()<CR>'}
 
 -- COMPE SETUP
 -------------------------------------------------------------------------------------------------------------
-require'compe'.setup {
-  autocomplete = false,
-  source = {
-    path = true,
-    buffer = true,
-    spell = true,
-    nvim_lsp = true
-  }
+local cmp = require'cmp'
+
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+cmp.setup {
+  completion = {
+    autocomplete = false,
+  },
+  sources = {
+    {name = 'nvim_lsp'},
+    {name = 'path'},
+    {name = 'buffer'},
+  },
+  mapping = {
+   ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end, {"i", "s"}),
+
+    ["<S-Tab>"] = cmp.mapping(function()
+      if cmp.visible() then
+        cmp.select_prev_item()
+      end
+    end, {"i", "s"}),
+  },
 }
 
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local check_back_space = function()
-  local col = fn.col('.') - 1
-  return col == 0 or fn.getline('.'):sub(col, col):match('%s') ~= nil
-end
-
--- Use (s-)tab to:
---- move to prev/next item in completion menuone
-_G.tab_complete = function()
-  if fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    return vim.fn['compe#complete']()
-  end
-end
-_G.s_tab_complete = function()
-  if fn.pumvisible() == 1 then
-    return t "<C-p>"
-  else
-    return t "<S-Tab>"
-  end
-end
-
-map {"i", "<Tab>", "v:lua.tab_complete()", expr = true}
-map {"s", "<Tab>", "v:lua.tab_complete()", expr = true}
-map {"i", "<S-Tab>", "v:lua.s_tab_complete()", expr = true}
-map {"s", "<S-Tab>", "v:lua.s_tab_complete()", expr = true}
+cmp.setup.cmdline('/', {
+  sources = {
+    {name = 'buffer'},
+  }
+})
