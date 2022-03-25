@@ -64,7 +64,6 @@ end
 -------------------------------------------------------------------------------------------------------------
 -- Neovim's default settings: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults
 opt.shell = '/bin/zsh'              -- Requires manual installation of zsh (brew install zsh)
-opt.hidden = true                   -- Allows switching between unsaved buffers
 opt.number = true                   -- Enable line numbering
 opt.clipboard = 'unnamed'           -- Allow use of the system clipboard
 opt.scrolloff = 10                  -- Start scrolling before reaching screen edge
