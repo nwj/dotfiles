@@ -8,7 +8,6 @@
 -- https://github.com/junegunn/vim-plug#installation
 local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
-
 -- Lua utility library
 Plug 'nvim-lua/plenary.nvim'
 -- Lightweight and configurable status line
@@ -30,8 +29,7 @@ Plug 'tpope/vim-sleuth'
 -- Language-specific syntax plugins
 Plug 'sheerun/vim-polyglot'
 -- Color schemes
-Plug 'chriskempson/base16-vim'
-Plug 'mike-hearn/base16-vim-lightline'
+Plug 'EdenEast/nightfox.nvim'
 -- Autoformatting
 Plug 'sbdchd/neoformat'
 -- Language server configuration
@@ -108,7 +106,7 @@ if fn.has('termguicolors') == 1 then
 end
 
 opt.background = 'dark'
-cmd 'colorscheme base16-snazzy'
+cmd 'colorscheme nightfox'
 
 -- Disable modeline support, since it's been a security vector in the past
 opt.modelines = 0
@@ -122,7 +120,7 @@ opt.foldenable = false
 -------------------------------------------------------------------------------------------------------------
 -- Minor changes here to trim down what's shown in the status line.
 g.lightline = {
-  colorscheme = 'base16_snazzy',
+  colorscheme = 'nightfox',
 }
 
 -- CTRLSF SETTINGS
