@@ -11,11 +11,9 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 -- Lua utility library
 Plug 'nvim-lua/plenary.nvim'
 -- Lightweight and configurable status line
-Plug 'itchyny/lightline.vim'
+Plug 'nvim-lualine/lualine.nvim'
 -- Async fuzzy finder written in Lua
 Plug 'nvim-telescope/telescope.nvim'
--- Ag wrapper for project-wide search and editing
-Plug('dyng/ctrlsf.vim', {on = {'CtrlSF', 'CtrlSFToggle'}})
 -- Better commenting / uncommenting support
 Plug('tpope/vim-commentary', {on = 'Commentary'})
 -- Better paren and tag text objects
@@ -116,21 +114,14 @@ opt.modeline = false
 opt.foldmethod = 'syntax'
 opt.foldenable = false
 
--- LIGHTLINE SETTINGS
+-- LUALINE SETTINGS
 -------------------------------------------------------------------------------------------------------------
--- Minor changes here to trim down what's shown in the status line.
-g.lightline = {
-  colorscheme = 'nightfox',
-}
-
--- CTRLSF SETTINGS
--------------------------------------------------------------------------------------------------------------
--- Leave the ag results window open after interacting with it
-g.ctrlsf_auto_close = 0
-g.ctrlsf_regex_pattern = 1
-g.ctrlsf_auto_focus = {
-  at = 'done',
-  duration_less_than = 1000
+require('lualine').setup {
+  options = {
+    icons_enabled = false,
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+  },
 }
 
 -- AUTO SAVE SETTINGS
@@ -257,13 +248,6 @@ map {'n', '<leader>.', ':set hlsearch!<CR>'}
 -- Toggle spell checking
 map {'n', '<leader>,', ':set spell!<CR>'}
 
--- CTRLSF KEY MAPPINGS
--------------------------------------------------------------------------------------------------------------
--- Search the word under the cursor
-map {'n', '<leader>k', ':CtrlSF<CR>'}
--- Start a project-wide search in command mode
-map {'n', '<leader>/', ':CtrlSF<space>'}
-
 -- COMMENTARY KEY MAPPINGS
 -------------------------------------------------------------------------------------------------------------
 -- Comment / uncomment a line
@@ -278,6 +262,8 @@ map {'n', '<leader>m', ':Neoformat<CR>'}
 -------------------------------------------------------------------------------------------------------------
 map {'n', '<leader>u', ':Telescope find_files<CR>'}
 map {'n', '<leader>i', ':Telescope buffers<CR>'}
+map {'n', '<leader>k', ':Telescope grep_string<CR>'}
+map {'n', '<leader>/', ':Telescope live_grep<CR>'}
 
 -- LSP KEY MAPPINGS
 -------------------------------------------------------------------------------------------------------------
