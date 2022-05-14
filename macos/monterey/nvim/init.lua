@@ -15,8 +15,8 @@ Plug 'nvim-lualine/lualine.nvim'
 -- Async fuzzy finder written in Lua
 Plug 'nvim-telescope/telescope.nvim'
 -- Better commenting / uncommenting support
-Plug('tpope/vim-commentary', {on = 'Commentary'})
--- Better paren and tag text objects
+Plug 'numToStr/Comment.nvim'
+-- Additional text objects
 Plug 'tpope/vim-surround'
 -- Automatically save changes to disk
 Plug 'Pocco81/AutoSave.nvim'
@@ -248,12 +248,6 @@ map {'n', '<leader>.', ':set hlsearch!<CR>'}
 -- Toggle spell checking
 map {'n', '<leader>,', ':set spell!<CR>'}
 
--- COMMENTARY KEY MAPPINGS
--------------------------------------------------------------------------------------------------------------
--- Comment / uncomment a line
-map {'n', '<leader>j', ':Commentary<CR>'}
-map {'v', '<leader>j', ':Commentary<CR>'}
-
 -- NEOFORMAT KEY MAPPINGS
 -------------------------------------------------------------------------------------------------------------
 map {'n', '<leader>m', ':Neoformat<CR>'}
@@ -269,6 +263,12 @@ map {'n', '<leader>/', ':Telescope live_grep<CR>'}
 -------------------------------------------------------------------------------------------------------------
 -- Binding for jump to definition
 map {'n', '<leader>l', '<cmd>lua vim.lsp.buf.definition()<CR>'}
+
+-- COMMENT SETUP
+-------------------------------------------------------------------------------------------------------------
+require('Comment').setup()
+map {'n', '<leader>j', '<CMD>lua require("Comment.api").toggle_current_linewise()<CR>'}
+map {'v', '<leader>j', '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>'}
 
 -- COMPE SETUP
 -------------------------------------------------------------------------------------------------------------
