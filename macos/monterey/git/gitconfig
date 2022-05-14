@@ -7,6 +7,7 @@
 	co = checkout
 	st = status
 	br = branch
+	hist = log --graph --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s (%Cgreen%ci, %C(blue)%ae%Creset)' --abbrev-commit
 [push]
 	default = current
 [url "git@github.com:"]
