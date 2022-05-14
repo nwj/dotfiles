@@ -18,6 +18,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'numToStr/Comment.nvim'
 -- Additional text objects
 Plug 'tpope/vim-surround'
+Plug 'wellle/targets.vim'
 -- Automatically save changes to disk
 Plug 'Pocco81/AutoSave.nvim'
 -- Show a git diff in the line number gutter
