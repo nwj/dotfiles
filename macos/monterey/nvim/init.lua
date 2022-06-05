@@ -33,6 +33,10 @@ Plug 'EdenEast/nightfox.nvim'
 Plug 'sbdchd/neoformat'
 -- Language server configuration
 Plug 'neovim/nvim-lspconfig'
+-- Treesitter and dependent functionality
+Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
+Plug 'nvim-treesitter/nvim-treesitter-context'
+Plug 'stevearc/aerial.nvim'
 -- Completion menu
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -260,6 +264,10 @@ map {'n', '<leader>i', ':Telescope buffers<CR>'}
 map {'n', '<leader>k', ':Telescope grep_string<CR>'}
 map {'n', '<leader>/', ':Telescope live_grep<CR>'}
 
+-- AERIAL KEY MAPPINGS
+-------------------------------------------------------------------------------------------------------------
+map {'n', '<leader>o', ':AerialToggle<CR>'}
+
 -- LSP KEY MAPPINGS
 -------------------------------------------------------------------------------------------------------------
 -- Binding for jump to definition
@@ -313,3 +321,14 @@ cmp.setup.cmdline('/', {
     {name = 'buffer'},
   }
 })
+
+-- TREESITTER SETUP
+-------------------------------------------------------------------------------------------------------------
+require('nvim-treesitter.configs').setup {
+  ensure_installed = { 'bash', 'css', 'html', 'javascript', 'json', 'lua', 'ruby', 'rust', 'toml', 'yaml' },
+  highlight = {
+    enable = true,
+  }
+}
+require('treesitter-context').setup()
+require('aerial').setup()
