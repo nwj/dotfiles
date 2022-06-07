@@ -36,7 +36,9 @@ Plug 'neovim/nvim-lspconfig'
 -- Treesitter and dependent functionality
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 Plug 'nvim-treesitter/nvim-treesitter-context'
+-- Code outline sidebars
 Plug 'stevearc/aerial.nvim'
+Plug 'wfxr/minimap.vim'
 -- Completion menu
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -143,6 +145,13 @@ require('gitsigns').setup {
 }
 -- Always show the signs gutter
 opt.signcolumn = 'yes'
+
+-- AERIAL + MINIMAP SETTINGS
+-------------------------------------------------------------------------------------------------------------
+require('aerial').setup()
+g.minimap_git_colors = 1
+g.minimap_highlight_range = 1
+g.minimap_highlight_search = 1
 
 -- LANGUAGE-SPECIFIC SETTINGS
 -------------------------------------------------------------------------------------------------------------
@@ -264,9 +273,46 @@ map {'n', '<leader>i', ':Telescope buffers<CR>'}
 map {'n', '<leader>k', ':Telescope grep_string<CR>'}
 map {'n', '<leader>/', ':Telescope live_grep<CR>'}
 
--- AERIAL KEY MAPPINGS
+-- AERIAL + MINIMAP KEY MAPPINGS
 -------------------------------------------------------------------------------------------------------------
-map {'n', '<leader>o', ':AerialToggle<CR>'}
+-- The idea here is to create a keymap that cycles through Nothing -> Minimap -> Aerial
+
+local aerial_window_is_open = function()
+  local wininfo = vim.fn.getwininfo()
+  for _, win in pairs(wininfo) do
+    if win['variables']['is_aerial_win'] then
+      return true
+    end
+  end
+  return false
+end
+
+local minimap_window_is_open = function()
+  local wininfo = vim.fn.getwininfo()
+  for _, win in pairs(wininfo) do
+    if win['variables']['netrw_prvfile'] and string.find(win['variables']['netrw_prvfile'], 'MINIMAP') then
+      return true
+    end
+  end
+  return false
+end
+
+vim.keymap.set('n', '<leader>o', function()
+  local aerial_open = aerial_window_is_open()
+  local minimap_open = minimap_window_is_open()
+
+  if not minimap_open and not aerial_open then
+    vim.cmd('Minimap')
+  elseif minimap_open and not aerial_open then
+    vim.cmd('MinimapClose')
+    vim.cmd('AerialOpen')
+  elseif not minimap_open and aerial_open then
+    vim.cmd('AerialClose')
+  else
+    vim.cmd('MinimapClose')
+    vim.cmd('AerialClose')
+  end
+end)
 
 -- LSP KEY MAPPINGS
 -------------------------------------------------------------------------------------------------------------
@@ -331,4 +377,3 @@ require('nvim-treesitter.configs').setup {
   }
 }
 require('treesitter-context').setup()
-require('aerial').setup()
