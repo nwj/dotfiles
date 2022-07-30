@@ -115,10 +115,6 @@ PROMPT2='%F{magenta}\ '
 # Aliases
 # ---------------------------
 
-if [[ $+commands[brew] != 0 ]]; then
-  alias brew='arch -arm64 brew'
-fi
-
 if [[ $+commands[bat] != 0 ]]; then
   alias cat='bat'
 fi
