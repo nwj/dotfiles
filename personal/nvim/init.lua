@@ -19,8 +19,10 @@ Plug 'numToStr/Comment.nvim'
 -- Additional text objects
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
+-- Auto close parens, tags, etc.
+Plug 'windwp/nvim-autopairs'
 -- Automatically save changes to disk
-Plug 'Pocco81/AutoSave.nvim'
+Plug 'Pocco81/auto-save.nvim'
 -- Show a git diff in the line number gutter
 Plug 'lewis6991/gitsigns.nvim'
 -- Heuristic indentation detection
@@ -36,9 +38,8 @@ Plug 'neovim/nvim-lspconfig'
 -- Treesitter and dependent functionality
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 Plug 'nvim-treesitter/nvim-treesitter-context'
--- Code outline sidebars
+-- Code outline sidebar
 Plug 'stevearc/aerial.nvim'
-Plug 'wfxr/minimap.vim'
 -- Completion menu
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -133,8 +134,7 @@ require('lualine').setup {
 
 -- AUTO SAVE SETTINGS
 -------------------------------------------------------------------------------------------------------------
-require('autosave').setup {
-  execution_message = '',
+require("auto-save").setup {
 }
 
 -- GITSIGNS SETTINGS
@@ -146,12 +146,13 @@ require('gitsigns').setup {
 -- Always show the signs gutter
 opt.signcolumn = 'yes'
 
--- AERIAL + MINIMAP SETTINGS
+-- AERIAL SETTINGS
 -------------------------------------------------------------------------------------------------------------
 require('aerial').setup()
-g.minimap_git_colors = 1
-g.minimap_highlight_range = 1
-g.minimap_highlight_search = 1
+
+-- AUTOPAIRS SETTINGS
+-------------------------------------------------------------------------------------------------------------
+require("nvim-autopairs").setup {}
 
 -- LANGUAGE-SPECIFIC SETTINGS
 -------------------------------------------------------------------------------------------------------------
@@ -273,46 +274,9 @@ map {'n', '<leader>i', ':Telescope buffers<CR>'}
 map {'n', '<leader>k', ':Telescope grep_string<CR>'}
 map {'n', '<leader>/', ':Telescope live_grep<CR>'}
 
--- AERIAL + MINIMAP KEY MAPPINGS
+-- AERIAL KEY MAPPINGS
 -------------------------------------------------------------------------------------------------------------
--- The idea here is to create a keymap that cycles through Nothing -> Minimap -> Aerial
-
-local aerial_window_is_open = function()
-  local wininfo = vim.fn.getwininfo()
-  for _, win in pairs(wininfo) do
-    if win['variables']['is_aerial_win'] then
-      return true
-    end
-  end
-  return false
-end
-
-local minimap_window_is_open = function()
-  local wininfo = vim.fn.getwininfo()
-  for _, win in pairs(wininfo) do
-    if win['variables']['netrw_prvfile'] and string.find(win['variables']['netrw_prvfile'], 'MINIMAP') then
-      return true
-    end
-  end
-  return false
-end
-
-vim.keymap.set('n', '<leader>o', function()
-  local aerial_open = aerial_window_is_open()
-  local minimap_open = minimap_window_is_open()
-
-  if not minimap_open and not aerial_open then
-    vim.cmd('Minimap')
-  elseif minimap_open and not aerial_open then
-    vim.cmd('MinimapClose')
-    vim.cmd('AerialOpen')
-  elseif not minimap_open and aerial_open then
-    vim.cmd('AerialClose')
-  else
-    vim.cmd('MinimapClose')
-    vim.cmd('AerialClose')
-  end
-end)
+map {'n', '<leader>o', ':AerialToggle<CR>'}
 
 -- LSP KEY MAPPINGS
 -------------------------------------------------------------------------------------------------------------
