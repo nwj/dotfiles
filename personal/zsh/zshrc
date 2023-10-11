@@ -30,9 +30,9 @@ fi
 # Editor
 # ---------------------------
 
-if [[ $+commands[hx] != 0 ]]; then
-  export EDITOR="hx"
-  export VISUAL="hx"
+if [[ $+commands[nvim] != 0 ]]; then
+  export EDITOR="nvim"
+  export VISUAL="nvim"
 fi
 
 # ---------------------------
