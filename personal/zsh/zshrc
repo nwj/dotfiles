@@ -119,10 +119,10 @@ if [[ $+commands[bat] != 0 ]]; then
   alias cat='bat'
 fi
 
-if [[ $+commands[exa] != 0 ]]; then
-  alias ll='exa --long --git --color-scale --group-directories-first'
-  alias la='exa --all --group-directories-first'
-  alias lla='exa --long --git --color-scale --group-directories-first --all'
-  alias tree='exa --tree --group-directories-first'
-  alias ltree='exa --tree --long --git --color-scale --group-directories-first'
+if [[ $+commands[eza] != 0 ]]; then
+  alias ll='eza --long --git --color-scale --group-directories-first'
+  alias la='eza --all --group-directories-first'
+  alias lla='eza --long --git --color-scale --group-directories-first --all'
+  alias tree='eza --tree --group-directories-first'
+  alias ltree='eza --tree --long --git --color-scale --group-directories-first'
 fi
