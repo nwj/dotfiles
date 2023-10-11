@@ -310,6 +310,7 @@ require("lazy").setup({
 			"javascriptreact",
 			"json",
 			"lua",
+			"markdown",
 			"ruby",
 			"rust",
 			"typescript",
@@ -320,6 +321,7 @@ require("lazy").setup({
 			lsp.tsserver.setup({})
 			lsp.rust_analyzer.setup({})
 			lsp.solargraph.setup({})
+			lsp.marksman.setup({})
 			lsp.lua_ls.setup({
 				-- These settings mostly only make sense if you're using lua primarily in the context of configuring Neovim
 				settings = {
