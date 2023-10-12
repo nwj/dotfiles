@@ -145,27 +145,37 @@ require("lazy").setup({
 		config = true,
 	},
 
-	-- Formatter setup
+	-- Conform (Auto-Formatter) setup
 	{
-		"mhartington/formatter.nvim",
-		cmd = { "Format", "FormatWrite" },
-		config = function()
-			require("formatter").setup({
-				filetype = {
-					css = { require("formatter.filetypes.css").prettier },
-					go = { require("formatter.filetypes.go").gofmt },
-					html = { require("formatter.filetypes.html").prettier },
-					javascript = { require("formatter.filetypes.javascript").prettier },
-					json = { require("formatter.filetypes.json").prettier },
-					lua = { require("formatter.filetypes.lua").stylua },
-					markdown = { require("formatter.filetypes.markdown").prettier },
-					ruby = { require("formatter.filetypes.ruby").rubocop },
-					rust = { require("formatter.filetypes.rust").rustfmt },
-					typescript = { require("formatter.filetypes.typescript").prettier },
-					typescriptreact = { require("formatter.filetypes.typescriptreact").prettier },
-				},
-			})
-		end,
+		"stevearc/conform.nvim",
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+		keys = {
+			{
+				"<leader>F",
+				function()
+					require("conform").format({ async = true, lsp_fallback = true })
+				end,
+				mode = "",
+				desc = "Run auto-formatter",
+			},
+		},
+		opts = {
+			formatters_by_ft = {
+				css = { "prettier" },
+				go = { "gofmt" },
+				html = { "prettier" },
+				javascript = { "prettier" },
+				javascriptreact = { "prettier" },
+				json = { "prettier" },
+				lua = { "stylua" },
+				markdown = { "prettier" },
+				ruby = { "rubocop" },
+				rust = { "rustfmt" },
+				typescript = { "prettier" },
+				typescriptreact = { "prettier" },
+			},
+		},
 	},
 
 	-- Which-key (Key Map Helper) setup
@@ -359,7 +369,6 @@ wk.register({
 	["<leader>R"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename word under the cursor (in current buffer only)" },
 	["<leader>p"] = { "<cmd>set spell!<cr>", "Toggle spellcheck" },
 	["<leader>h"] = { "<cmd>set hlsearch!<cr>", "Toggle search highlighting" },
-	["<leader>F"] = { "<cmd>Format<cr>", "Run auto-formatter" },
 	["<leader>i"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show info about word under the cursor" },
 })
 
