@@ -148,6 +148,7 @@ require("lazy").setup({
 	-- Conform (Auto-Formatter) setup
 	{
 		"stevearc/conform.nvim",
+		version = "^3.10.0",
 		event = { "BufWritePre" },
 		cmd = { "ConformInfo" },
 		keys = {
@@ -332,6 +333,9 @@ require("lazy").setup({
 			lsp.rust_analyzer.setup({})
 			lsp.solargraph.setup({})
 			lsp.marksman.setup({})
+			lsp.cssls.setup({})
+			lsp.html.setup({})
+			lsp.jsonls.setup({})
 			lsp.lua_ls.setup({
 				-- These settings mostly only make sense if you're using lua primarily in the context of configuring Neovim
 				settings = {
