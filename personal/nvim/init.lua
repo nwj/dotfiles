@@ -36,8 +36,9 @@ vim.opt.spelllang = "en_us"
 vim.opt.spellfile = "~/.config/nvim/dictionary.utf-8.add" -- words are added here via `zg` and removed via `zw`
 
 -- Fold based on language, fully expand all folds at start
-vim.opt.foldmethod = "syntax"
-vim.opt.foldenable = false
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 99
 
 -- Disable modeline support, since it's been a security vector in the past
 vim.opt.modelines = 0
@@ -84,6 +85,7 @@ require("lazy").setup({
 		config = true,
 	},
 
+	-- Bufferline ("Tab" Bar) setup
 	{
 		"akinsho/bufferline.nvim",
 		version = "^4.4.0",
