@@ -360,54 +360,73 @@ require("lazy").setup({
 
 -- Key Mappings
 local wk = require("which-key")
+local map = vim.keymap.set
+
 wk.register({
-	["<leader>f"] = { "<cmd>Telescope find_files<cr>", "Open file picker" },
-	["<leader>b"] = { "<cmd>Telescope buffers<cr>", "Open buffer picker" },
-	["<leader>/"] = { "<cmd>Telescope live_grep<cr>", "Open grep picker" },
 	["<leader>*"] = { "<cmd>Telescope grep_string<cr>", "Grep word under the cursor" },
-	["<leader>s"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Open symbol picker" },
-	["<leader>S"] = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Open workspace symbol picker" },
-	["<leader>m"] = { "<cmd>Telescope marks<cr>", "Open mark picker" },
-	['<leader>"'] = { "<cmd>Telescope registers<cr>", "Open register picker" },
-	["<leader>d"] = { "<cmd>Telescope lsp_definitions<cr>", "Goto definition of word under the cursor" },
-	["<leader>y"] = { "<cmd>Telescope lsp_type_definitions<cr>", "Goto type definition of word under the cursor" },
-	["<leader>r"] = { "<cmd>Telescope lsp_references<cr>", "Find references to word under the cursor" },
-	["<leader>R"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename word under the cursor (in current buffer only)" },
-	["<leader>p"] = { "<cmd>set spell!<cr>", "Toggle spellcheck" },
-	["<leader>h"] = { "<cmd>set hlsearch!<cr>", "Toggle search highlighting" },
-	["<leader>i"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show info about word under the cursor" },
+	["<leader>/"] = { "<cmd>Telescope live_grep<cr>", "Open grep picker" },
+	["<leader>b"] = { "<cmd>Telescope buffers<cr>", "Open buffer picker" },
+	["<leader>f"] = { "<cmd>Telescope find_files<cr>", "Open file picker" },
+	["<leader>a"] = { name = "+Cursor actions" },
+	["<leader>a*"] = { "<cmd>Telescope grep_string<cr>", "Grep word under the cursor" },
+	["<leader>aR"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename word under the cursor (in current buffer only)" },
+	["<leader>ad"] = { "<cmd>Telescope lsp_definitions<cr>", "Goto definition of word under the cursor" },
+	["<leader>ai"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show info about word under the cursor" },
+	["<leader>ar"] = { "<cmd>Telescope lsp_references<cr>", "Find references to word under the cursor" },
+	["<leader>at"] = { "<cmd>Telescope lsp_type_definitions<cr>", "Goto type definition of word under the cursor" },
+	["<leader>p"] = { name = "+Pickers" },
+	["<leader>p/"] = { "<cmd>Telescope live_grep<cr>", "Open grep picker" },
+	["<leader>pS"] = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Open workspace symbol picker" },
+	["<leader>pb"] = { "<cmd>Telescope buffers<cr>", "Open buffer picker" },
+	["<leader>pd"] = { "<cmd>Telescope diagnostics<cr>", "Open diagnostic picker" },
+	["<leader>pf"] = { "<cmd>Telescope find_files<cr>", "Open file picker" },
+	["<leader>pm"] = { "<cmd>Telescope marks<cr>", "Open mark picker" },
+	["<leader>pr"] = { "<cmd>Telescope registers<cr>", "Open register picker" },
+	["<leader>ps"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Open symbol picker" },
+	["<leader>t"] = { name = "+Toggle settings" },
+	["<leader>th"] = { "<cmd>set hlsearch!<cr>", "Toggle search highlighting" },
+	["<leader>tn"] = { "<cmd>set number!<cr>", "Toggle line numbers" },
+	["<leader>tr"] = { "<cmd>set relativenumber!<cr>", "Toggle relative line numbers" },
+	["<leader>ts"] = { "<cmd>set spell!<cr>", "Toggle spell check" },
+	["<leader>tw"] = { "<cmd>set wrap!<cr>", "Toggle line wrapping" },
+	-- Inlay hint support isn't yet in Neovim stable, but will be soon
+	-- ["<leader>ti"] = { "<cmd>lua vim.lsp.inlay_hint(0, nil)<cr>", "Toggle inlay hints" },
 })
 
-local map = function(keymap)
-	local opts = { noremap = true }
-	for k, v in pairs(keymap) do
-		if type(k) == "string" then
-			opts[k] = v
-		end
-	end
-	vim.api.nvim_set_keymap(keymap[1], keymap[2], keymap[3], opts)
-end
-
 -- Unbind Q since exmode is just annoying
-map({ "n", "Q", "<NOP>" })
+map("n", "Q", "<NOP>")
 
 -- Make Y behave more like D, C, etc. (default behavior is effectively yy)
-map({ "n", "Y", "y$" })
+map("n", "Y", "y$")
 
 -- More intuitive movement on lines that wrap
-map({ "n", "j", "gj" })
-map({ "n", "k", "gk" })
-map({ "v", "j", "gj" })
-map({ "v", "k", "gk" })
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+
+-- Maintain visual selection when indenting
+map("v", "<", "<gv")
+map("v", ">", ">gv")
 
 -- Keep the cursor in place while joining lines
-map({ "n", "J", "mzJ`z" })
+map("n", "J", "mzJ`z")
+
+-- Move lines up or down
+map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+
+-- Easier buffer movement
+map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 
 -- Get write permission when you forget sudo
-map({ "c", "w!!", "w !sudo tee %" })
+map("c", "w!!", "w !sudo tee %")
 
 -- Expand file location of current buffer
-map({ "c", "%%", "<C-R>=expand('%:h').'/'<cr>" })
+map("c", "%%", "<C-R>=expand('%:h').'/'<cr>")
 
 -- Autocommands and Filetype-specific setup
 
