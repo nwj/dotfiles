@@ -245,34 +245,37 @@ require("lazy").setup({
 		version = "^0.9.1",
 		build = ":TSUpdate",
 		event = "VeryLazy",
-		opts = {
-			ensure_installed = {
-				"bash",
-				"css",
-				"csv",
-				"dockerfile",
-				"gitcommit",
-				"go",
-				"html",
-				"javascript",
-				"json",
-				"lua",
-				"make",
-				"python",
-				"ruby",
-				"rust",
-				"toml",
-				"tsv",
-				"typescript",
-				"yaml",
-			},
-			highlight = {
-				enable = true,
-			},
-			indent = {
-				enable = true,
-			},
-		},
+		config = function()
+			local configs = require("nvim-treesitter.configs")
+			configs.setup({
+				ensure_installed = {
+					"bash",
+					"css",
+					"dockerfile",
+					"gitcommit",
+					"go",
+					"html",
+					"javascript",
+					"json",
+					"lua",
+					"make",
+					"markdown",
+					"markdown_inline",
+					"python",
+					"ruby",
+					"rust",
+					"toml",
+					"typescript",
+					"yaml",
+				},
+				highlight = {
+					enable = true,
+				},
+				indent = {
+					enable = true,
+				},
+			})
+		end,
 	},
 
 	{
