@@ -202,6 +202,43 @@ require("lazy").setup({
 		},
 	},
 
+	-- Headlines (Markdown Header Styling) setup
+	{
+		"lukas-reineke/headlines.nvim",
+		opts = function()
+			local opts = {}
+			opts["markdown"] = {
+				headline_highlights = {},
+			}
+			for i = 1, 6 do
+				local hl = "Headline" .. i
+				vim.api.nvim_set_hl(0, hl, { link = "Headline", default = true })
+				table.insert(opts["markdown"].headline_highlights, hl)
+			end
+			return opts
+		end,
+		ft = { "markdown" },
+		config = function(_, opts)
+			-- PERF: schedule to prevent headlines slowing down opening a file
+			vim.schedule(function()
+				require("headlines").setup(opts)
+				require("headlines").refresh()
+			end)
+		end,
+	},
+
+	-- Zen Mode setup
+	{
+		"folke/zen-mode.nvim",
+		cmd = "ZenMode",
+		opts = {
+			window = {
+				backdrop = 1,
+				width = 80,
+			},
+		},
+	},
+
 	-- Treesitter setup
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -389,6 +426,7 @@ wk.register({
 	["<leader>tr"] = { "<cmd>set relativenumber!<cr>", "Toggle relative line numbers" },
 	["<leader>ts"] = { "<cmd>set spell!<cr>", "Toggle spell check" },
 	["<leader>tw"] = { "<cmd>set wrap!<cr>", "Toggle line wrapping" },
+	["<leader>tz"] = { "<cmd>ZenMode<cr>", "Toggle focus mode" },
 	-- Inlay hint support isn't yet in Neovim stable, but will be soon
 	-- ["<leader>ti"] = { "<cmd>lua vim.lsp.inlay_hint(0, nil)<cr>", "Toggle inlay hints" },
 })
@@ -431,8 +469,6 @@ map("c", "%%", "<C-R>=expand('%:h').'/'<cr>")
 -- Autocommands and Filetype-specific setup
 
 -- Markdown
-vim.g.vim_markdown_frontmatter = 1 -- Highlight markdown yaml frontmatter properly
-vim.g.vim_markdown_new_list_item_indent = 0 -- Slightly better new line indentation on lists
 vim.cmd("autocmd BufNewFile,BufRead *.md setlocal spell") -- Turn spell check on for markdown files
 vim.cmd("autocmd BufNewFile,BufRead *.md setlocal wrap") -- Enable line wrapping for markdown files
 vim.cmd("autocmd BufNewFile,BufRead *.md setlocal linebreak")
