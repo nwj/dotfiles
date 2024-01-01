@@ -212,23 +212,19 @@ require("lazy").setup({
 	-- Headlines (Markdown Header Styling) setup
 	{
 		"lukas-reineke/headlines.nvim",
-		opts = function()
-			local opts = {}
-			opts["markdown"] = {
-				headline_highlights = {},
-			}
-			for i = 1, 6 do
-				local hl = "Headline" .. i
-				vim.api.nvim_set_hl(0, hl, { link = "Headline", default = true })
-				table.insert(opts["markdown"].headline_highlights, hl)
-			end
-			return opts
-		end,
+		dependencies = "nvim-treesitter/nvim-treesitter",
 		ft = { "markdown" },
-		config = function(_, opts)
+		config = function()
 			-- PERF: schedule to prevent headlines slowing down opening a file
 			vim.schedule(function()
-				require("headlines").setup(opts)
+				require("headlines").setup({
+					markdown = {
+						codeblock_highlight = false,
+						quote_highlight = false,
+						dash_highlight = false,
+						fat_headlines = false,
+					},
+				})
 				require("headlines").refresh()
 			end)
 		end,
