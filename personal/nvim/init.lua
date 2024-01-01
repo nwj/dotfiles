@@ -76,6 +76,13 @@ require("lazy").setup({
 		end,
 	},
 
+	-- Other Colorschemes
+	{ "catppuccin/nvim", name = "catppuccin" },
+	{ "folke/tokyonight.nvim" },
+	{ "rebelot/kanagawa.nvim" },
+	{ "rose-pine/neovim", name = "rose-pine" },
+	{ "sainnhe/everforest" },
+
 	-- Lualine (Status Bar) setup
 	{
 		"nvim-lualine/lualine.nvim",
@@ -423,6 +430,7 @@ wk.register({
 	["<leader>pm"] = { "<cmd>Telescope marks<cr>", "Open mark picker" },
 	["<leader>pr"] = { "<cmd>Telescope registers<cr>", "Open register picker" },
 	["<leader>ps"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Open symbol picker" },
+	["<leader>pc"] = { "<cmd>Telescope colorscheme<cr>", "Open colorscheme picker" },
 	["<leader>t"] = { name = "+Toggle settings" },
 	["<leader>th"] = { "<cmd>set hlsearch!<cr>", "Toggle search highlighting" },
 	["<leader>tn"] = { "<cmd>set number!<cr>", "Toggle line numbers" },
