@@ -238,6 +238,10 @@ require("lazy").setup({
 			window = {
 				backdrop = 1,
 				width = 80,
+				options = {
+					number = false,
+					relativenumber = false,
+				},
 			},
 		},
 	},
@@ -433,7 +437,7 @@ wk.register({
 	["<leader>tr"] = { "<cmd>set relativenumber!<cr>", "Toggle relative line numbers" },
 	["<leader>ts"] = { "<cmd>set spell!<cr>", "Toggle spell check" },
 	["<leader>tw"] = { "<cmd>set wrap!<cr>", "Toggle line wrapping" },
-	["<leader>tz"] = { "<cmd>ZenMode<cr>", "Toggle focus mode" },
+	["<leader>tf"] = { "<cmd>ZenMode<cr>", "Toggle focus mode" },
 	-- Inlay hint support isn't yet in Neovim stable, but will be soon
 	-- ["<leader>ti"] = { "<cmd>lua vim.lsp.inlay_hint(0, nil)<cr>", "Toggle inlay hints" },
 })
