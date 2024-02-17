@@ -1,16 +1,18 @@
 [user]
 	name = Nick Willett-Jeffries
 	email = nwillettjeffries@gmail.com
-[core]
-	autocrlf = input
 [alias]
-	co = checkout
-	st = status
-	br = branch
-	hist = log --graph --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s (%Cgreen%ci, %C(blue)%ae%Creset)' --abbrev-commit
+	smartlog = log --graph --pretty=format:'commit: %C(bold red)%h%Creset %C(red)[%H]%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)[%ae]%Creset%n%C(cyan)%s%n%Creset'
+[init]
+	defaultBranch = main
+[branch]
+	sort = -committerdate
 [push]
-	default = current
+	autosetupremote = true
+[merge]
+	conflictstyle = zdiff3
+[diff]
+	algorithm = histogram
+	colorMoved = default
 [url "git@github.com:"]
-  insteadOf = https://github.com/
-[pager]
-	branch = cat
+  insteadOf = "https://github.com/"
