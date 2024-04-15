@@ -157,7 +157,7 @@ require("lazy").setup({
 	-- Conform (Auto-Formatter) setup
 	{
 		"stevearc/conform.nvim",
-		version = "^3.10.0",
+		version = "^5.4.0",
 		event = { "BufWritePre" },
 		cmd = { "ConformInfo" },
 		keys = {
