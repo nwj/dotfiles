@@ -89,7 +89,11 @@ require("lazy").setup({
 		lazy = false,
 		priority = 1000,
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = true,
+		opts = {
+			sections = {
+				lualine_c = { { "filename", path = 1 } },
+			},
+		},
 	},
 
 	-- Bufferline ("Tab" Bar) setup
