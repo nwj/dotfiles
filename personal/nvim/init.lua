@@ -325,6 +325,9 @@ require("lazy").setup({
 					{ name = "path" },
 					{ name = "buffer" },
 				},
+				-- Apparently some language servers will preselect a completion, which completely breaks
+				-- muscle memory around the bindings I use. So, this disables that behavior.
+				preselect = cmp.PreselectMode.None,
 				mapping = {
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
