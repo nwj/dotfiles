@@ -4,7 +4,7 @@ WORKING_DIRECTORY=$(pwd)
 XDG_CONFIG_HOME=$HOME/.config
 
 mkdir -p "$XDG_CONFIG_HOME/alacritty"
-ln -sf "$WORKING_DIRECTORY/alacritty/alacritty.yml" "$XDG_CONFIG_HOME/alacritty/alacritty.yml"
+ln -sf "$WORKING_DIRECTORY/alacritty/alacritty.toml" "$XDG_CONFIG_HOME/alacritty/alacritty.toml"
 
 mkdir -p "$XDG_CONFIG_HOME/git"
 ln -sf "$WORKING_DIRECTORY/git/config" "$XDG_CONFIG_HOME/git/config"
