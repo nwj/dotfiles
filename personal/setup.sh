@@ -19,6 +19,3 @@ ln -sf "$WORKING_DIRECTORY/tmux/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
 ln -sf "$WORKING_DIRECTORY/zsh/zshenv" "$HOME/.zshenv"
 mkdir -p "$XDG_CONFIG_HOME/zsh"
 ln -sf "$WORKING_DIRECTORY/zsh/zshrc" "$XDG_CONFIG_HOME/zsh/.zshrc"
-
-mkdir -p "$XDG_CONFIG_HOME/helix"
-ln -sf "$WORKING_DIRECTORY/helix/config.toml" "$XDG_CONFIG_HOME/helix/config.toml"
