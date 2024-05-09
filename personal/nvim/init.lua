@@ -290,13 +290,6 @@ require("lazy").setup({
 		end,
 	},
 
-	{
-		"nvim-treesitter/nvim-treesitter-context",
-		event = "VeryLazy",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		config = true,
-	},
-
 	-- Cmp (Completion Engine) setup
 	{
 		"hrsh7th/nvim-cmp",
