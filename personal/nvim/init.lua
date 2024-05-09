@@ -121,6 +121,13 @@ require("lazy").setup({
 		config = true,
 	},
 
+	-- Blame (Git Blame) setup
+	{
+		"FabijanZulj/blame.nvim",
+		cmd = "BlameToggle",
+		opts = { date_format = "%Y.%m.%d" },
+	},
+
 	-- Comment setup
 	{
 		"numToStr/Comment.nvim",
@@ -439,6 +446,7 @@ wk.register({
 	["<leader>ts"] = { "<cmd>set spell!<cr>", "Toggle spell check" },
 	["<leader>tw"] = { "<cmd>set wrap!<cr>", "Toggle line wrapping" },
 	["<leader>tf"] = { "<cmd>ZenMode<cr>", "Toggle focus mode" },
+	["<leader>tb"] = { "<cmd>BlameToggle<cr>", "Toggle git blame view" },
 	-- Inlay hint support isn't yet in Neovim stable, but will be soon
 	-- ["<leader>ti"] = { "<cmd>lua vim.lsp.inlay_hint(0, nil)<cr>", "Toggle inlay hints" },
 })
