@@ -99,7 +99,6 @@ require("lazy").setup({
 	-- Bufferline ("Tab" Bar) setup
 	{
 		"akinsho/bufferline.nvim",
-		version = "^4.4.0",
 		lazy = false,
 		dependencies = "nvim-tree/nvim-web-devicons",
 		config = true,
