@@ -127,14 +127,6 @@ require("lazy").setup({
 		opts = { date_format = "%Y.%m.%d" },
 	},
 
-	-- Comment setup
-	{
-		"numToStr/Comment.nvim",
-		version = "^0.8",
-		event = "VeryLazy",
-		config = true,
-	},
-
 	-- Autopairs setup
 	{
 		"windwp/nvim-autopairs",
