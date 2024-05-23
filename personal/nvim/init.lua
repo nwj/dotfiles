@@ -9,7 +9,7 @@ vim.g.mapleader = " "
 vim.opt.clipboard = "unnamedplus" -- Default to use of the system clipboard
 vim.opt.number = true -- Enable line numbering
 vim.opt.signcolumn = "yes" -- Always show the signs gutter
-vim.opt.scrolloff = 5 -- Start scrolling before reaching screen edge
+vim.opt.scrolloff = 10 -- Start scrolling before reaching screen edge
 vim.opt.showmatch = true -- Highlight matching parentheses and brackets
 vim.opt.wrap = false -- Don't wrap long lines
 vim.opt.timeout = false -- Timeout on key codes but not mappings
@@ -51,13 +51,13 @@ end
 
 -- Plugin initialization
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable",
+		"--branch=stable", -- latest stable release
 		lazypath,
 	})
 end
