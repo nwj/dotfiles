@@ -45,7 +45,7 @@ history = 100000
 
 [shell]
 args = ["--login"]
-program = "/opt/homebrew/bin/zsh"
+program = "/opt/homebrew/bin/fish"
 
 [window]
 option_as_alt = "Both"
