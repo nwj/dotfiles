@@ -177,7 +177,7 @@ require("lazy").setup({
 				css = { "prettier" },
 				go = { "gofmt" },
 				html = { "prettier" },
-				htmldjango = { "djlint" },
+				htmldjango = { "prettier" },
 				javascript = { "prettier" },
 				javascriptreact = { "prettier" },
 				json = { "prettier" },
