@@ -16,9 +16,5 @@ ln -sfn "$WORKING_DIRECTORY/nvim/autoload" "$XDG_CONFIG_HOME/nvim/autoload"
 mkdir -p "$XDG_CONFIG_HOME/tmux"
 ln -sf "$WORKING_DIRECTORY/tmux/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
 
-ln -sf "$WORKING_DIRECTORY/zsh/zshenv" "$HOME/.zshenv"
-mkdir -p "$XDG_CONFIG_HOME/zsh"
-ln -sf "$WORKING_DIRECTORY/zsh/zshrc" "$XDG_CONFIG_HOME/zsh/.zshrc"
-
 mkdir -p "$XDG_CONFIG_HOME/fish"
 ln -sf "$WORKING_DIRECTORY/fish/config.fish" "$XDG_CONFIG_HOME/fish/config.fish"
