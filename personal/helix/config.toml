@@ -1,0 +1,24 @@
+theme = "tokyonight"
+
+[editor]
+auto-pairs = false
+bufferline = "multiple"
+rulers = [80, 120]
+
+[editor.auto-save]
+after-delay.enable = true
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.soft-wrap]
+enable = true
+
+[editor.whitespace]
+render = "all"
