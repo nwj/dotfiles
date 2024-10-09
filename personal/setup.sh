@@ -15,6 +15,7 @@ ln -sfn "$WORKING_DIRECTORY/nvim/autoload" "$XDG_CONFIG_HOME/nvim/autoload"
 
 mkdir -p "$XDG_CONFIG_HOME/helix"
 ln -sf "$WORKING_DIRECTORY/helix/config.toml" "$XDG_CONFIG_HOME/helix/config.toml"
+ln -sf "$WORKING_DIRECTORY/helix/languages.toml" "$XDG_CONFIG_HOME/helix/languages.toml"
 
 mkdir -p "$XDG_CONFIG_HOME/tmux"
 ln -sf "$WORKING_DIRECTORY/tmux/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"

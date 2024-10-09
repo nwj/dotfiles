@@ -1,11 +1,11 @@
-theme = "tokyonight"
+theme = "nightfox"
 
 [editor]
 auto-pairs = false
 bufferline = "multiple"
-rulers = [80, 120]
 
 [editor.auto-save]
+focus-lost = true
 after-delay.enable = true
 
 [editor.file-picker]
