@@ -188,7 +188,6 @@ require("lazy").setup({
 		opts = {
 			formatters_by_ft = {
 				css = { "prettier" },
-				go = { "gofmt" },
 				html = { "prettier" },
 				htmldjango = { "prettier" },
 				javascript = { "prettier" },
@@ -196,7 +195,6 @@ require("lazy").setup({
 				json = { "prettier" },
 				lua = { "stylua" },
 				markdown = { "prettier" },
-				ruby = { "rubocop" },
 				rust = { "rustfmt" },
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
@@ -222,43 +220,6 @@ require("lazy").setup({
 			},
 			layout = { width = { max = 100 } },
 			show_help = false,
-		},
-	},
-
-	-- Headlines (Markdown Header Styling) setup
-	{
-		"lukas-reineke/headlines.nvim",
-		dependencies = "nvim-treesitter/nvim-treesitter",
-		ft = { "markdown" },
-		config = function()
-			-- PERF: schedule to prevent headlines slowing down opening a file
-			vim.schedule(function()
-				require("headlines").setup({
-					markdown = {
-						codeblock_highlight = false,
-						quote_highlight = false,
-						dash_highlight = false,
-						fat_headlines = false,
-					},
-				})
-				require("headlines").refresh()
-			end)
-		end,
-	},
-
-	-- Zen Mode setup
-	{
-		"folke/zen-mode.nvim",
-		cmd = "ZenMode",
-		opts = {
-			window = {
-				backdrop = 1,
-				width = 80,
-				options = {
-					number = false,
-					relativenumber = false,
-				},
-			},
 		},
 	},
 
@@ -383,7 +344,6 @@ require("lazy").setup({
 			"json",
 			"lua",
 			"markdown",
-			"ruby",
 			"rust",
 			"typescript",
 			"typescriptreact",
@@ -392,7 +352,6 @@ require("lazy").setup({
 			local lsp = require("lspconfig")
 			lsp.tsserver.setup({})
 			lsp.rust_analyzer.setup({})
-			lsp.solargraph.setup({})
 			lsp.marksman.setup({})
 			lsp.cssls.setup({})
 			lsp.html.setup({})
@@ -449,7 +408,6 @@ wk.register({
 	["<leader>tr"] = { "<cmd>set relativenumber!<cr>", "Toggle relative line numbers" },
 	["<leader>ts"] = { "<cmd>set spell!<cr>", "Toggle spell check" },
 	["<leader>tw"] = { "<cmd>set wrap!<cr>", "Toggle line wrapping" },
-	["<leader>tf"] = { "<cmd>ZenMode<cr>", "Toggle focus mode" },
 	["<leader>tb"] = { "<cmd>BlameToggle<cr>", "Toggle git blame view" },
 	-- Inlay hint support isn't yet in Neovim stable, but will be soon
 	-- ["<leader>ti"] = { "<cmd>lua vim.lsp.inlay_hint(0, nil)<cr>", "Toggle inlay hints" },
