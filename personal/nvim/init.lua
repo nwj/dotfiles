@@ -350,7 +350,7 @@ require("lazy").setup({
 		},
 		config = function()
 			local lsp = require("lspconfig")
-			lsp.tsserver.setup({})
+			lsp.ts_ls.setup({})
 			lsp.rust_analyzer.setup({})
 			lsp.marksman.setup({})
 			lsp.cssls.setup({})
