@@ -409,8 +409,10 @@ wk.register({
 	["<leader>ts"] = { "<cmd>set spell!<cr>", "Toggle spell check" },
 	["<leader>tw"] = { "<cmd>set wrap!<cr>", "Toggle line wrapping" },
 	["<leader>tb"] = { "<cmd>BlameToggle<cr>", "Toggle git blame view" },
-	-- Inlay hint support isn't yet in Neovim stable, but will be soon
-	-- ["<leader>ti"] = { "<cmd>lua vim.lsp.inlay_hint(0, nil)<cr>", "Toggle inlay hints" },
+	["<leader>ti"] = {
+		"<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>",
+		"Toggle inlay hints",
+	},
 })
 
 -- Unbind Q since exmode is just annoying
