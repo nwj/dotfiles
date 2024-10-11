@@ -110,6 +110,19 @@ require("lazy").setup({
 		version = "^0.1.4",
 		cmd = "Telescope",
 		dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+		opts = {
+			pickers = {
+				find_files = {
+					find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
+				},
+				grep_string = {
+					additional_args = { "--hidden" },
+				},
+				live_grep = {
+					additional_args = { "--hidden" },
+				},
+			},
+		},
 	},
 
 	-- Gitsigns setup
