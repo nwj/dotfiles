@@ -264,77 +264,22 @@ require("lazy").setup({
 		end,
 	},
 
-	-- Cmp (Completion Engine) setup
+	-- Blink.cmp (Completion Engine) setup
 	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
+		"saghen/blink.cmp",
+		version = "^0.11.0",
+		opts = {
+			keymap = { preset = "super-tab" },
+			appearance = {
+				use_nvim_cmp_as_default = true,
+			},
+			completion = {
+				documentation = {
+					auto_show = true,
+					auto_show_delay_ms = 500,
+				},
+			},
 		},
-		config = function()
-			local cmp = require("cmp")
-
-			local has_words_before = function()
-				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-				return col ~= 0
-					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-			end
-
-			cmp.setup({
-				completion = {
-					autocomplete = false,
-				},
-				sources = {
-					{ name = "nvim_lsp" },
-					{ name = "path" },
-					{ name = "buffer" },
-				},
-				-- Apparently some language servers will preselect a completion, which completely breaks
-				-- muscle memory around the bindings I use. So, this disables that behavior.
-				preselect = cmp.PreselectMode.None,
-				mapping = {
-					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
-						elseif has_words_before() then
-							cmp.complete()
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
-
-					["<S-Tab>"] = cmp.mapping(function()
-						if cmp.visible() then
-							cmp.select_prev_item()
-						end
-					end, { "i", "s" }),
-				},
-			})
-
-			cmp.setup.cmdline("/", {
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = {
-					{ name = "buffer" },
-				},
-			})
-
-			cmp.setup.cmdline(":", {
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = cmp.config.sources({
-					{ name = "path" },
-				}, {
-					{
-						name = "cmdline",
-						option = {
-							ignore_cmds = { "Man", "!" },
-						},
-					},
-				}),
-			})
-		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
