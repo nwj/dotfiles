@@ -1,0 +1,18 @@
+[user]
+	name = Nick Willett-Jeffries
+	email = nick@compassregulatory.com
+[alias]
+	smartlog = log --graph --pretty=format:'commit: %C(bold red)%h%Creset %C(red)[%H]%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)[%ae]%Creset%n%C(cyan)%s%n%Creset'
+[init]
+	defaultBranch = main
+[branch]
+	sort = -committerdate
+[push]
+	autosetupremote = true
+[merge]
+	conflictstyle = zdiff3
+[diff]
+	algorithm = histogram
+	colorMoved = default
+[url "git@github.com:"]
+  insteadOf = "https://github.com/"
