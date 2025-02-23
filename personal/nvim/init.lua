@@ -7,12 +7,12 @@ vim.g.mapleader = " "
 
 -- Basic settings
 vim.opt.clipboard = "unnamedplus" -- Default to use of the system clipboard
-vim.opt.number = true -- Enable line numbering
-vim.opt.signcolumn = "yes" -- Always show the signs gutter
-vim.opt.scrolloff = 10 -- Start scrolling before reaching screen edge
-vim.opt.showmatch = true -- Highlight matching parentheses and brackets
-vim.opt.wrap = false -- Don't wrap long lines
-vim.opt.timeout = false -- Timeout on key codes but not mappings
+vim.opt.number = true             -- Enable line numbering
+vim.opt.signcolumn = "yes"        -- Always show the signs gutter
+vim.opt.scrolloff = 10            -- Start scrolling before reaching screen edge
+vim.opt.showmatch = true          -- Highlight matching parentheses and brackets
+vim.opt.wrap = false              -- Don't wrap long lines
+vim.opt.timeout = false           -- Timeout on key codes but not mappings
 
 -- Open splits below / to the right of the current pane. I just find this more intuitive
 vim.opt.splitbelow = true
@@ -77,10 +77,10 @@ require("lazy").setup({
 	},
 
 	-- Other Colorschemes
-	{ "catppuccin/nvim", name = "catppuccin" },
+	{ "catppuccin/nvim",      name = "catppuccin" },
 	{ "folke/tokyonight.nvim" },
 	{ "rebelot/kanagawa.nvim" },
-	{ "rose-pine/neovim", name = "rose-pine" },
+	{ "rose-pine/neovim",     name = "rose-pine" },
 	{ "sainnhe/everforest" },
 
 	-- Lualine (Status Bar) setup
@@ -338,7 +338,7 @@ wk.register({
 	["<leader>f"] = { "<cmd>Telescope find_files<cr>", "Open file picker" },
 	["<leader>a"] = { name = "+Cursor actions" },
 	["<leader>a*"] = { "<cmd>Telescope grep_string<cr>", "Grep word under the cursor" },
-	["<leader>aR"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename word under the cursor (in current buffer only)" },
+	["<leader>aR"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename word under the cursor" },
 	["<leader>ad"] = { "<cmd>Telescope lsp_definitions<cr>", "Goto definition of word under the cursor" },
 	["<leader>ai"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show info about word under the cursor" },
 	["<leader>ar"] = { "<cmd>Telescope lsp_references<cr>", "Find references to word under the cursor" },
@@ -407,5 +407,5 @@ map("c", "%%", "<C-R>=expand('%:h').'/'<cr>")
 
 -- Markdown
 vim.cmd("autocmd BufNewFile,BufRead *.md setlocal spell") -- Turn spell check on for markdown files
-vim.cmd("autocmd BufNewFile,BufRead *.md setlocal wrap") -- Enable line wrapping for markdown files
+vim.cmd("autocmd BufNewFile,BufRead *.md setlocal wrap")  -- Enable line wrapping for markdown files
 vim.cmd("autocmd BufNewFile,BufRead *.md setlocal linebreak")
