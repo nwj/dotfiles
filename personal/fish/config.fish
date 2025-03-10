@@ -29,6 +29,3 @@ abbr ltree 'eza --tree --long --git --color-scale --group-directories-first'
 
 # Disable fish greeting
 set -U fish_greeting
-
-# FZF
-fzf_configure_bindings --directory=\ct
