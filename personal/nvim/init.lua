@@ -243,6 +243,7 @@ require("lazy").setup({
 					"html",
 					"javascript",
 					"json",
+					"just",
 					"lua",
 					"make",
 					"markdown",

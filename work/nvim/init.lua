@@ -181,7 +181,7 @@ require("lazy").setup({
 			formatters_by_ft = {
 				css = { "prettier" },
 				html = { "prettier" },
-				htmldjango = { "prettier" },
+				htmldjango = { "djlint" },
 				javascript = { "prettier" },
 				javascriptreact = { "prettier" },
 				json = { "prettier" },
@@ -235,6 +235,7 @@ require("lazy").setup({
 					"html",
 					"javascript",
 					"json",
+					"just",
 					"lua",
 					"make",
 					"markdown",
@@ -311,7 +312,7 @@ require("lazy").setup({
 				},
 			})
 			lsp.marksman.setup({})
-			lsp.basedpyright.setup({})
+			lsp.ruff.setup({})
 			lsp.rust_analyzer.setup({})
 			lsp.ts_ls.setup({})
 			lsp.zls.setup({})
