@@ -122,6 +122,12 @@ require("lazy").setup({
 					additional_args = { "--hidden" },
 				},
 			},
+			defaults = {
+				preview = {
+					filesize_limit = 0.25, -- in MB
+					timeout = 250, -- in ms
+				}
+			}
 		},
 	},
 
