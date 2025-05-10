@@ -96,14 +96,6 @@ require("lazy").setup({
 		},
 	},
 
-	-- Bufferline ("Tab" Bar) setup
-	{
-		"akinsho/bufferline.nvim",
-		lazy = false,
-		dependencies = "nvim-tree/nvim-web-devicons",
-		config = true,
-	},
-
 	-- Telescope (Fuzzy Picker) setup
 	{
 		"nvim-telescope/telescope.nvim",
@@ -399,10 +391,8 @@ map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- Easier buffer movement
-map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-map("n", "<A-h>", "<cmd>BufferLineMovePrev<cr>", { desc = "Shift buffer left" })
-map("n", "<A-l>", "<cmd>BufferLineMoveNext<cr>", { desc = "Shift buffer right" })
+map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 
 -- Get write permission when you forget sudo
 map("c", "w!!", "w !sudo tee %")
