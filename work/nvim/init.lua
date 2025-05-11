@@ -77,10 +77,10 @@ require("lazy").setup({
 	},
 
 	-- Other Colorschemes
-	{ "catppuccin/nvim",      name = "catppuccin" },
+	{ "catppuccin/nvim", name = "catppuccin" },
 	{ "folke/tokyonight.nvim" },
 	{ "rebelot/kanagawa.nvim" },
-	{ "rose-pine/neovim",     name = "rose-pine" },
+	{ "rose-pine/neovim", name = "rose-pine" },
 	{ "sainnhe/everforest" },
 
 	-- Lualine (Status Bar) setup
@@ -118,8 +118,8 @@ require("lazy").setup({
 				preview = {
 					filesize_limit = 0.25, -- in MB
 					timeout = 250, -- in ms
-				}
-			}
+				},
+			},
 		},
 	},
 
@@ -417,5 +417,5 @@ map("c", "%%", "<C-R>=expand('%:h').'/'<cr>")
 
 -- Markdown
 vim.cmd("autocmd BufNewFile,BufRead *.md setlocal spell") -- Turn spell check on for markdown files
-vim.cmd("autocmd BufNewFile,BufRead *.md setlocal wrap")  -- Enable line wrapping for markdown files
+vim.cmd("autocmd BufNewFile,BufRead *.md setlocal wrap") -- Enable line wrapping for markdown files
 vim.cmd("autocmd BufNewFile,BufRead *.md setlocal linebreak")
