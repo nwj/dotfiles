@@ -167,6 +167,16 @@ require("lazy").setup({
 		config = true,
 	},
 
+	-- Snacks setup
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		opts = {
+			bigfile = { enabled = true },
+		},
+	},
+
 	-- Conform (Auto-Formatter) setup
 	{
 		"stevearc/conform.nvim",
@@ -393,6 +403,9 @@ map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 -- Easier buffer movement
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+
+-- Use Snack's bufdelete instead of built-in buffer delete
+vim.cmd([[cnoreabbrev bd lua require('snacks').bufdelete()]])
 
 -- Get write permission when you forget sudo
 map("c", "w!!", "w !sudo tee %")
