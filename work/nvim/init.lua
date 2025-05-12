@@ -328,7 +328,7 @@ require("lazy").setup({
 				},
 			})
 			lsp.marksman.setup({})
-			lsp.ruff.setup({})
+			lsp.pyright.setup({})
 			lsp.rust_analyzer.setup({})
 			lsp.ts_ls.setup({})
 			lsp.zls.setup({})
