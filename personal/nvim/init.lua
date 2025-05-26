@@ -4,6 +4,7 @@
 
 -- Set leader key
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 -- Basic settings
 vim.opt.clipboard = "unnamedplus" -- Default to use of the system clipboard
