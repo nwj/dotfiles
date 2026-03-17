@@ -1,4 +1,5 @@
 theme = nightfox
 font-size = 14
 macos-titlebar-proxy-icon = hidden
+macos-titlebar-style = tabs
 font-feature = -calt
