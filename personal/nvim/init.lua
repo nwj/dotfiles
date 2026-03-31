@@ -326,11 +326,7 @@ require("lazy").setup({
 			"zig",
 		},
 		config = function()
-			local lsp = require("lspconfig")
-			lsp.cssls.setup({})
-			lsp.html.setup({})
-			lsp.jsonls.setup({})
-			lsp.lua_ls.setup({
+			vim.lsp.config("lua_ls", {
 				-- These settings mostly only make sense if you're using lua primarily in the context of configuring Neovim
 				settings = {
 					Lua = {
@@ -346,11 +342,17 @@ require("lazy").setup({
 					},
 				},
 			})
-			lsp.marksman.setup({})
-			lsp.basedpyright.setup({})
-			lsp.rust_analyzer.setup({})
-			lsp.ts_ls.setup({})
-			lsp.zls.setup({})
+			vim.lsp.enable({
+				"cssls",
+				"html",
+				"jsonls",
+				"lua_ls",
+				"marksman",
+				"basedpyright",
+				"rust_analyzer",
+				"ts_ls",
+				"zls",
+			})
 		end,
 	},
 })
