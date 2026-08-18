@@ -412,7 +412,13 @@ map("c", "%%", "<C-R>=expand('%:h').'/'<cr>")
 
 -- Autocommands and Filetype-specific setup
 
--- Markdown
-vim.cmd("autocmd BufNewFile,BufRead *.md setlocal spell") -- Turn spell check on for markdown files
-vim.cmd("autocmd BufNewFile,BufRead *.md setlocal wrap") -- Enable line wrapping for markdown files
-vim.cmd("autocmd BufNewFile,BufRead *.md setlocal linebreak")
+-- Markdown: turn on spell check and enable nicer line wrapping
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "markdown",
+	group = vim.api.nvim_create_augroup("nwj_markdown", {}),
+	callback = function()
+		vim.opt_local.spell = true
+		vim.opt_local.wrap = true
+		vim.opt_local.linebreak = true
+	end,
+})
