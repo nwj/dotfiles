@@ -47,6 +47,10 @@ vim.opt.listchars = { tab = "▸ ", extends = "❯", precedes = "❮", trail = "
 vim.opt.spelllang = "en_us"
 vim.opt.spellfile = vim.fn.stdpath("config") .. "/dictionary.utf-8.add" -- words are added here via `zg` and removed via `zw`
 
+-- Better quality diffs: the histogram algorithm handles moved/reordered code more sensibly
+-- than the default myers algorithm
+vim.opt.diffopt:append("algorithm:histogram")
+
 -- Fold based on language, fully expand all folds at start
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
