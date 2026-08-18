@@ -389,9 +389,6 @@ wk.add({
 -- Unbind Q since exmode is just annoying
 map("n", "Q", "<NOP>")
 
--- Make Y behave more like D, C, etc. (default behavior is effectively yy)
-map("n", "Y", "y$")
-
 -- More intuitive movement on lines that wrap
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
