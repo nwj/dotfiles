@@ -12,6 +12,7 @@ ln -sf "$WORKING_DIRECTORY/git/config" "$XDG_CONFIG_HOME/git/config"
 mkdir -p "$XDG_CONFIG_HOME/nvim"
 ln -sf "$WORKING_DIRECTORY/nvim/init.lua" "$XDG_CONFIG_HOME/nvim/init.lua"
 ln -sfn "$WORKING_DIRECTORY/nvim/autoload" "$XDG_CONFIG_HOME/nvim/autoload"
+ln -sf "$WORKING_DIRECTORY/nvim/lazy-lock.json" "$XDG_CONFIG_HOME/nvim/lazy-lock.json"
 
 mkdir -p "$XDG_CONFIG_HOME/fish"
 ln -sf "$WORKING_DIRECTORY/fish/config.fish" "$XDG_CONFIG_HOME/fish/config.fish"
