@@ -283,6 +283,13 @@ require("lazy").setup({
 		end,
 	},
 
+	-- Treesitter context (pins the enclosing function/class/block signature to the top of the window)
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		event = "VeryLazy",
+		opts = {},
+	},
+
 	-- Blink.cmp (Completion Engine) setup
 	{
 		"saghen/blink.cmp",
@@ -378,6 +385,7 @@ wk.add({
 	{ "<leader>ts", "<cmd>set spell!<cr>", desc = "Toggle spell check" },
 	{ "<leader>tw", "<cmd>set wrap!<cr>", desc = "Toggle line wrapping" },
 	{ "<leader>tb", "<cmd>BlameToggle<cr>", desc = "Toggle git blame view" },
+	{ "<leader>tc", "<cmd>TSContext toggle<cr>", desc = "Toggle sticky treesitter context" },
 	{
 		"<leader>ti",
 		"<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>",
