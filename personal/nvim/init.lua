@@ -288,12 +288,9 @@ require("lazy").setup({
 	-- Blink.cmp (Completion Engine) setup
 	{
 		"saghen/blink.cmp",
-		version = "^0.11.0",
+		version = "^1.10.2",
 		opts = {
 			keymap = { preset = "super-tab" },
-			appearance = {
-				use_nvim_cmp_as_default = true,
-			},
 			completion = {
 				documentation = {
 					auto_show = true,
