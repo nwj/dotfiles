@@ -49,11 +49,6 @@ vim.opt.foldlevel = 99
 vim.opt.modelines = 0
 vim.opt.modeline = false
 
--- Conditionally enable true color support
-if vim.fn.has("termguicolors") == 1 then
-	vim.opt.termguicolors = true
-end
-
 -- Plugin initialization
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
