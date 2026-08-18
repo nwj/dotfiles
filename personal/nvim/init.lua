@@ -145,7 +145,7 @@ require("lazy").setup({
 	-- Gitsigns setup
 	{
 		"lewis6991/gitsigns.nvim",
-		version = "^0.6",
+		version = "^2.1.0",
 		event = "VeryLazy",
 		config = true,
 	},
