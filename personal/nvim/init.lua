@@ -234,20 +234,13 @@ require("lazy").setup({
 	-- Which-key (Key Map Helper) setup
 	{
 		"folke/which-key.nvim",
-		version = "^1.5.1",
-		init = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 300
-		end,
+		version = "^3.17.0",
 		opts = {
-			marks = false,
-			registers = false,
-			window = {
-				border = "single",
-				margin = { 0, 0, 0, 0.65 },
-				padding = { 0, 0, 0, 0 },
+			preset = "helix",
+			plugins = {
+				marks = false,
+				registers = false,
 			},
-			layout = { width = { max = 100 } },
 			show_help = false,
 		},
 	},
@@ -361,38 +354,39 @@ require("lazy").setup({
 local wk = require("which-key")
 local map = vim.keymap.set
 
-wk.register({
-	["<leader>*"] = { "<cmd>Telescope grep_string<cr>", "Grep word under the cursor" },
-	["<leader>/"] = { "<cmd>Telescope live_grep<cr>", "Open grep picker" },
-	["<leader>b"] = { "<cmd>Telescope buffers<cr>", "Open buffer picker" },
-	["<leader>f"] = { "<cmd>Telescope find_files<cr>", "Open file picker" },
-	["<leader>a"] = { name = "+Cursor actions" },
-	["<leader>a*"] = { "<cmd>Telescope grep_string<cr>", "Grep word under the cursor" },
-	["<leader>aR"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename word under the cursor" },
-	["<leader>ad"] = { "<cmd>Telescope lsp_definitions<cr>", "Goto definition of word under the cursor" },
-	["<leader>ai"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show info about word under the cursor" },
-	["<leader>ar"] = { "<cmd>Telescope lsp_references<cr>", "Find references to word under the cursor" },
-	["<leader>at"] = { "<cmd>Telescope lsp_type_definitions<cr>", "Goto type definition of word under the cursor" },
-	["<leader>p"] = { name = "+Pickers" },
-	["<leader>p/"] = { "<cmd>Telescope live_grep<cr>", "Open grep picker" },
-	["<leader>pS"] = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Open workspace symbol picker" },
-	["<leader>pb"] = { "<cmd>Telescope buffers<cr>", "Open buffer picker" },
-	["<leader>pd"] = { "<cmd>Telescope diagnostics<cr>", "Open diagnostic picker" },
-	["<leader>pf"] = { "<cmd>Telescope find_files<cr>", "Open file picker" },
-	["<leader>pm"] = { "<cmd>Telescope marks<cr>", "Open mark picker" },
-	["<leader>pr"] = { "<cmd>Telescope registers<cr>", "Open register picker" },
-	["<leader>ps"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Open symbol picker" },
-	["<leader>pc"] = { "<cmd>Telescope colorscheme<cr>", "Open colorscheme picker" },
-	["<leader>t"] = { name = "+Toggle settings" },
-	["<leader>th"] = { "<cmd>set hlsearch!<cr>", "Toggle search highlighting" },
-	["<leader>tn"] = { "<cmd>set number!<cr>", "Toggle line numbers" },
-	["<leader>tr"] = { "<cmd>set relativenumber!<cr>", "Toggle relative line numbers" },
-	["<leader>ts"] = { "<cmd>set spell!<cr>", "Toggle spell check" },
-	["<leader>tw"] = { "<cmd>set wrap!<cr>", "Toggle line wrapping" },
-	["<leader>tb"] = { "<cmd>BlameToggle<cr>", "Toggle git blame view" },
-	["<leader>ti"] = {
+wk.add({
+	{ "<leader>*", "<cmd>Telescope grep_string<cr>", desc = "Grep word under the cursor" },
+	{ "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Open grep picker" },
+	{ "<leader>b", "<cmd>Telescope buffers<cr>", desc = "Open buffer picker" },
+	{ "<leader>f", "<cmd>Telescope find_files<cr>", desc = "Open file picker" },
+	{ "<leader>a", group = "Cursor actions" },
+	{ "<leader>a*", "<cmd>Telescope grep_string<cr>", desc = "Grep word under the cursor" },
+	{ "<leader>aR", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename word under the cursor" },
+	{ "<leader>ad", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto definition of word under the cursor" },
+	{ "<leader>ai", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Show info about word under the cursor" },
+	{ "<leader>ar", "<cmd>Telescope lsp_references<cr>", desc = "Find references to word under the cursor" },
+	{ "<leader>at", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto type definition of word under the cursor" },
+	{ "<leader>p", group = "Pickers" },
+	{ "<leader>p/", "<cmd>Telescope live_grep<cr>", desc = "Open grep picker" },
+	{ "<leader>pS", "<cmd>Telescope lsp_workspace_symbols<cr>", desc = "Open workspace symbol picker" },
+	{ "<leader>pb", "<cmd>Telescope buffers<cr>", desc = "Open buffer picker" },
+	{ "<leader>pd", "<cmd>Telescope diagnostics<cr>", desc = "Open diagnostic picker" },
+	{ "<leader>pf", "<cmd>Telescope find_files<cr>", desc = "Open file picker" },
+	{ "<leader>pm", "<cmd>Telescope marks<cr>", desc = "Open mark picker" },
+	{ "<leader>pr", "<cmd>Telescope registers<cr>", desc = "Open register picker" },
+	{ "<leader>ps", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Open symbol picker" },
+	{ "<leader>pc", "<cmd>Telescope colorscheme<cr>", desc = "Open colorscheme picker" },
+	{ "<leader>t", group = "Toggle settings" },
+	{ "<leader>th", "<cmd>set hlsearch!<cr>", desc = "Toggle search highlighting" },
+	{ "<leader>tn", "<cmd>set number!<cr>", desc = "Toggle line numbers" },
+	{ "<leader>tr", "<cmd>set relativenumber!<cr>", desc = "Toggle relative line numbers" },
+	{ "<leader>ts", "<cmd>set spell!<cr>", desc = "Toggle spell check" },
+	{ "<leader>tw", "<cmd>set wrap!<cr>", desc = "Toggle line wrapping" },
+	{ "<leader>tb", "<cmd>BlameToggle<cr>", desc = "Toggle git blame view" },
+	{
+		"<leader>ti",
 		"<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>",
-		"Toggle inlay hints",
+		desc = "Toggle inlay hints",
 	},
 })
 
