@@ -28,6 +28,10 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
 
+-- Persist undo history across sessions, pruning it after 30 days
+vim.opt.undofile = true
+vim.fn.jobstart({ "find", vim.fn.stdpath("state") .. "/undo", "-type", "f", "-mtime", "+30", "-delete" })
+
 -- Represent various 'invisible' whitespace characters with symbols
 vim.opt.list = true
 vim.opt.listchars = { tab = "▸ ", extends = "❯", precedes = "❮", trail = "·", nbsp = "·" }
