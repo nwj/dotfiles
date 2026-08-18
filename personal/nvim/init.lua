@@ -34,7 +34,7 @@ vim.opt.listchars = { tab = "▸ ", extends = "❯", precedes = "❮", trail = "
 
 -- Setup spell check
 vim.opt.spelllang = "en_us"
-vim.opt.spellfile = "~/.config/nvim/dictionary.utf-8.add" -- words are added here via `zg` and removed via `zw`
+vim.opt.spellfile = vim.fn.stdpath("config") .. "/dictionary.utf-8.add" -- words are added here via `zg` and removed via `zw`
 
 -- Fold based on language, fully expand all folds at start
 vim.opt.foldmethod = "expr"
