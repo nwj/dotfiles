@@ -7,13 +7,20 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
 -- Basic settings
-vim.opt.clipboard = "unnamedplus" -- Default to use of the system clipboard
-vim.opt.number = true             -- Enable line numbering
-vim.opt.signcolumn = "yes"        -- Always show the signs gutter
-vim.opt.scrolloff = 10            -- Start scrolling before reaching screen edge
-vim.opt.showmatch = true          -- Highlight matching parentheses and brackets
-vim.opt.wrap = false              -- Don't wrap long lines
-vim.opt.timeout = false           -- Timeout on key codes but not mappings
+-- Default to use of the system clipboard
+vim.opt.clipboard = "unnamedplus"
+-- Enable line numbering
+vim.opt.number = true
+-- Always show the signs gutter
+vim.opt.signcolumn = "yes"
+-- Start scrolling before reaching screen edge
+vim.opt.scrolloff = 10
+-- Highlight matching parentheses and brackets
+vim.opt.showmatch = true
+-- Don't wrap long lines
+vim.opt.wrap = false
+-- Timeout on key codes but not mappings
+vim.opt.timeout = false
 
 -- Open splits below / to the right of the current pane. I just find this more intuitive
 vim.opt.splitbelow = true
@@ -42,7 +49,7 @@ vim.opt.spellfile = vim.fn.stdpath("config") .. "/dictionary.utf-8.add" -- words
 
 -- Fold based on language, fully expand all folds at start
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevel = 99
 
 -- Disable modeline support, since it's been a security vector in the past
@@ -214,7 +221,6 @@ require("lazy").setup({
 				rust = { "rustfmt" },
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
-				zig = { "zigfmt" },
 			},
 		},
 	},
@@ -236,39 +242,39 @@ require("lazy").setup({
 	-- Treesitter setup
 	{
 		"nvim-treesitter/nvim-treesitter",
-		version = "^0.9.1",
+		branch = "main",
 		build = ":TSUpdate",
-		event = "VeryLazy",
+		lazy = false,
 		config = function()
-			local configs = require("nvim-treesitter.configs")
-			configs.setup({
-				ensure_installed = {
-					"bash",
-					"css",
-					"dockerfile",
-					"gitcommit",
-					"go",
-					"html",
-					"javascript",
-					"json",
-					"just",
-					"lua",
-					"make",
-					"markdown",
-					"markdown_inline",
-					"python",
-					"ruby",
-					"rust",
-					"toml",
-					"typescript",
-					"yaml",
-				},
-				highlight = {
-					enable = true,
-				},
-				indent = {
-					enable = true,
-				},
+			require("nvim-treesitter").install({
+				"bash",
+				"css",
+				"dockerfile",
+				"gitcommit",
+				"go",
+				"html",
+				"javascript",
+				"json",
+				"just",
+				"lua",
+				"make",
+				"markdown",
+				"markdown_inline",
+				"python",
+				"ruby",
+				"rust",
+				"toml",
+				"typescript",
+				"yaml",
+			})
+			-- Enable treesitter highlighting and indentation on any buffer with an installed parser
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("nwj_treesitter", {}),
+				callback = function(args)
+					if pcall(vim.treesitter.start, args.buf) then
+						vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+					end
+				end,
 			})
 		end,
 	},
@@ -301,7 +307,6 @@ require("lazy").setup({
 			"rust",
 			"typescript",
 			"typescriptreact",
-			"zig",
 		},
 		config = function()
 			vim.lsp.config("lua_ls", {
@@ -329,7 +334,6 @@ require("lazy").setup({
 				"basedpyright",
 				"rust_analyzer",
 				"ts_ls",
-				"zls",
 			})
 		end,
 	},
