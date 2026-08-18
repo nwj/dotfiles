@@ -361,6 +361,7 @@ wk.add({
 	{ "<leader>ar", "<cmd>Telescope lsp_references<cr>", desc = "Find references to word under the cursor" },
 	{ "<leader>at", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto type definition of word under the cursor" },
 	{ "<leader>p", group = "Pickers" },
+	{ "<leader>pg", "<cmd>Telescope git_status<cr>", desc = "Open git status picker" },
 	{ "<leader>p/", "<cmd>Telescope live_grep<cr>", desc = "Open grep picker" },
 	{ "<leader>pS", "<cmd>Telescope lsp_workspace_symbols<cr>", desc = "Open workspace symbol picker" },
 	{ "<leader>pb", "<cmd>Telescope buffers<cr>", desc = "Open buffer picker" },
