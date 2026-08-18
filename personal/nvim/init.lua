@@ -352,6 +352,7 @@ wk.add({
 	{ "<leader>a*", "<cmd>Telescope grep_string<cr>", desc = "Grep word under the cursor" },
 	{ "<leader>aR", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename word under the cursor" },
 	{ "<leader>ad", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto definition of word under the cursor" },
+	{ "<leader>ah", "<cmd>Gitsigns preview_hunk<cr>", desc = "Preview git hunk at the cursor" },
 	{ "<leader>ai", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Show info about word under the cursor" },
 	{ "<leader>ar", "<cmd>Telescope lsp_references<cr>", desc = "Find references to word under the cursor" },
 	{ "<leader>at", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto type definition of word under the cursor" },
@@ -404,6 +405,23 @@ map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 -- Easier buffer movement
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+
+-- Jump between git hunks. In vimdiff-style windows (:h diff-mode), where there are no
+-- hunks, fall back to the builtin ]c/[c motions that jump between changes instead.
+map("n", "]h", function()
+	if vim.wo.diff then
+		vim.cmd.normal({ "]c", bang = true })
+	else
+		require("gitsigns").nav_hunk("next")
+	end
+end, { desc = "Next git hunk" })
+map("n", "[h", function()
+	if vim.wo.diff then
+		vim.cmd.normal({ "[c", bang = true })
+	else
+		require("gitsigns").nav_hunk("prev")
+	end
+end, { desc = "Prev git hunk" })
 
 -- Use Snack's bufdelete instead of built-in buffer delete
 vim.cmd([[cnoreabbrev bd lua require('snacks').bufdelete()]])
