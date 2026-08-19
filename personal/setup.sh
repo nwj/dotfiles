@@ -16,3 +16,4 @@ ln -sf "$WORKING_DIRECTORY/nvim/lazy-lock.json" "$XDG_CONFIG_HOME/nvim/lazy-lock
 
 mkdir -p "$XDG_CONFIG_HOME/fish"
 ln -sf "$WORKING_DIRECTORY/fish/config.fish" "$XDG_CONFIG_HOME/fish/config.fish"
+ln -sf "$WORKING_DIRECTORY/fish/fish_plugins" "$XDG_CONFIG_HOME/fish/fish_plugins"
