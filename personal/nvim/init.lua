@@ -319,39 +319,19 @@ require("lazy").setup({
 			"javascript",
 			"javascriptreact",
 			"json",
-			"lua",
 			"markdown",
-			"python",
 			"rust",
 			"typescript",
 			"typescriptreact",
 		},
 		config = function()
-			vim.lsp.config("lua_ls", {
-				-- These settings mostly only make sense if you're using lua primarily in the context of configuring Neovim
-				settings = {
-					Lua = {
-						runtime = {
-							version = "LuaJIT",
-						},
-						workspace = {
-							CheckThirdParty = false,
-							library = {
-								vim.env.VIMRUNTIME,
-							},
-						},
-					},
-				},
-			})
 			vim.lsp.enable({
 				"cssls",
 				"html",
 				"jsonls",
-				"lua_ls",
 				"marksman",
-				"basedpyright",
 				"rust_analyzer",
-				"ts_ls",
+				"tsc",
 			})
 		end,
 	},
