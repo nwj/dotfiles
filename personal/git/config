@@ -14,5 +14,20 @@
 [diff]
 	algorithm = histogram
 	colorMoved = default
+[fetch]
+	prune = true
+	pruneTags = true
+[rerere]
+	enabled = true
+[rebase]
+	autostash = true
+	autosquash = true
+	updateRefs = true
+[help]
+	autocorrect = prompt
+[column]
+	ui = auto
+[tag]
+	sort = version:refname
 [url "git@github.com:"]
   insteadOf = "https://github.com/"

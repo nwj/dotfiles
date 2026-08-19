@@ -8,6 +8,7 @@ ln -sf "$WORKING_DIRECTORY/ghostty/config" "$XDG_CONFIG_HOME/ghostty/config"
 
 mkdir -p "$XDG_CONFIG_HOME/git"
 ln -sf "$WORKING_DIRECTORY/git/config" "$XDG_CONFIG_HOME/git/config"
+ln -sf "$WORKING_DIRECTORY/git/ignore" "$XDG_CONFIG_HOME/git/ignore"
 
 mkdir -p "$XDG_CONFIG_HOME/nvim"
 ln -sf "$WORKING_DIRECTORY/nvim/init.lua" "$XDG_CONFIG_HOME/nvim/init.lua"
