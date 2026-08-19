@@ -29,6 +29,9 @@ if status is-interactive
     # Disable fish greeting
     set -g fish_greeting
 
+    # Zoxide
+    type -q zoxide; and zoxide init fish | source
+
     # Configure the tide prompt, if it hasn't been already (e.g. on a fresh install)
     if type -q tide; and not set -q tide_left_prompt_items
         tide configure --auto --style=Lean --prompt_colors='True color' --show_time=No --lean_prompt_height='One line' --prompt_spacing=Sparse --icons='Few icons' --transient=No
