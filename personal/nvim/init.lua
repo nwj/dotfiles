@@ -156,13 +156,6 @@ require("lazy").setup({
 		opts = { date_format = "%Y.%m.%d" },
 	},
 
-	-- Diffview (Diff Browsing / Review UI) setup
-	{
-		"sindrets/diffview.nvim",
-		cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewClose" },
-		opts = {},
-	},
-
 	-- Autopairs setup
 	{
 		"windwp/nvim-autopairs",
@@ -341,15 +334,6 @@ require("lazy").setup({
 local wk = require("which-key")
 local map = vim.keymap.set
 
--- Toggle the diffview review UI
-local function toggle_diffview()
-	if require("diffview.lib").get_current_view() then
-		vim.cmd("DiffviewClose")
-	else
-		vim.cmd("DiffviewOpen")
-	end
-end
-
 wk.add({
 	{ "<leader>*", "<cmd>Telescope grep_string<cr>", desc = "Grep word under the cursor" },
 	{ "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Open grep picker" },
@@ -382,7 +366,6 @@ wk.add({
 	{ "<leader>tw", "<cmd>set wrap!<cr>", desc = "Toggle line wrapping" },
 	{ "<leader>tb", "<cmd>BlameToggle<cr>", desc = "Toggle git blame view" },
 	{ "<leader>tc", "<cmd>TSContext toggle<cr>", desc = "Toggle sticky treesitter context" },
-	{ "<leader>td", toggle_diffview, desc = "Toggle diff view" },
 	{
 		"<leader>ti",
 		"<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>",
