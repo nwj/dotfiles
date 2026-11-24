@@ -18,3 +18,6 @@ ln -sf "$WORKING_DIRECTORY/nvim/lazy-lock.json" "$XDG_CONFIG_HOME/nvim/lazy-lock
 mkdir -p "$XDG_CONFIG_HOME/fish"
 ln -sf "$WORKING_DIRECTORY/fish/config.fish" "$XDG_CONFIG_HOME/fish/config.fish"
 ln -sf "$WORKING_DIRECTORY/fish/fish_plugins" "$XDG_CONFIG_HOME/fish/fish_plugins"
+
+mkdir -p "$XDG_CONFIG_HOME/rex"
+ln -sf "$WORKING_DIRECTORY/rex/init.lua" "$XDG_CONFIG_HOME/rex/init.lua"
