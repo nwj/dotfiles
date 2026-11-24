@@ -1,6 +1,6 @@
 theme = nightfox
 font-size = 14
 macos-titlebar-proxy-icon = hidden
-macos-titlebar-style = tabs
+macos-titlebar-style = native
 font-feature = -calt
 keybind = super+shift+enter=unbind
